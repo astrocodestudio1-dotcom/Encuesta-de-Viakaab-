@@ -30,6 +30,8 @@
     </script>
     <!-- Chart.js para las gráficas interactivas -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- SheetJS (xlsx) para exportar a Excel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -251,7 +253,7 @@
                     <h3 class="text-xl font-bold text-white mb-2">Acceso Exclusivo</h3>
                     <p class="text-xs text-slate-400">Ingresa tu PIN de seguridad para ver el Dashboard y las analíticas de Viakaab.</p>
                 </div>
-                <input type="password" id="adminPinInput" placeholder="PIN (ej. 3289)" maxlength="6" class="w-full bg-darkBg border border-borderCol text-center tracking-widest text-lg rounded-xl py-3 text-white focus:outline-none focus:border-brand-500">
+                <input type="password" id="adminPinInput" placeholder="PIN (ej. 3564)" maxlength="6" class="w-full bg-darkBg border border-borderCol text-center tracking-widest text-lg rounded-xl py-3 text-white focus:outline-none focus:border-brand-500">
                 <div id="pinError" class="text-xs text-red-400 hidden">PIN incorrecto. Acceso denegado.</div>
                 <div class="flex space-x-3">
                     <button onclick="closePinModal()" class="flex-1 py-3 bg-slate-800 text-slate-300 font-semibold rounded-xl text-sm">Cancelar</button>
@@ -268,12 +270,16 @@
                     <h2 class="text-2xl font-black text-white mt-1">Dashboard de Analíticas Viakaab</h2>
                     <p class="text-xs text-slate-400">Monitoreo en tiempo real de las respuestas ciudadanas.</p>
                 </div>
-                <div class="flex items-center space-x-3">
+                <!-- Botonera del Dashboard incluyendo Exportar a Excel -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <button onclick="exportToExcel()" class="px-4 py-2.5 bg-emerald-500 text-slate-950 rounded-xl text-xs font-bold hover:bg-emerald-400 transition-all shadow-lg shadow-emerald-500/20">
+                        <i class="fa-solid fa-file-excel mr-2"></i> Exportar a Excel
+                    </button>
                     <button onclick="resetData()" class="px-4 py-2.5 bg-red-500/10 text-red-400 border border-red-500/20 rounded-xl text-xs font-bold hover:bg-red-500/20 transition-all">
                         <i class="fa-solid fa-trash-can mr-2"></i> Reiniciar Datos
                     </button>
                     <button onclick="lockDashboard()" class="px-4 py-2.5 bg-slate-800 text-slate-300 rounded-xl text-xs font-bold hover:bg-slate-700 transition-all">
-                        <i class="fa-solid fa-lock mr-2"></i> Bloquear Sesión
+                        <i class="fa-solid fa-lock mr-2"></i> Bloquear
                     </button>
                 </div>
             </div>
@@ -455,6 +461,56 @@
                 localStorage.removeItem('viakaab_surveys');
                 renderDashboard();
             }
+        }
+
+        // Función para exportar a Excel profesional con múltiples hojas (Datos y Resumen Estadístico)
+        function exportToExcel() {
+            if (surveyData.length === 0) {
+                alert('No hay datos registrados en la encuesta para exportar.');
+                return;
+            }
+
+            // 1. Crear matriz para la hoja de Resultados Detallados
+            const detailedRows = surveyData.map((item, index) => ({
+                "ID": index + 1,
+                "Fecha": item.fecha,
+                "Nombre Completo": item.nombre,
+                "Ocupación": item.ocupacion,
+                "Colonia / Sector": item.colonia,
+                "Transporte Frecuente": item.servicioFrecuente,
+                "Frecuencia de Traslados": item.frecuenciaViaje,
+                "Satisfacción Tiempos Espera": item.tiempoEspera,
+                "Problema Principal": item.problemaPrincipal,
+                "Gasto Semanal": item.gastoSemanal,
+                "Opinión Tarifas Justas": item.opinionTarifas,
+                "Método de Pago Preferido": item.metodoPago,
+                "Importancia GPS Tiempo Real": item.gpsImportancia,
+                "Disposición Cambio a Viakaab": item.disposicionCambio,
+                "Participa en Beta": item.beta,
+                "Contacto Beta": item.contacto
+            }));
+
+            // 2. Crear matriz para la hoja de Resumen y Estadísticas
+            const totalEncuestados = surveyData.length;
+            const totalBeta = surveyData.filter(i => i.beta.includes('Sí')).length;
+            
+            const summaryRows = [
+                { "Métrica Global": "Total de Encuestados", "Valor": totalEncuestados },
+                { "Métrica Global": "Inscritos a Pruebas Beta", "Valor": totalBeta },
+                { "Métrica Global": "Fecha de Generación del Reporte", "Valor": new Date().toLocaleString() }
+            ];
+
+            // 3. Generar Libro de Trabajo (Workbook)
+            const wb = XLSX.utils.book_new();
+            
+            const wsDetailed = XLSX.utils.json_to_sheet(detailedRows);
+            const wsSummary = XLSX.utils.json_to_sheet(summaryRows);
+
+            XLSX.utils.book_append_sheet(wb, wsDetailed, "Resultados Detallados");
+            XLSX.utils.book_append_sheet(wb, wsSummary, "Resumen y Estadísticas");
+
+            // 4. Descargar archivo Excel
+            XLSX.writeFile(wb, "Reporte_Analiticas_Viakaab.xlsx");
         }
 
         function renderDashboard() {

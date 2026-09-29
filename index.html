@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Viakaab & Sindicato Gral. Francisco May | Encuesta y Dashboard</title>
+    <title>Viakaab | Encuesta de Movilidad y Dashboard</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -41,7 +41,6 @@
     <!-- Navegación Superior -->
     <header class="sticky top-0 z-50 bg-[#0b0f19]/90 backdrop-blur-md border-b border-borderCol">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Logo y Marca -->
             <div class="flex items-center space-x-3">
                 <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-500 to-emerald-400 flex items-center justify-center shadow-lg shadow-brand-500/20">
                     <i class="fa-solid fa-route text-slate-950 text-2xl"></i>
@@ -52,7 +51,6 @@
                 </div>
             </div>
 
-            <!-- Botones de Pestañas -->
             <div class="flex items-center space-x-2 bg-cardBg p-1.5 rounded-2xl border border-borderCol">
                 <button onclick="switchTab('survey')" id="btn-survey" class="flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all bg-brand-500 text-slate-950 shadow-md">
                     <i class="fa-solid fa-pen-to-square"></i>
@@ -75,59 +73,59 @@
                 <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="relative z-10 max-w-2xl">
                     <span class="inline-block px-3 py-1 rounded-full bg-brand-500/20 text-brand-400 text-xs font-bold uppercase tracking-wider mb-3">Estudio de Mercado Local</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">Innovación en la Movilidad Local</h2>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">Revoluciona tu Movilidad en Felipe Carrillo Puerto</h2>
                     <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                        Ayúdanos a mejorar el servicio de transporte en Felipe Carrillo Puerto. Tu opinión es clave para integrar de forma eficiente las opciones de <span class="text-brand-400 font-semibold">Viakaab</span> con el respaldo y experiencia del <span class="text-amber-400 font-semibold">Sindicato de Taxistas Gral. Francisco May</span>.
+                        Ayúdanos a mejorar el servicio de transporte en nuestra ciudad. Tu opinión es clave para consolidar <span class="text-brand-400 font-semibold">Viakaab</span> como la mejor alternativa moderna, justa y eficiente de transporte local.
                     </p>
                 </div>
             </div>
 
-            <!-- Formulario -->
+            <!-- Formulario Ampliado -->
             <form id="surveyForm" onsubmit="submitSurvey(event)" class="space-y-6">
                 
-                <!-- Sección 1: Datos Personales y Ocupación -->
+                <!-- Sección 1: Datos Personales -->
                 <div class="bg-cardBg border border-borderCol p-6 sm:p-8 rounded-3xl shadow-xl space-y-5">
                     <div class="flex items-center space-x-3 border-b border-borderCol pb-4">
                         <div class="w-9 h-9 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400 font-bold">1</div>
-                        <h3 class="text-lg font-bold text-white">Información General</h3>
+                        <h3 class="text-lg font-bold text-white">Información General del Usuario</h3>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Nombre Completo *</label>
-                            <input type="text" id="nombre" required placeholder="Ej. Carlos Ucán" class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                            <input type="text" id="nombre" required placeholder="Ej. Ana Sofía Tun" class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">¿A qué te dedicas? *</label>
-                            <input type="text" id="ocupacion" required placeholder="Ej. Estudiante, Comerciante, Docente..." class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                            <input type="text" id="ocupacion" required placeholder="Ej. Estudiante, Empleado, Comerciante..." class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
                         </div>
                         <div class="sm:col-span-2">
                             <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Colonia o Sector de Residencia *</label>
-                            <input type="text" id="colonia" required placeholder="Ej. Centro, Leona Vicario, Emiliano Zapata..." class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                            <input type="text" id="colonia" required placeholder="Ej. Centro, Leona Vicario, Francisco May..." class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
                         </div>
                     </div>
                 </div>
 
-                <!-- Sección 2: Uso y Preferencia de Transporte -->
+                <!-- Sección 2: Hábitos de Movilidad -->
                 <div class="bg-cardBg border border-borderCol p-6 sm:p-8 rounded-3xl shadow-xl space-y-5">
                     <div class="flex items-center space-x-3 border-b border-borderCol pb-4">
                         <div class="w-9 h-9 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400 font-bold">2</div>
-                        <h3 class="text-lg font-bold text-white">Preferencias de Movilidad y Alianzas</h3>
+                        <h3 class="text-lg font-bold text-white">Hábitos y Experiencia de Transporte</h3>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">¿Qué servicio de transporte utilizas más seguido? *</label>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">¿Qué medio de transporte utilizas con mayor frecuencia? *</label>
                             <select id="servicioFrecuente" required class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
-                                <option value="" disabled selected>Selecciona una opción...</option>
-                                <option value="Sindicato Francisco May (Taxis)">Sindicato de Taxistas Gral. Francisco May</option>
-                                <option value="Mototaxis Locales">Mototaxis Locales</option>
-                                <option value="Transporte Público / Colectivo">Transporte Público / Colectivo</option>
-                                <option value="Vehículo Propio">Vehículo Propio</option>
+                                <option value="" disabled selected>Selecciona opción...</option>
+                                <option value="Taxis tradicionales">Taxis tradicionales</option>
+                                <option value="Mototaxis">Mototaxis</option>
+                                <option value="Transporte público / Colectivo">Transporte público / Colectivo</option>
+                                <option value="Vehículo o moto propia">Vehículo o moto propia</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Frecuencia semanal de traslado *</label>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Frecuencia semanal de traslados *</label>
                             <select id="frecuenciaViaje" required class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
                                 <option value="" disabled selected>Selecciona frecuencia...</option>
                                 <option value="Todos los días">Todos los días</option>
@@ -136,33 +134,52 @@
                                 <option value="Rara vez">Rara vez</option>
                             </select>
                         </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">¿Qué tan satisfecho estás con los tiempos de espera actuales? *</label>
+                            <select id="tiempoEspera" required class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                                <option value="" disabled selected>Selecciona nivel...</option>
+                                <option value="Muy satisfecho">Muy satisfecho</option>
+                                <option value="Neutral / Aceptable">Neutral / Aceptable</option>
+                                <option value="Insatisfecho (Demora mucho)">Insatisfecho (Demora mucho)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Principal problema del transporte actual *</label>
+                            <select id="problemaPrincipal" required class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                                <option value="" disabled selected>Selecciona problema...</option>
+                                <option value="Tarifas elevadas">Tarifas elevadas</option>
+                                <option value="Escasez de unidades en horas pico">Escasez de unidades en horas pico</option>
+                                <option value="Falta de seguridad o confianza">Falta de seguridad o confianza</option>
+                                <option value="Falta de métodos de pago digitales">Falta de métodos de pago digitales</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Sección 3: Tarifas, Pagos y Viakaab -->
+                <!-- Sección 3: Preferencias de Viakaab -->
                 <div class="bg-cardBg border border-borderCol p-6 sm:p-8 rounded-3xl shadow-xl space-y-5">
                     <div class="flex items-center space-x-3 border-b border-borderCol pb-4">
                         <div class="w-9 h-9 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400 font-bold">3</div>
-                        <h3 class="text-lg font-bold text-white">Tarifas, Pagos y Tecnología Viakaab</h3>
+                        <h3 class="text-lg font-bold text-white">Preferencias y Modelo Viakaab</h3>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">¿Cómo consideras las tarifas actuales de transporte? *</label>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">¿Qué opinas de un sistema de tarifas negociables y justas? *</label>
                             <select id="opinionTarifas" required class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
                                 <option value="" disabled selected>Selecciona valoración...</option>
-                                <option value="Muy altas / Costosas">Muy altas / Costosas</option>
-                                <option value="Justas y accesibles">Justas y accesibles</option>
-                                <option value="Depende de la distancia">Depende de la distancia</option>
+                                <option value="Excelente idea (Me da control)">Excelente idea (Me da control)</option>
+                                <option value="Interesante, probaría el servicio">Interesante, probaría el servicio</option>
+                                <option value="Prefiero tarifas fijas tradicionales">Prefiero tarifas fijas tradicionales</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Método de pago preferido *</label>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Método de pago de preferencia en Viakaab *</label>
                             <select id="metodoPago" required class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
                                 <option value="" disabled selected>Selecciona método...</option>
-                                <option value="Efectivo">Efectivo</option>
-                                <option value="Transferencia Bancaria">Transferencia Bancaria</option>
-                                <option value="Pago digital dentro de Viakaab">Pago digital dentro de Viakaab</option>
+                                <option value="Efectivo al abordar">Efectivo al abordar</option>
+                                <option value="Transferencia Bancaria (SPEI)">Transferencia Bancaria (SPEI)</option>
+                                <option value="Pago digital dentro de la app">Pago digital dentro de la app</option>
                             </select>
                         </div>
                     </div>
@@ -176,7 +193,7 @@
                         </div>
                         <div>
                             <h3 class="text-base font-bold text-white">¿Te gustaría participar en pruebas beta con beneficios? (Opcional)</h3>
-                            <p class="text-xs text-slate-400">Obtén viajes gratis, descuentos exclusivos y acceso prioritario a Viakaab y el Sindicato.</p>
+                            <p class="text-xs text-slate-400">Obtén viajes gratis, descuentos exclusivos y acceso prioritario a Viakaab.</p>
                         </div>
                     </div>
                     <select id="betaOpt" onchange="toggleBetaInput(this.value)" class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
@@ -203,11 +220,11 @@
                     <i class="fa-solid fa-lock"></i>
                 </div>
                 <div>
-                    <h3 class="text-xl font-bold text-white mb-2">Acceso Administrativo</h3>
-                    <p class="text-xs text-slate-400">Ingresa el PIN de seguridad para visualizar el Dashboard y las estadísticas globales.</p>
+                    <h3 class="text-xl font-bold text-white mb-2">Acceso Exclusivo</h3>
+                    <p class="text-xs text-slate-400">Ingresa tu PIN de seguridad para ver el Dashboard y las analíticas de Viakaab.</p>
                 </div>
-                <input type="password" id="adminPinInput" placeholder="PIN de acceso (ej. 2026)" maxlength="6" class="w-full bg-darkBg border border-borderCol text-center tracking-widest text-lg rounded-xl py-3 text-white focus:outline-none focus:border-brand-500">
-                <div id="pinError" class="text-xs text-red-400 hidden">PIN incorrecto. Intenta de nuevo.</div>
+                <input type="password" id="adminPinInput" placeholder="PIN (ej. 2026)" maxlength="6" class="w-full bg-darkBg border border-borderCol text-center tracking-widest text-lg rounded-xl py-3 text-white focus:outline-none focus:border-brand-500">
+                <div id="pinError" class="text-xs text-red-400 hidden">PIN incorrecto. Acceso denegado.</div>
                 <div class="flex space-x-3">
                     <button onclick="closePinModal()" class="flex-1 py-3 bg-slate-800 text-slate-300 font-semibold rounded-xl text-sm">Cancelar</button>
                     <button onclick="verifyPin()" class="flex-1 py-3 bg-brand-500 text-slate-950 font-bold rounded-xl text-sm shadow-lg shadow-brand-500/20">Entrar</button>
@@ -220,8 +237,8 @@
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-cardBg border border-borderCol p-6 rounded-3xl">
                 <div>
                     <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-wider">Panel Privado</span>
-                    <h2 class="text-2xl font-black text-white mt-1">Dashboard de Resultados Viakaab</h2>
-                    <p class="text-xs text-slate-400">Datos recopilados en tiempo real de la comunidad.</p>
+                    <h2 class="text-2xl font-black text-white mt-1">Dashboard de Analíticas Viakaab</h2>
+                    <p class="text-xs text-slate-400">Monitoreo en tiempo real de las respuestas ciudadanas.</p>
                 </div>
                 <div class="flex items-center space-x-3">
                     <button onclick="resetData()" class="px-4 py-2.5 bg-red-500/10 text-red-400 border border-red-500/20 rounded-xl text-xs font-bold hover:bg-red-500/20 transition-all">
@@ -233,7 +250,7 @@
                 </div>
             </div>
 
-            <!-- Tarjetas de Estadísticas Rápidas -->
+            <!-- Tarjetas de Estadísticas -->
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
                 <div class="bg-cardBg border border-borderCol p-6 rounded-3xl shadow-xl flex items-center justify-between">
                     <div>
@@ -267,22 +284,22 @@
             <!-- Gráficas Estadísticas -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="bg-cardBg border border-borderCol p-6 rounded-3xl shadow-xl">
-                    <h3 class="text-base font-bold text-white mb-4"><i class="fa-solid fa-chart-bar text-brand-400 mr-2"></i> Servicios de Transporte Frecuentes</h3>
+                    <h3 class="text-base font-bold text-white mb-4"><i class="fa-solid fa-chart-bar text-brand-400 mr-2"></i> Transporte Más Utilizado</h3>
                     <div class="relative h-64 flex items-center justify-center">
                         <canvas id="chartServices"></canvas>
                     </div>
                 </div>
                 <div class="bg-cardBg border border-borderCol p-6 rounded-3xl shadow-xl">
-                    <h3 class="text-base font-bold text-white mb-4"><i class="fa-solid fa-chart-pie text-amber-400 mr-2"></i> Métodos de Pago Preferidos</h3>
+                    <h3 class="text-base font-bold text-white mb-4"><i class="fa-solid fa-chart-pie text-amber-400 mr-2"></i> Principal Problema Percibido</h3>
                     <div class="relative h-64 flex items-center justify-center">
-                        <canvas id="chartPayments"></canvas>
+                        <canvas id="chartProblems"></canvas>
                     </div>
                 </div>
             </div>
 
-            <!-- Tabla de Respuestas Detalladas -->
+            <!-- Tabla de Registros -->
             <div class="bg-cardBg border border-borderCol p-6 rounded-3xl shadow-xl space-y-4">
-                <h3 class="text-base font-bold text-white"><i class="fa-solid fa-table text-brand-400 mr-2"></i> Registro Detallado de Participantes</h3>
+                <h3 class="text-base font-bold text-white"><i class="fa-solid fa-table text-brand-400 mr-2"></i> Base de Datos de Participantes</h3>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm text-slate-300">
                         <thead class="bg-darkBg text-xs uppercase text-slate-400 border-b border-borderCol">
@@ -290,8 +307,8 @@
                                 <th class="p-3">Nombre</th>
                                 <th class="p-3">Ocupación</th>
                                 <th class="p-3">Colonia</th>
-                                <th class="p-3">Servicio</th>
-                                <th class="p-3">Pago</th>
+                                <th class="p-3">Transporte</th>
+                                <th class="p-3">Problema</th>
                                 <th class="p-3">Beta</th>
                             </tr>
                         </thead>
@@ -307,17 +324,15 @@
 
     <!-- Footer -->
     <footer class="mt-auto border-t border-borderCol py-6 text-center text-xs text-slate-500">
-        <p>Viakaab Smart Mobility Hub & Sindicato de Taxistas Gral. Francisco May © 2026</p>
+        <p>Viakaab Smart Mobility Hub © 2026. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Scripts de Lógica y Gráficas -->
+    <!-- Lógica de la Aplicación -->
     <script>
-        // Almacenamiento local
         let surveyData = JSON.parse(localStorage.getItem('viakaab_surveys')) || [];
         let isAdminLoggedIn = false;
-        let chartsInitialized = false;
         let chartServiceInstance = null;
-        let chartPaymentInstance = null;
+        let chartProblemInstance = null;
 
         function switchTab(tab) {
             const viewSurvey = document.getElementById('view-survey');
@@ -386,6 +401,8 @@
                 colonia: document.getElementById('colonia').value,
                 servicioFrecuente: document.getElementById('servicioFrecuente').value,
                 frecuenciaViaje: document.getElementById('frecuenciaViaje').value,
+                tiempoEspera: document.getElementById('tiempoEspera').value,
+                problemaPrincipal: document.getElementById('problemaPrincipal').value,
                 opinionTarifas: document.getElementById('opinionTarifas').value,
                 metodoPago: document.getElementById('metodoPago').value,
                 beta: document.getElementById('betaOpt').value,
@@ -396,13 +413,13 @@
             surveyData.push(newEntry);
             localStorage.setItem('viakaab_surveys', JSON.stringify(surveyData));
 
-            alert('¡Muchas gracias! Tus respuestas han sido registradas exitosamente.');
+            alert('¡Muchas gracias! Tus respuestas se han enviado correctamente.');
             document.getElementById('surveyForm').reset();
             document.getElementById('betaContactDiv').classList.add('hidden');
         }
 
         function resetData() {
-            if (confirm('¿Estás seguro de borrar todos los datos recopilados?')) {
+            if (confirm('¿Estás seguro de borrar todos los registros de la encuesta?')) {
                 surveyData = [];
                 localStorage.removeItem('viakaab_surveys');
                 renderDashboard();
@@ -410,12 +427,10 @@
         }
 
         function renderDashboard() {
-            // Métricas rápidas
             document.getElementById('statTotal').innerText = surveyData.length;
             const betaCount = surveyData.filter(i => i.beta.includes('Sí')).length;
             document.getElementById('statBeta').innerText = betaCount;
 
-            // Servicio más frecuente
             if (surveyData.length > 0) {
                 const serviceCounts = {};
                 surveyData.forEach(i => serviceCounts[i.servicioFrecuente] = (serviceCounts[i.servicioFrecuente] || 0) + 1);
@@ -425,11 +440,10 @@
                 document.getElementById('statTopService').innerText = 'N/A';
             }
 
-            // Llenar Tabla
             const tbody = document.getElementById('submissionsTableBody');
             tbody.innerHTML = '';
             if (surveyData.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-500">Aún no hay respuestas registradas.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-500">No hay registros guardados todavía.</td></tr>`;
             } else {
                 surveyData.slice().reverse().forEach(item => {
                     tbody.innerHTML += `
@@ -438,48 +452,33 @@
                             <td class="p-3">${item.ocupacion}</td>
                             <td class="p-3">${item.colonia}</td>
                             <td class="p-3">${item.servicioFrecuente}</td>
-                            <td class="p-3">${item.metodoPago}</td>
+                            <td class="p-3">${item.problemaPrincipal}</td>
                             <td class="p-3"><span class="px-2 py-1 rounded-full text-xs font-bold ${item.beta.includes('Sí') ? 'bg-emerald-500/20 text-emerald-400' : 'bg-slate-800 text-slate-400'}">${item.beta}</span></td>
                         </tr>
                     `;
                 });
             }
 
-            // Renderizar Gráficas con Chart.js
             renderCharts();
         }
 
         function renderCharts() {
-            // Procesar datos para gráfica de Servicios
             const serviceCounts = {};
-            surveyData.forEach(i => {
-                serviceCounts[i.servicioFrecuente] = (serviceCounts[i.servicioFrecuente] || 0) + 1;
-            });
+            surveyData.forEach(i => { serviceCounts[i.servicioFrecuente] = (serviceCounts[i.servicioFrecuente] || 0) + 1; });
 
-            const serviceLabels = Object.keys(serviceCounts);
-            const serviceValues = Object.values(serviceCounts);
+            const problemCounts = {};
+            surveyData.forEach(i => { problemCounts[i.problemaPrincipal] = (problemCounts[i.problemaPrincipal] || 0) + 1; });
 
-            // Procesar datos para gráfica de Pagos
-            const paymentCounts = {};
-            surveyData.forEach(i => {
-                paymentCounts[i.metodoPago] = (paymentCounts[i.metodoPago] || 0) + 1;
-            });
-
-            const paymentLabels = Object.keys(paymentCounts);
-            const paymentValues = Object.values(paymentCounts);
-
-            // Destruir instancias previas si existen
             if (chartServiceInstance) chartServiceInstance.destroy();
-            if (chartPaymentInstance) chartPaymentInstance.destroy();
+            if (chartProblemInstance) chartProblemInstance.destroy();
 
             const ctxServices = document.getElementById('chartServices').getContext('2d');
             chartServiceInstance = new Chart(ctxServices, {
                 type: 'bar',
                 data: {
-                    labels: serviceLabels.length ? serviceLabels : ['Sin datos'],
+                    labels: Object.keys(serviceCounts).length ? Object.keys(serviceCounts) : ['Sin datos'],
                     datasets: [{
-                        label: 'Respuestas',
-                        data: serviceValues.length ? serviceValues : [0],
+                        data: Object.values(serviceCounts).length ? Object.values(serviceCounts) : [0],
                         backgroundColor: '#00d2b4',
                         borderRadius: 8
                     }]
@@ -495,13 +494,13 @@
                 }
             });
 
-            const ctxPayments = document.getElementById('chartPayments').getContext('2d');
-            chartPaymentInstance = new Chart(ctxPayments, {
+            const ctxProblems = document.getElementById('chartProblems').getContext('2d');
+            chartProblemInstance = new Chart(ctxProblems, {
                 type: 'doughnut',
                 data: {
-                    labels: paymentLabels.length ? paymentLabels : ['Sin datos'],
+                    labels: Object.keys(problemCounts).length ? Object.keys(problemCounts) : ['Sin datos'],
                     datasets: [{
-                        data: paymentValues.length ? paymentValues : [1],
+                        data: Object.values(problemCounts).length ? Object.values(problemCounts) : [1],
                         backgroundColor: ['#00d2b4', '#fbbf24', '#3b82f6', '#ec4899']
                     }]
                 },
@@ -509,7 +508,7 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: { position: 'bottom', labels: { color: '#94a3b8', font: { size: 11 } } }
+                        legend: { position: 'bottom', labels: { color: '#94a3b8', font: { size: 10 } } }
                     }
                 }
             });

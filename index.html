@@ -75,47 +75,47 @@
                     <span class="inline-block px-3 py-1 rounded-full bg-brand-500/20 text-brand-400 text-xs font-bold uppercase tracking-wider mb-3">Estudio de Mercado Local</span>
                     <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">Revoluciona tu Movilidad en Felipe Carrillo Puerto</h2>
                     <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                        Ayúdanos a mejorar el servicio de transporte en nuestra ciudad. Tu opinión es clave para consolidar <span class="text-brand-400 font-semibold">Viakaab</span> como la mejor alternativa moderna, justa y eficiente de transporte local.
+                        Ayúdanos a mejorar el servicio de transporte en nuestra ciudad respondiendo este breve cuestionario. Tu opinión es clave para consolidar <span class="text-brand-400 font-semibold">Viakaab</span> como la mejor alternativa moderna, justa y eficiente.
                     </p>
                 </div>
             </div>
 
-            <!-- Formulario Ampliado -->
+            <!-- Formulario Ampliado (14 Preguntas) -->
             <form id="surveyForm" onsubmit="submitSurvey(event)" class="space-y-6">
                 
-                <!-- Sección 1: Datos Personales -->
+                <!-- Sección 1: Datos Personales y Ubicación (Q1 - Q3) -->
                 <div class="bg-cardBg border border-borderCol p-6 sm:p-8 rounded-3xl shadow-xl space-y-5">
                     <div class="flex items-center space-x-3 border-b border-borderCol pb-4">
                         <div class="w-9 h-9 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400 font-bold">1</div>
-                        <h3 class="text-lg font-bold text-white">Información General del Usuario</h3>
+                        <h3 class="text-lg font-bold text-white">Información General</h3>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Nombre Completo *</label>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">1. Nombre Completo *</label>
                             <input type="text" id="nombre" required placeholder="Ej. Ana Sofía Tun" class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">¿A qué te dedicas? *</label>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">2. ¿A qué te dedicas? *</label>
                             <input type="text" id="ocupacion" required placeholder="Ej. Estudiante, Empleado, Comerciante..." class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
                         </div>
                         <div class="sm:col-span-2">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Colonia o Sector de Residencia *</label>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">3. Colonia o Sector de Residencia *</label>
                             <input type="text" id="colonia" required placeholder="Ej. Centro, Leona Vicario, Francisco May..." class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
                         </div>
                     </div>
                 </div>
 
-                <!-- Sección 2: Hábitos de Movilidad -->
+                <!-- Sección 2: Hábitos y Experiencia de Transporte (Q4 - Q8) -->
                 <div class="bg-cardBg border border-borderCol p-6 sm:p-8 rounded-3xl shadow-xl space-y-5">
                     <div class="flex items-center space-x-3 border-b border-borderCol pb-4">
                         <div class="w-9 h-9 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400 font-bold">2</div>
-                        <h3 class="text-lg font-bold text-white">Hábitos y Experiencia de Transporte</h3>
+                        <h3 class="text-lg font-bold text-white">Hábitos y Experiencia Actual</h3>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">¿Qué medio de transporte utilizas con mayor frecuencia? *</label>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">4. ¿Qué medio de transporte utilizas con mayor frecuencia? *</label>
                             <select id="servicioFrecuente" required class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
                                 <option value="" disabled selected>Selecciona opción...</option>
                                 <option value="Taxis tradicionales">Taxis tradicionales</option>
@@ -125,7 +125,7 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Frecuencia semanal de traslados *</label>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">5. Frecuencia semanal de traslados *</label>
                             <select id="frecuenciaViaje" required class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
                                 <option value="" disabled selected>Selecciona frecuencia...</option>
                                 <option value="Todos los días">Todos los días</option>
@@ -135,7 +135,7 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">¿Qué tan satisfecho estás con los tiempos de espera actuales? *</label>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">6. ¿Qué tan satisfecho estás con los tiempos de espera actuales? *</label>
                             <select id="tiempoEspera" required class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
                                 <option value="" disabled selected>Selecciona nivel...</option>
                                 <option value="Muy satisfecho">Muy satisfecho</option>
@@ -144,7 +144,7 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Principal problema del transporte actual *</label>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">7. Principal problema del transporte actual *</label>
                             <select id="problemaPrincipal" required class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
                                 <option value="" disabled selected>Selecciona problema...</option>
                                 <option value="Tarifas elevadas">Tarifas elevadas</option>
@@ -153,19 +153,29 @@
                                 <option value="Falta de métodos de pago digitales">Falta de métodos de pago digitales</option>
                             </select>
                         </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">8. ¿Cuánto gastas aproximadamente en transporte a la semana? *</label>
+                            <select id="gastoSemanal" required class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                                <option value="" disabled selected>Selecciona rango...</option>
+                                <option value="Menos de $150 MXN">Menos de $150 MXN</option>
+                                <option value="$150 - $300 MXN">$150 - $300 MXN</option>
+                                <option value="$300 - $500 MXN">$300 - $500 MXN</option>
+                                <option value="Más de $500 MXN">Más de $500 MXN</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Sección 3: Preferencias de Viakaab -->
+                <!-- Sección 3: Preferencias y Modelo Viakaab (Q9 - Q12) -->
                 <div class="bg-cardBg border border-borderCol p-6 sm:p-8 rounded-3xl shadow-xl space-y-5">
                     <div class="flex items-center space-x-3 border-b border-borderCol pb-4">
                         <div class="w-9 h-9 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400 font-bold">3</div>
-                        <h3 class="text-lg font-bold text-white">Preferencias y Modelo Viakaab</h3>
+                        <h3 class="text-lg font-bold text-white">Preferencias y Competencia Viakaab</h3>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">¿Qué opinas de un sistema de tarifas negociables y justas? *</label>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">9. ¿Qué opinas de un sistema de tarifas negociables y justas? *</label>
                             <select id="opinionTarifas" required class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
                                 <option value="" disabled selected>Selecciona valoración...</option>
                                 <option value="Excelente idea (Me da control)">Excelente idea (Me da control)</option>
@@ -174,7 +184,7 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Método de pago de preferencia en Viakaab *</label>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">10. Método de pago de preferencia en Viakaab *</label>
                             <select id="metodoPago" required class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
                                 <option value="" disabled selected>Selecciona método...</option>
                                 <option value="Efectivo al abordar">Efectivo al abordar</option>
@@ -182,17 +192,35 @@
                                 <option value="Pago digital dentro de la app">Pago digital dentro de la app</option>
                             </select>
                         </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">11. ¿Qué tan importante es poder ver la ubicación del conductor en tiempo real? *</label>
+                            <select id="gpsImportancia" required class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                                <option value="" disabled selected>Selecciona importancia...</option>
+                                <option value="Extremadamente importante">Extremadamente importante</option>
+                                <option value="Importante">Importante</option>
+                                <option value="Poco importante">Poco importante</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">12. ¿Estarías dispuesto a cambiarte a Viakaab como tu app principal de transporte? *</label>
+                            <select id="disposicionCambio" required class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                                <option value="" disabled selected>Selecciona respuesta...</option>
+                                <option value="Sí, sin duda alguna">Sí, sin duda alguna</option>
+                                <option value="Tal vez, dependiendo de las tarifas">Tal vez, dependiendo de las tarifas</option>
+                                <option value="No lo creo">No lo creo</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Sección 4: Pruebas Beta (Opcional) -->
+                <!-- Sección 4: Pruebas Beta y Extras (Q13 - Q14) -->
                 <div class="bg-cardBg border border-brand-500/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-4">
                     <div class="flex items-center space-x-3">
                         <div class="w-9 h-9 rounded-xl bg-brand-500/20 flex items-center justify-center text-brand-400">
                             <i class="fa-solid fa-flask"></i>
                         </div>
                         <div>
-                            <h3 class="text-base font-bold text-white">¿Te gustaría participar en pruebas beta con beneficios? (Opcional)</h3>
+                            <h3 class="text-base font-bold text-white">13. ¿Te gustaría participar en pruebas beta con beneficios? (Opcional)</h3>
                             <p class="text-xs text-slate-400">Obtén viajes gratis, descuentos exclusivos y acceso prioritario a Viakaab.</p>
                         </div>
                     </div>
@@ -201,7 +229,7 @@
                         <option value="Sí, quiero participar">¡Sí, quiero participar!</option>
                     </select>
                     <div id="betaContactDiv" class="hidden pt-2">
-                        <input type="text" id="contactoBeta" placeholder="Número de WhatsApp o Correo Electrónico" class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                        <input type="text" id="contactoBeta" placeholder="14. Número de WhatsApp o Correo Electrónico" class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
                     </div>
                 </div>
 
@@ -403,8 +431,11 @@
                 frecuenciaViaje: document.getElementById('frecuenciaViaje').value,
                 tiempoEspera: document.getElementById('tiempoEspera').value,
                 problemaPrincipal: document.getElementById('problemaPrincipal').value,
+                gastoSemanal: document.getElementById('gastoSemanal').value,
                 opinionTarifas: document.getElementById('opinionTarifas').value,
                 metodoPago: document.getElementById('metodoPago').value,
+                gpsImportancia: document.getElementById('gpsImportancia').value,
+                disposicionCambio: document.getElementById('disposicionCambio').value,
                 beta: document.getElementById('betaOpt').value,
                 contacto: document.getElementById('contactoBeta').value || 'N/A',
                 fecha: new Date().toLocaleDateString()

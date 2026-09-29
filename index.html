@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Viakaab & Sindicato Francisco May - Survey & Live Dashboard</title>
+    <title>Viakaab & Sindicato Gral. Francisco May | Encuesta y Dashboard</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -12,364 +12,291 @@
             theme: {
                 extend: {
                     colors: {
+                        brand: {
+                            50: '#e6fffa',
+                            100: '#b2f5ea',
+                            500: '#00d2b4',
+                            600: '#00b398',
+                            700: '#008571',
+                            900: '#004d41',
+                        },
                         darkBg: '#0b0f19',
-                        cardBg: '#131c2e',
-                        cardBorder: '#1e293b',
-                        brandGreen: '#10b981',
-                        brandCyan: '#06b6d4',
-                        brandBlue: '#3b82f6'
+                        cardBg: '#121826',
+                        borderCol: '#1f293d'
                     }
                 }
             }
         }
     </script>
-    <!-- Chart.js CDN -->
+    <!-- Chart.js para las gráficas interactivas -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- FontAwesome CDN for Icons -->
+    <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        body { background-color: #0b0f19; color: #f3f4f6; }
     </style>
 </head>
-<body class="bg-darkBg text-slate-100 min-h-screen flex flex-col selection:bg-brandCyan selection:text-slate-900">
+<body class="min-h-screen flex flex-col font-sans selection:bg-brand-500 selection:text-black">
 
-    <!-- Navigation Bar matching reference style -->
-    <header class="bg-[#0e1626] border-b border-cardBorder sticky top-0 z-50 px-4 sm:px-8 py-3 shadow-lg">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <!-- Brand Logo & Subtitle -->
-            <div class="flex items-center gap-3">
-                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-brandGreen to-brandCyan flex items-center justify-center shadow-md shadow-brandCyan/20">
-                    <i class="fa-solid fa-route text-slate-900 text-xl font-bold"></i>
+    <!-- Navegación Superior -->
+    <header class="sticky top-0 z-50 bg-[#0b0f19]/90 backdrop-blur-md border-b border-borderCol">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo y Marca -->
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-500 to-emerald-400 flex items-center justify-center shadow-lg shadow-brand-500/20">
+                    <i class="fa-solid fa-route text-slate-950 text-2xl"></i>
                 </div>
                 <div>
-                    <div class="text-xl font-extrabold tracking-wider bg-gradient-to-r from-brandCyan via-teal-300 to-brandGreen bg-clip-text text-transparent">
-                        VIAKAAB
-                    </div>
-                    <div class="text-[10px] tracking-widest text-slate-400 font-semibold uppercase">
-                        Smart Mobility Hub
-                    </div>
+                    <h1 class="text-xl sm:text-2xl font-black tracking-wider text-brand-500">VIAKAAB</h1>
+                    <p class="text-xs text-slate-400 font-medium tracking-wide">SMART MOBILITY HUB</p>
                 </div>
             </div>
 
-            <!-- Navigation Tab Buttons -->
-            <nav class="flex items-center bg-slate-900/80 p-1.5 rounded-full border border-cardBorder shadow-inner">
-                <button id="navSurveyBtn" onclick="switchTab('survey')" class="px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-teal-500 text-slate-950 shadow-md">
-                    <i class="fa-solid fa-pen-to-square"></i> Encuesta
+            <!-- Botones de Pestañas -->
+            <div class="flex items-center space-x-2 bg-cardBg p-1.5 rounded-2xl border border-borderCol">
+                <button onclick="switchTab('survey')" id="btn-survey" class="flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all bg-brand-500 text-slate-950 shadow-md">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span class="hidden sm:inline">Encuesta</span>
                 </button>
-                <button id="navDashboardBtn" onclick="requestDashboardAccess()" class="px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 text-slate-400 hover:text-slate-100">
-                    <i class="fa-solid fa-lock text-xs mr-1 text-brandCyan"></i> Dashboard & Gráficas
+                <button onclick="switchTab('dashboard')" id="btn-dashboard" class="flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span class="hidden sm:inline">Dashboard</span>
                 </button>
-            </nav>
+            </div>
         </div>
     </header>
 
-    <!-- Main Container -->
-    <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+    <!-- Contenido Principal -->
+    <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-        <!-- SURVEY SECTION -->
-        <section id="surveyView" class="space-y-6">
-            <div class="text-center max-w-2xl mx-auto space-y-2 mb-8">
-                <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-white">Estudio de Movilidad Urbana</h1>
-                <p class="text-slate-400 text-sm sm:text-base">
-                    Comparativa de servicios de transporte local: <span class="text-brandCyan font-semibold">Viakaab</span> vs. <span class="text-amber-400 font-semibold">Sindicato de Taxistas Gral. Francisco May</span>. Tu opinión transforma el transporte en Felipe Carrillo Puerto y la región.
-                </p>
-            </div>
-
-            <div class="bg-cardBg border border-cardBorder rounded-2xl shadow-xl p-6 sm:p-8 max-w-3xl mx-auto relative overflow-hidden">
-                <!-- Decorative gradient glow -->
-                <div class="absolute -top-24 -right-24 w-48 h-48 bg-brandCyan/10 rounded-full blur-3xl pointer-events-none"></div>
-
-                <form id="mobilitySurveyForm" onsubmit="handleFormSubmit(event)" class="space-y-8">
-
-                    <!-- Step 1: Personal Details -->
-                    <div class="space-y-4 border-b border-cardBorder pb-6">
-                        <div class="flex items-center gap-3 text-brandCyan">
-                            <i class="fa-solid fa-user-shield text-lg"></i>
-                            <h2 class="text-lg font-semibold text-white">1. Datos Personales y Ocupación</h2>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-medium text-slate-400 mb-1">Nombre Completo (Opcional)</label>
-                                <input type="text" id="userName" placeholder="Ej. Carlos Dzul" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-brandCyan transition">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-medium text-slate-400 mb-1">Ocupación / Actividad Principal *</label>
-                                <select id="userOccupation" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-brandCyan transition">
-                                    <option value="" disabled selected>Selecciona tu ocupación...</option>
-                                    <option value="Estudiante">Estudiante</option>
-                                    <option value="Trabajador / Empleado">Trabajador / Empleado</option>
-                                    <option value="Comerciante / Empresario">Comerciante / Empresario</option>
-                                    <option value="Taxista / Transportista">Taxista / Transportista</option>
-                                    <option value="Turista / Visitante">Turista / Visitante</option>
-                                    <option value="Otro">Otro</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 2: Transit Comparison -->
-                    <div class="space-y-4 border-b border-cardBorder pb-6">
-                        <div class="flex items-center gap-3 text-brandCyan">
-                            <i class="fa-solid fa-taxi text-lg"></i>
-                            <h2 class="text-lg font-semibold text-white">2. Preferencia y Uso de Servicios de Transporte</h2>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-medium text-slate-400 mb-1">¿Qué servicio utilizarias con mayor frecuencia? *</label>
-                                <select id="primaryService" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-brandCyan transition">
-                                    <option value="" disabled selected>Selecciona opción...</option>
-                                    <option value="Viakaab">Viakaab (App de movilidad)</option>
-                                    <option value="Sindicato Francisco May">Sindicato de Taxistas Gral. Francisco May</option>
-                                    <option value="Ambos por igual">Ambos por igual</option>
-                                    <option value="Transporte público / Colectivo">Transporte público / Colectivo</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-medium text-slate-400 mb-1">Frecuencia de traslado semanal *</label>
-                                <select id="frequency" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-brandCyan transition">
-                                    <option value="" disabled selected>Selecciona frecuencia...</option>
-                                    <option value="Diario (1-2 veces al día)">Diario (1-2 veces al día)</option>
-                                    <option value="Frecuente (3-4 veces por semana)">Frecuente (3-4 veces por semana)</option>
-                                    <option value="Ocasional (1-2 veces por semana)">Ocasional (1-2 veces por semana)</option>
-                                    <option value="Rara vez / Fines de semana">Rara vez / Fines de semana</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 3: Fares & Payment -->
-                    <div class="space-y-4 border-b border-cardBorder pb-6">
-                        <div class="flex items-center gap-3 text-brandCyan">
-                            <i class="fa-solid fa-wallet text-lg"></i>
-                            <h2 class="text-lg font-semibold text-white">3. Tarifas y Métodos de Pago</h2>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-medium text-slate-400 mb-1">¿Cómo consideras las tarifas actuales? *</label>
-                                <select id="farePerception" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-brandCyan transition">
-                                    <option value="" disabled selected>Selecciona valoración...</option>
-                                    <option value="Muy accesibles y justas">Muy accesibles y justas</option>
-                                    <option value="Razonables">Razonables</option>
-                                    <option value="Ligeramente altas">Ligeramente altas</option>
-                                    <option value="Excesivas / Negociación compleja">Excesivas / Negociación compleja</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-medium text-slate-400 mb-1">Método de pago preferido *</label>
-                                <select id="paymentMethod" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-200 focus:outline-none focus:border-brandCyan transition">
-                                    <option value="" disabled selected>Selecciona método...</option>
-                                    <option value="Efectivo">Efectivo</option>
-                                    <option value="Tarjeta / Pago Digital en App">Tarjeta / Pago Digital en App</option>
-                                    <option value="Transferencia SPEI">Transferencia SPEI</option>
-                                    <option value="Cualquiera / Indiferente">Cualquiera / Indiferente</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 4: Beta Testing Question (Explicitly requested) -->
-                    <div class="space-y-4 bg-slate-900/60 p-5 rounded-xl border border-brandCyan/30">
-                        <div class="flex items-start gap-3">
-                            <div class="p-2 rounded-lg bg-brandCyan/10 text-brandCyan mt-0.5">
-                                <i class="fa-solid fa-flask-vial"></i>
-                            </div>
-                            <div class="space-y-1 flex-1">
-                                <label for="betaParticipation" class="text-sm font-semibold text-white block">
-                                    ¿Te gustaría participar en pruebas beta con beneficios? (Opcional)
-                                </label>
-                                <p class="text-xs text-slate-400">
-                                    Obtén viajes gratis, descuentos exclusivos y acceso prioritario a las nuevas funciones de Viakaab y alianzas locales.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                            <div>
-                                <select id="betaParticipation" onchange="toggleBetaFields()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-brandCyan transition">
-                                    <option value="No">No, gracias</option>
-                                    <option value="Sí">Sí, ¡me interesa participar!</option>
-                                </select>
-                            </div>
-                            <div id="betaContactContainer" class="hidden">
-                                <input type="text" id="betaContactInfo" placeholder="Correo electrónico o Teléfono / WhatsApp" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-brandCyan transition">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <div class="pt-2">
-                        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyan-500 via-teal-500 to-emerald-500 text-slate-950 font-bold text-base shadow-lg shadow-teal-500/25 hover:opacity-95 transition flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-paper-plane"></i> Enviar Respuestas y Participar
-                        </button>
-                    </div>
-
-                </form>
-            </div>
-        </section>
-
-        <!-- DASHBOARD & ANALYTICS SECTION (RESTRICTED ACCESS) -->
-        <section id="dashboardView" class="space-y-8 hidden">
-            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-cardBorder pb-6">
-                <div>
-                    <h1 class="text-3xl font-bold tracking-tight text-white flex items-center gap-3">
-                        <i class="fa-solid fa-chart-line text-brandCyan"></i> Dashboard & Gráficas en Vivo
-                    </h1>
-                    <p class="text-slate-400 text-sm mt-1">
-                        Estadísticas en tiempo real basadas en las encuestas de movilidad urbana (Área Exclusiva de Administración).
+        <!-- ================= VISTA DE ENCUESTA ================= -->
+        <section id="view-survey" class="space-y-6">
+            <div class="bg-gradient-to-r from-brand-900/40 via-cardBg to-cardBg border border-brand-500/20 p-6 sm:p-8 rounded-3xl shadow-2xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="relative z-10 max-w-2xl">
+                    <span class="inline-block px-3 py-1 rounded-full bg-brand-500/20 text-brand-400 text-xs font-bold uppercase tracking-wider mb-3">Estudio de Mercado Local</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">Innovación en la Movilidad Local</h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Ayúdanos a mejorar el servicio de transporte en Felipe Carrillo Puerto. Tu opinión es clave para integrar de forma eficiente las opciones de <span class="text-brand-400 font-semibold">Viakaab</span> con el respaldo y experiencia del <span class="text-amber-400 font-semibold">Sindicato de Taxistas Gral. Francisco May</span>.
                     </p>
                 </div>
-                <div class="flex items-center gap-3">
-                    <button onclick="simulateResponses(5)" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-xl text-xs font-semibold flex items-center gap-2 transition shadow">
-                        <i class="fa-solid fa-wand-magic-sparkles text-brandCyan"></i> Simular 5 Respuestas
+            </div>
+
+            <!-- Formulario -->
+            <form id="surveyForm" onsubmit="submitSurvey(event)" class="space-y-6">
+                
+                <!-- Sección 1: Datos Personales y Ocupación -->
+                <div class="bg-cardBg border border-borderCol p-6 sm:p-8 rounded-3xl shadow-xl space-y-5">
+                    <div class="flex items-center space-x-3 border-b border-borderCol pb-4">
+                        <div class="w-9 h-9 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400 font-bold">1</div>
+                        <h3 class="text-lg font-bold text-white">Información General</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Nombre Completo *</label>
+                            <input type="text" id="nombre" required placeholder="Ej. Carlos Ucán" class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">¿A qué te dedicas? *</label>
+                            <input type="text" id="ocupacion" required placeholder="Ej. Estudiante, Comerciante, Docente..." class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Colonia o Sector de Residencia *</label>
+                            <input type="text" id="colonia" required placeholder="Ej. Centro, Leona Vicario, Emiliano Zapata..." class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección 2: Uso y Preferencia de Transporte -->
+                <div class="bg-cardBg border border-borderCol p-6 sm:p-8 rounded-3xl shadow-xl space-y-5">
+                    <div class="flex items-center space-x-3 border-b border-borderCol pb-4">
+                        <div class="w-9 h-9 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400 font-bold">2</div>
+                        <h3 class="text-lg font-bold text-white">Preferencias de Movilidad y Alianzas</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">¿Qué servicio de transporte utilizas más seguido? *</label>
+                            <select id="servicioFrecuente" required class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                                <option value="" disabled selected>Selecciona una opción...</option>
+                                <option value="Sindicato Francisco May (Taxis)">Sindicato de Taxistas Gral. Francisco May</option>
+                                <option value="Mototaxis Locales">Mototaxis Locales</option>
+                                <option value="Transporte Público / Colectivo">Transporte Público / Colectivo</option>
+                                <option value="Vehículo Propio">Vehículo Propio</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Frecuencia semanal de traslado *</label>
+                            <select id="frecuenciaViaje" required class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                                <option value="" disabled selected>Selecciona frecuencia...</option>
+                                <option value="Todos los días">Todos los días</option>
+                                <option value="3 a 4 veces por semana">3 a 4 veces por semana</option>
+                                <option value="1 a 2 veces por semana">1 a 2 veces por semana</option>
+                                <option value="Rara vez">Rara vez</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección 3: Tarifas, Pagos y Viakaab -->
+                <div class="bg-cardBg border border-borderCol p-6 sm:p-8 rounded-3xl shadow-xl space-y-5">
+                    <div class="flex items-center space-x-3 border-b border-borderCol pb-4">
+                        <div class="w-9 h-9 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400 font-bold">3</div>
+                        <h3 class="text-lg font-bold text-white">Tarifas, Pagos y Tecnología Viakaab</h3>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">¿Cómo consideras las tarifas actuales de transporte? *</label>
+                            <select id="opinionTarifas" required class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                                <option value="" disabled selected>Selecciona valoración...</option>
+                                <option value="Muy altas / Costosas">Muy altas / Costosas</option>
+                                <option value="Justas y accesibles">Justas y accesibles</option>
+                                <option value="Depende de la distancia">Depende de la distancia</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Método de pago preferido *</label>
+                            <select id="metodoPago" required class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                                <option value="" disabled selected>Selecciona método...</option>
+                                <option value="Efectivo">Efectivo</option>
+                                <option value="Transferencia Bancaria">Transferencia Bancaria</option>
+                                <option value="Pago digital dentro de Viakaab">Pago digital dentro de Viakaab</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección 4: Pruebas Beta (Opcional) -->
+                <div class="bg-cardBg border border-brand-500/30 p-6 sm:p-8 rounded-3xl shadow-xl space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-9 h-9 rounded-xl bg-brand-500/20 flex items-center justify-center text-brand-400">
+                            <i class="fa-solid fa-flask"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">¿Te gustaría participar en pruebas beta con beneficios? (Opcional)</h3>
+                            <p class="text-xs text-slate-400">Obtén viajes gratis, descuentos exclusivos y acceso prioritario a Viakaab y el Sindicato.</p>
+                        </div>
+                    </div>
+                    <select id="betaOpt" onchange="toggleBetaInput(this.value)" class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                        <option value="No, gracias">No, gracias</option>
+                        <option value="Sí, quiero participar">¡Sí, quiero participar!</option>
+                    </select>
+                    <div id="betaContactDiv" class="hidden pt-2">
+                        <input type="text" id="contactoBeta" placeholder="Número de WhatsApp o Correo Electrónico" class="w-full bg-darkBg border border-borderCol rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 transition-colors">
+                    </div>
+                </div>
+
+                <!-- Botón de Envío -->
+                <button type="submit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-brand-500 to-emerald-400 text-slate-950 font-bold text-base shadow-xl shadow-brand-500/20 hover:opacity-95 transition-all flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Enviar Respuestas y Participar</span>
+                </button>
+            </form>
+        </section>
+
+        <!-- ================= MODAL DE ACCESO PIN ADMIN ================= -->
+        <div id="pinModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+            <div class="bg-cardBg border border-borderCol p-8 rounded-3xl max-w-sm w-full shadow-2xl space-y-6 text-center">
+                <div class="w-16 h-16 bg-brand-500/10 text-brand-400 rounded-2xl mx-auto flex items-center justify-center text-2xl">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-2">Acceso Administrativo</h3>
+                    <p class="text-xs text-slate-400">Ingresa el PIN de seguridad para visualizar el Dashboard y las estadísticas globales.</p>
+                </div>
+                <input type="password" id="adminPinInput" placeholder="PIN de acceso (ej. 2026)" maxlength="6" class="w-full bg-darkBg border border-borderCol text-center tracking-widest text-lg rounded-xl py-3 text-white focus:outline-none focus:border-brand-500">
+                <div id="pinError" class="text-xs text-red-400 hidden">PIN incorrecto. Intenta de nuevo.</div>
+                <div class="flex space-x-3">
+                    <button onclick="closePinModal()" class="flex-1 py-3 bg-slate-800 text-slate-300 font-semibold rounded-xl text-sm">Cancelar</button>
+                    <button onclick="verifyPin()" class="flex-1 py-3 bg-brand-500 text-slate-950 font-bold rounded-xl text-sm shadow-lg shadow-brand-500/20">Entrar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= VISTA DE DASHBOARD & GRÁFICAS ================= -->
+        <section id="view-dashboard" class="hidden space-y-8">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-cardBg border border-borderCol p-6 rounded-3xl">
+                <div>
+                    <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-wider">Panel Privado</span>
+                    <h2 class="text-2xl font-black text-white mt-1">Dashboard de Resultados Viakaab</h2>
+                    <p class="text-xs text-slate-400">Datos recopilados en tiempo real de la comunidad.</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button onclick="resetData()" class="px-4 py-2.5 bg-red-500/10 text-red-400 border border-red-500/20 rounded-xl text-xs font-bold hover:bg-red-500/20 transition-all">
+                        <i class="fa-solid fa-trash-can mr-2"></i> Reiniciar Datos
                     </button>
-                    <button onclick="lockDashboardSession()" class="px-4 py-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-xl text-xs font-semibold flex items-center gap-2 transition shadow">
-                        <i class="fa-solid fa-lock"></i> Bloquear Sesión Admin
-                    </button>
-                    <button onclick="resetAllData()" class="px-4 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 rounded-xl text-xs font-semibold flex items-center gap-2 transition shadow">
-                        <i class="fa-solid fa-rotate-right"></i> Reiniciar Datos
+                    <button onclick="lockDashboard()" class="px-4 py-2.5 bg-slate-800 text-slate-300 rounded-xl text-xs font-bold hover:bg-slate-700 transition-all">
+                        <i class="fa-solid fa-lock mr-2"></i> Bloquear Sesión
                     </button>
                 </div>
             </div>
 
-            <!-- Stats Cards Overview -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-cardBg border border-cardBorder p-5 rounded-2xl shadow-lg relative overflow-hidden">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Total Encuestas</p>
-                            <h3 id="statTotalResponses" class="text-3xl font-extrabold text-white mt-1">0</h3>
-                        </div>
-                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-brandCyan flex items-center justify-center text-xl">
-                            <i class="fa-solid fa-users"></i>
-                        </div>
+            <!-- Tarjetas de Estadísticas Rápidas -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                <div class="bg-cardBg border border-borderCol p-6 rounded-3xl shadow-xl flex items-center justify-between">
+                    <div>
+                        <p class="text-xs text-slate-400 uppercase font-bold">Total Encuestados</p>
+                        <h3 id="statTotal" class="text-3xl font-black text-white mt-1">0</h3>
                     </div>
-                    <div class="mt-3 text-xs text-brandCyan flex items-center gap-1 font-medium">
-                        <i class="fa-solid fa-arrow-trend-up"></i> Actualizado al instante
+                    <div class="w-12 h-12 bg-brand-500/10 text-brand-400 rounded-2xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-users"></i>
                     </div>
                 </div>
-
-                <div class="bg-cardBg border border-cardBorder p-5 rounded-2xl shadow-lg relative overflow-hidden">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Preferencia Viakaab</p>
-                            <h3 id="statViakaabPref" class="text-3xl font-extrabold text-teal-400 mt-1">0%</h3>
-                        </div>
-                        <div class="w-12 h-12 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center text-xl">
-                            <i class="fa-solid fa-mobile-screen-button"></i>
-                        </div>
+                <div class="bg-cardBg border border-borderCol p-6 rounded-3xl shadow-xl flex items-center justify-between">
+                    <div>
+                        <p class="text-xs text-slate-400 uppercase font-bold">Inscritos Beta</p>
+                        <h3 id="statBeta" class="text-3xl font-black text-brand-400 mt-1">0</h3>
                     </div>
-                    <div class="mt-3 text-xs text-slate-400 font-medium">
-                        Basado en servicio frecuente
+                    <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-flask"></i>
                     </div>
                 </div>
-
-                <div class="bg-cardBg border border-cardBorder p-5 rounded-2xl shadow-lg relative overflow-hidden">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Sindicato Francisco May</p>
-                            <h3 id="statTaxiPref" class="text-3xl font-extrabold text-amber-400 mt-1">0%</h3>
-                        </div>
-                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl">
-                            <i class="fa-solid fa-taxi"></i>
-                        </div>
+                <div class="bg-cardBg border border-borderCol p-6 rounded-3xl shadow-xl flex items-center justify-between">
+                    <div>
+                        <p class="text-xs text-slate-400 uppercase font-bold">Principal Servicio</p>
+                        <h3 id="statTopService" class="text-base font-bold text-white mt-1 truncate max-w-[180px]">N/A</h3>
                     </div>
-                    <div class="mt-3 text-xs text-slate-400 font-medium">
-                        Preferencia tradicional
-                    </div>
-                </div>
-
-                <div class="bg-cardBg border border-cardBorder p-5 rounded-2xl shadow-lg relative overflow-hidden">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Inscritos Pruebas Beta</p>
-                            <h3 id="statBetaCount" class="text-3xl font-extrabold text-brandBlue mt-1">0</h3>
-                        </div>
-                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-brandBlue flex items-center justify-center text-xl">
-                            <i class="fa-solid fa-flask-vial"></i>
-                        </div>
-                    </div>
-                    <div class="mt-3 text-xs text-brandBlue font-medium">
-                        Usuarios con beneficios
+                    <div class="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-2xl flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-taxi"></i>
                     </div>
                 </div>
             </div>
 
-            <!-- Charts Grid (Chart.js) -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Chart 1: Service Preference -->
-                <div class="bg-cardBg border border-cardBorder p-6 rounded-2xl shadow-xl flex flex-col">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-base font-semibold text-white flex items-center gap-2">
-                            <i class="fa-solid fa-chart-pie text-brandCyan"></i> Servicio de Transporte Frecuente
-                        </h3>
-                    </div>
-                    <div class="relative flex-grow flex items-center justify-center" style="min-height: 280px;">
-                        <canvas id="serviceChart"></canvas>
+            <!-- Gráficas Estadísticas -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-cardBg border border-borderCol p-6 rounded-3xl shadow-xl">
+                    <h3 class="text-base font-bold text-white mb-4"><i class="fa-solid fa-chart-bar text-brand-400 mr-2"></i> Servicios de Transporte Frecuentes</h3>
+                    <div class="relative h-64 flex items-center justify-center">
+                        <canvas id="chartServices"></canvas>
                     </div>
                 </div>
-
-                <!-- Chart 2: Fare Perception -->
-                <div class="bg-cardBg border border-cardBorder p-6 rounded-2xl shadow-xl flex flex-col">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-base font-semibold text-white flex items-center gap-2">
-                            <i class="fa-solid fa-chart-column text-brandCyan"></i> Percepción de Tarifas
-                        </h3>
-                    </div>
-                    <div class="relative flex-grow flex items-center justify-center" style="min-height: 280px;">
-                        <canvas id="fareChart"></canvas>
-                    </div>
-                </div>
-
-                <!-- Chart 3: Payment Methods -->
-                <div class="bg-cardBg border border-cardBorder p-6 rounded-2xl shadow-xl flex flex-col">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-base font-semibold text-white flex items-center gap-2">
-                            <i class="fa-solid fa-wallet text-brandCyan"></i> Métodos de Pago Preferidos
-                        </h3>
-                    </div>
-                    <div class="relative flex-grow flex items-center justify-center" style="min-height: 280px;">
-                        <canvas id="paymentChart"></canvas>
-                    </div>
-                </div>
-
-                <!-- Chart 4: Beta Testing Participation -->
-                <div class="bg-cardBg border border-cardBorder p-6 rounded-2xl shadow-xl flex flex-col">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-base font-semibold text-white flex items-center gap-2">
-                            <i class="fa-solid fa-flask-vial text-brandCyan"></i> Interés en Pruebas Beta
-                        </h3>
-                    </div>
-                    <div class="relative flex-grow flex items-center justify-center" style="min-height: 280px;">
-                        <canvas id="betaChart"></canvas>
+                <div class="bg-cardBg border border-borderCol p-6 rounded-3xl shadow-xl">
+                    <h3 class="text-base font-bold text-white mb-4"><i class="fa-solid fa-chart-pie text-amber-400 mr-2"></i> Métodos de Pago Preferidos</h3>
+                    <div class="relative h-64 flex items-center justify-center">
+                        <canvas id="chartPayments"></canvas>
                     </div>
                 </div>
             </div>
 
-            <!-- Detailed Responses Table -->
-            <div class="bg-cardBg border border-cardBorder rounded-2xl shadow-xl overflow-hidden">
-                <div class="p-6 border-b border-cardBorder flex items-center justify-between">
-                    <h3 class="text-lg font-semibold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-table-list text-brandCyan"></i> Registro Detallado de Encuestas
-                    </h3>
-                    <span id="tableCountBadge" class="px-3 py-1 bg-slate-800 text-slate-300 text-xs font-semibold rounded-full border border-slate-700">0 registros</span>
-                </div>
+            <!-- Tabla de Respuestas Detalladas -->
+            <div class="bg-cardBg border border-borderCol p-6 rounded-3xl shadow-xl space-y-4">
+                <h3 class="text-base font-bold text-white"><i class="fa-solid fa-table text-brand-400 mr-2"></i> Registro Detallado de Participantes</h3>
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-slate-900/60 text-slate-400 text-xs uppercase tracking-wider border-b border-cardBorder">
-                                <th class="p-4 font-semibold">Fecha / Hora</th>
-                                <th class="p-4 font-semibold">Usuario</th>
-                                <th class="p-4 font-semibold">Ocupación</th>
-                                <th class="p-4 font-semibold">Servicio Preferido</th>
-                                <th class="p-4 font-semibold">Tarifas</th>
-                                <th class="p-4 font-semibold">Pago</th>
-                                <th class="p-4 font-semibold">Beta / Beneficios</th>
+                    <table class="w-full text-left text-sm text-slate-300">
+                        <thead class="bg-darkBg text-xs uppercase text-slate-400 border-b border-borderCol">
+                            <tr>
+                                <th class="p-3">Nombre</th>
+                                <th class="p-3">Ocupación</th>
+                                <th class="p-3">Colonia</th>
+                                <th class="p-3">Servicio</th>
+                                <th class="p-3">Pago</th>
+                                <th class="p-3">Beta</th>
                             </tr>
                         </thead>
-                        <tbody id="responsesTableBody" class="text-sm divide-y divide-cardBorder">
-                            <!-- Populated via JS -->
+                        <tbody id="submissionsTableBody" class="divide-y divide-borderCol">
+                            <!-- Inserción dinámica -->
                         </tbody>
                     </table>
                 </div>
@@ -378,240 +305,183 @@
 
     </main>
 
-    <!-- PIN Access Modal for Dashboard -->
-    <div id="pinModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-cardBg border border-cardBorder rounded-2xl max-w-sm w-full p-6 shadow-2xl text-center space-y-5 relative overflow-hidden">
-            <div class="absolute -top-12 -right-12 w-24 h-24 bg-brandCyan/10 rounded-full blur-2xl"></div>
-            
-            <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 text-brandCyan flex items-center justify-center text-2xl mx-auto shadow-inner">
-                <i class="fa-solid fa-lock-keyhole"></i>
-            </div>
-            
-            <div class="space-y-1">
-                <h3 class="text-xl font-bold text-white">Acceso Restringido</h3>
-                <p class="text-slate-400 text-xs">Introduce el PIN de administrador para ver el dashboard y gráficas en vivo.</p>
-            </div>
+    <!-- Footer -->
+    <footer class="mt-auto border-t border-borderCol py-6 text-center text-xs text-slate-500">
+        <p>Viakaab Smart Mobility Hub & Sindicato de Taxistas Gral. Francisco May © 2026</p>
+    </footer>
 
-            <form onsubmit="verifyPin(event)" class="space-y-4">
-                <div>
-                    <input type="password" id="adminPinInput" placeholder="PIN (ej. 5634)" required maxlength="10" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-center tracking-widest text-lg text-white focus:outline-none focus:border-brandCyan transition">
-                    <p id="pinErrorMsg" class="text-red-400 text-xs mt-1.5 hidden">PIN incorrecto. Intenta de nuevo.</p>
-                </div>
-
-                <div class="flex gap-2">
-                    <button type="button" onclick="closePinModal()" class="w-1/2 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold rounded-xl text-sm transition">
-                        Cancelar
-                    </button>
-                    <button type="submit" class="w-1/2 py-2.5 bg-gradient-to-r from-cyan-500 to-teal-500 text-slate-950 font-bold rounded-xl text-sm shadow-lg hover:opacity-95 transition">
-                        Desbloquear
-                    </button>
-                </div>
-            </form>
-            
-           
-        </div>
-    </div>
-
-    <!-- Custom Modal for Notifications (No alert() used) -->
-    <div id="customModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-cardBg border border-cardBorder rounded-2xl max-w-md w-full p-6 shadow-2xl text-center space-y-4">
-            <div id="modalIconContainer" class="w-16 h-16 rounded-2xl bg-teal-500/10 text-brandCyan flex items-center justify-center text-3xl mx-auto">
-                <i class="fa-solid fa-circle-check"></i>
-            </div>
-            <h3 id="modalTitle" class="text-xl font-bold text-white">¡Encuesta Enviada!</h3>
-            <p id="modalMessage" class="text-slate-300 text-sm">Tus respuestas se han guardado con éxito.</p>
-            <button onclick="closeModal()" class="w-full py-3 bg-gradient-to-r from-cyan-500 to-teal-500 text-slate-950 font-bold rounded-xl shadow-lg hover:opacity-95 transition">
-                Continuar
-            </button>
-        </div>
-    </div>
-
-    <!-- Application Logic -->
+    <!-- Scripts de Lógica y Gráficas -->
     <script>
-        const STORAGE_KEY = 'viakaab_survey_responses_v2';
-        const SESSION_AUTH_KEY = 'viakaab_admin_authenticated';
-        const ADMIN_PIN = '2026'; // Secure Admin PIN
-
-        let serviceChartInstance = null;
-        let fareChartInstance = null;
-        let paymentChartInstance = null;
-        let betaChartInstance = null;
+        // Almacenamiento local
+        let surveyData = JSON.parse(localStorage.getItem('viakaab_surveys')) || [];
+        let isAdminLoggedIn = false;
         let chartsInitialized = false;
+        let chartServiceInstance = null;
+        let chartPaymentInstance = null;
 
-        window.onload = function() {
-            // Check if admin session is already authenticated
-            if (sessionStorage.getItem(SESSION_AUTH_KEY) === 'true') {
-                // Keep ready
-            }
-        };
-
-        // Tab Switching Logic
         function switchTab(tab) {
-            const surveyView = document.getElementById('surveyView');
-            const dashboardView = document.getElementById('dashboardView');
-            const navSurveyBtn = document.getElementById('navSurveyBtn');
-            const navDashboardBtn = document.getElementById('navDashboardBtn');
+            const viewSurvey = document.getElementById('view-survey');
+            const viewDashboard = document.getElementById('view-dashboard');
+            const btnSurvey = document.getElementById('btn-survey');
+            const btnDashboard = document.getElementById('btn-dashboard');
 
-            if (tab === 'survey') {
-                surveyView.classList.remove('hidden');
-                dashboardView.classList.add('hidden');
-                navSurveyBtn.className = "px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-teal-500 text-slate-950 shadow-md";
-                navDashboardBtn.className = "px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 text-slate-400 hover:text-slate-100";
-            } else {
-                // Verify session before showing dashboard
-                if (sessionStorage.getItem(SESSION_AUTH_KEY) === 'true') {
-                    surveyView.classList.add('hidden');
-                    dashboardView.classList.remove('hidden');
-                    navDashboardBtn.className = "px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-teal-500 text-slate-950 shadow-md";
-                    navSurveyBtn.className = "px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 text-slate-400 hover:text-slate-100";
-                    
-                    if (!chartsInitialized) {
-                        initCharts();
-                        chartsInitialized = true;
-                    }
-                    updateCharts();
-                } else {
-                    openPinModal();
+            if (tab === 'dashboard') {
+                if (!isAdminLoggedIn) {
+                    document.getElementById('pinModal').classList.remove('hidden');
+                    document.getElementById('adminPinInput').value = '';
+                    document.getElementById('pinError').classList.add('hidden');
+                    document.getElementById('adminPinInput').focus();
+                    return;
                 }
             }
-        }
 
-        // Request access to Dashboard
-        function requestDashboardAccess() {
-            if (sessionStorage.getItem(SESSION_AUTH_KEY) === 'true') {
-                switchTab('dashboard');
-            } else {
-                openPinModal();
+            if (tab === 'survey') {
+                viewSurvey.classList.remove('hidden');
+                viewDashboard.classList.add('hidden');
+                btnSurvey.className = "flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all bg-brand-500 text-slate-950 shadow-md";
+                btnDashboard.className = "flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all text-slate-400 hover:text-white";
+            } else if (tab === 'dashboard' && isAdminLoggedIn) {
+                viewSurvey.classList.add('hidden');
+                viewDashboard.classList.remove('hidden');
+                btnDashboard.className = "flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all bg-brand-500 text-slate-950 shadow-md";
+                btnSurvey.className = "flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all text-slate-400 hover:text-white";
+                renderDashboard();
             }
         }
 
-        // Open PIN modal
-        function openPinModal() {
-            document.getElementById('adminPinInput').value = '';
-            document.getElementById('pinErrorMsg').classList.add('hidden');
-            document.getElementById('pinModal').classList.remove('hidden');
-            setTimeout(() => document.getElementById('adminPinInput').focus(), 100);
+        function verifyPin() {
+            const pin = document.getElementById('adminPinInput').value;
+            if (pin === '2026') {
+                isAdminLoggedIn = true;
+                document.getElementById('pinModal').classList.add('hidden');
+                switchTab('dashboard');
+            } else {
+                document.getElementById('pinError').classList.remove('hidden');
+            }
         }
 
         function closePinModal() {
             document.getElementById('pinModal').classList.add('hidden');
         }
 
-        // Verify PIN
-        function verifyPin(e) {
-            e.preventDefault();
-            const enteredPin = document.getElementById('adminPinInput').value.trim();
-            if (enteredPin === ADMIN_PIN) {
-                sessionStorage.setItem(SESSION_AUTH_KEY, 'true');
-                closePinModal();
-                switchTab('dashboard');
-            } else {
-                document.getElementById('pinErrorMsg').classList.remove('hidden');
-                document.getElementById('adminPinInput').value = '';
-                document.getElementById('adminPinInput').focus();
-            }
-        }
-
-        // Lock admin session
-        function lockDashboardSession() {
-            sessionStorage.removeItem(SESSION_AUTH_KEY);
+        function lockDashboard() {
+            isAdminLoggedIn = false;
             switchTab('survey');
-            showModal('Sesión Bloqueada', 'El acceso al dashboard ha sido protegido nuevamente. Se requiere PIN para ingresar.');
         }
 
-        // Toggle Beta Contact input visibility
-        function toggleBetaFields() {
-            const betaVal = document.getElementById('betaParticipation').value;
-            const container = document.getElementById('betaContactContainer');
-            if (betaVal === 'Sí') {
-                container.classList.remove('hidden');
-                document.getElementById('betaContactInfo').setAttribute('required', 'true');
+        function toggleBetaInput(val) {
+            const contactDiv = document.getElementById('betaContactDiv');
+            if (val.includes('Sí')) {
+                contactDiv.classList.remove('hidden');
             } else {
-                container.classList.add('hidden');
-                document.getElementById('betaContactInfo').removeAttribute('required');
+                contactDiv.classList.add('hidden');
             }
         }
 
-        // Get responses from localStorage
-        function getStoredResponses() {
-            const data = localStorage.getItem(STORAGE_KEY);
-            return data ? JSON.parse(data) : [];
-        }
-
-        // Save responses to localStorage
-        function saveResponses(responses) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(responses));
-        }
-
-        // Handle Survey Form Submission
-        function handleFormSubmit(e) {
+        function submitSurvey(e) {
             e.preventDefault();
-
-            const newResponse = {
-                id: crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2),
-                date: new Date().toLocaleString('es-MX', { dateStyle: 'short', timeStyle: 'short' }),
-                userName: document.getElementById('userName').value.trim() || 'Anónimo',
-                userOccupation: document.getElementById('userOccupation').value,
-                primaryService: document.getElementById('primaryService').value,
-                frequency: document.getElementById('frequency').value,
-                farePerception: document.getElementById('farePerception').value,
-                paymentMethod: document.getElementById('paymentMethod').value,
-                betaParticipation: document.getElementById('betaParticipation').value,
-                betaContactInfo: document.getElementById('betaContactInfo').value.trim() || 'No proporcionado'
+            const newEntry = {
+                nombre: document.getElementById('nombre').value,
+                ocupacion: document.getElementById('ocupacion').value,
+                colonia: document.getElementById('colonia').value,
+                servicioFrecuente: document.getElementById('servicioFrecuente').value,
+                frecuenciaViaje: document.getElementById('frecuenciaViaje').value,
+                opinionTarifas: document.getElementById('opinionTarifas').value,
+                metodoPago: document.getElementById('metodoPago').value,
+                beta: document.getElementById('betaOpt').value,
+                contacto: document.getElementById('contactoBeta').value || 'N/A',
+                fecha: new Date().toLocaleDateString()
             };
 
-            const responses = getStoredResponses();
-            responses.unshift(newResponse);
-            saveResponses(responses);
+            surveyData.push(newEntry);
+            localStorage.setItem('viakaab_surveys', JSON.stringify(surveyData));
 
-            // Reset Form
-            document.getElementById('mobilitySurveyForm').reset();
-            document.getElementById('betaContactContainer').classList.add('hidden');
+            alert('¡Muchas gracias! Tus respuestas han sido registradas exitosamente.');
+            document.getElementById('surveyForm').reset();
+            document.getElementById('betaContactDiv').classList.add('hidden');
+        }
 
-            showModal('¡Gracias por Participar!', 'Tus respuestas han sido registradas exitosamente. Contribuiges a mejorar la movilidad urbana.');
-            
-            // If admin is currently logged in, update charts
-            if (sessionStorage.getItem(SESSION_AUTH_KEY) === 'true' && chartsInitialized) {
-                updateCharts();
+        function resetData() {
+            if (confirm('¿Estás seguro de borrar todos los datos recopilados?')) {
+                surveyData = [];
+                localStorage.removeItem('viakaab_surveys');
+                renderDashboard();
             }
         }
 
-        // Initialize Chart.js configuration
-        function initCharts() {
-            Chart.defaults.color = '#94a3b8';
-            Chart.defaults.font.family = "'Inter', sans-serif";
+        function renderDashboard() {
+            // Métricas rápidas
+            document.getElementById('statTotal').innerText = surveyData.length;
+            const betaCount = surveyData.filter(i => i.beta.includes('Sí')).length;
+            document.getElementById('statBeta').innerText = betaCount;
 
-            // 1. Service Preference Chart
-            const ctxService = document.getElementById('serviceChart').getContext('2d');
-            serviceChartInstance = new Chart(ctxService, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Viakaab', 'Sindicato Francisco May', 'Ambos / Colectivo'],
-                    datasets: [{
-                        data: [0, 0, 0],
-                        backgroundColor: ['#06b6d4', '#f59e0b', '#3b82f6'],
-                        borderWidth: 0
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, padding: 15 } } },
-                    cutout: '70%'
-                }
+            // Servicio más frecuente
+            if (surveyData.length > 0) {
+                const serviceCounts = {};
+                surveyData.forEach(i => serviceCounts[i.servicioFrecuente] = (serviceCounts[i.servicioFrecuente] || 0) + 1);
+                const topService = Object.keys(serviceCounts).reduce((a, b) => serviceCounts[a] > serviceCounts[b] ? a : b);
+                document.getElementById('statTopService').innerText = topService;
+            } else {
+                document.getElementById('statTopService').innerText = 'N/A';
+            }
+
+            // Llenar Tabla
+            const tbody = document.getElementById('submissionsTableBody');
+            tbody.innerHTML = '';
+            if (surveyData.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-slate-500">Aún no hay respuestas registradas.</td></tr>`;
+            } else {
+                surveyData.slice().reverse().forEach(item => {
+                    tbody.innerHTML += `
+                        <tr class="hover:bg-darkBg/50">
+                            <td class="p-3 font-medium text-white">${item.nombre}</td>
+                            <td class="p-3">${item.ocupacion}</td>
+                            <td class="p-3">${item.colonia}</td>
+                            <td class="p-3">${item.servicioFrecuente}</td>
+                            <td class="p-3">${item.metodoPago}</td>
+                            <td class="p-3"><span class="px-2 py-1 rounded-full text-xs font-bold ${item.beta.includes('Sí') ? 'bg-emerald-500/20 text-emerald-400' : 'bg-slate-800 text-slate-400'}">${item.beta}</span></td>
+                        </tr>
+                    `;
+                });
+            }
+
+            // Renderizar Gráficas con Chart.js
+            renderCharts();
+        }
+
+        function renderCharts() {
+            // Procesar datos para gráfica de Servicios
+            const serviceCounts = {};
+            surveyData.forEach(i => {
+                serviceCounts[i.servicioFrecuente] = (serviceCounts[i.servicioFrecuente] || 0) + 1;
             });
 
-            // 2. Fare Perception Chart
-            const ctxFare = document.getElementById('fareChart').getContext('2d');
-            fareChartInstance = new Chart(ctxFare, {
+            const serviceLabels = Object.keys(serviceCounts);
+            const serviceValues = Object.values(serviceCounts);
+
+            // Procesar datos para gráfica de Pagos
+            const paymentCounts = {};
+            surveyData.forEach(i => {
+                paymentCounts[i.metodoPago] = (paymentCounts[i.metodoPago] || 0) + 1;
+            });
+
+            const paymentLabels = Object.keys(paymentCounts);
+            const paymentValues = Object.values(paymentCounts);
+
+            // Destruir instancias previas si existen
+            if (chartServiceInstance) chartServiceInstance.destroy();
+            if (chartPaymentInstance) chartPaymentInstance.destroy();
+
+            const ctxServices = document.getElementById('chartServices').getContext('2d');
+            chartServiceInstance = new Chart(ctxServices, {
                 type: 'bar',
                 data: {
-                    labels: ['Muy accesibles', 'Razonables', 'Ligeramente altas', 'Excesivas'],
+                    labels: serviceLabels.length ? serviceLabels : ['Sin datos'],
                     datasets: [{
                         label: 'Respuestas',
-                        data: [0, 0, 0, 0],
-                        backgroundColor: '#10b981',
-                        borderRadius: 6
+                        data: serviceValues.length ? serviceValues : [0],
+                        backgroundColor: '#00d2b4',
+                        borderRadius: 8
                     }]
                 },
                 options: {
@@ -619,205 +489,30 @@
                     maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
                     scales: {
-                        y: { beginAtZero: true, grid: { color: '#1e293b' } },
-                        x: { grid: { display: false } }
+                        x: { ticks: { color: '#94a3b8', font: { size: 10 } }, grid: { display: false } },
+                        y: { ticks: { color: '#94a3b8', precision: 0 }, grid: { color: '#1f293d' } }
                     }
                 }
             });
 
-            // 3. Payment Methods Chart
-            const ctxPayment = document.getElementById('paymentChart').getContext('2d');
-            paymentChartInstance = new Chart(ctxPayment, {
-                type: 'pie',
+            const ctxPayments = document.getElementById('chartPayments').getContext('2d');
+            chartPaymentInstance = new Chart(ctxPayments, {
+                type: 'doughnut',
                 data: {
-                    labels: ['Efectivo', 'Tarjeta / Digital', 'SPEI', 'Indiferente'],
+                    labels: paymentLabels.length ? paymentLabels : ['Sin datos'],
                     datasets: [{
-                        data: [0, 0, 0, 0],
-                        backgroundColor: ['#3b82f6', '#06b6d4', '#10b981', '#f59e0b'],
-                        borderWidth: 0
+                        data: paymentValues.length ? paymentValues : [1],
+                        backgroundColor: ['#00d2b4', '#fbbf24', '#3b82f6', '#ec4899']
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, padding: 15 } } }
-                }
-            });
-
-            // 4. Beta Chart
-            const ctxBeta = document.getElementById('betaChart').getContext('2d');
-            betaChartInstance = new Chart(ctxBeta, {
-                type: 'bar',
-                data: {
-                    labels: ['Sí les interesa', 'No interesados'],
-                    datasets: [{
-                        label: 'Participantes Beta',
-                        data: [0, 0],
-                        backgroundColor: ['#3b82f6', '#64748b'],
-                        borderRadius: 6
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        y: { beginAtZero: true, grid: { color: '#1e293b' } },
-                        x: { grid: { display: false } }
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: '#94a3b8', font: { size: 11 } } }
                     }
                 }
             });
-        }
-
-        // Render Dashboard Stats and Table
-        function renderDashboard() {
-            const responses = getStoredResponses();
-            const total = responses.length;
-
-            document.getElementById('statTotalResponses').innerText = total;
-            document.getElementById('tableCountBadge').innerText = total + (total === 1 ? ' registro' : ' registros');
-
-            let viakaabCount = 0;
-            let taxiCount = 0;
-            let betaCount = 0;
-
-            responses.forEach(r => {
-                if (r.primaryService === 'Viakaab') viakaabCount++;
-                if (r.primaryService && r.primaryService.includes('Francisco May')) taxiCount++;
-                if (r.betaParticipation === 'Sí') betaCount++;
-            });
-
-            const viakaabPct = total > 0 ? Math.round((viakaabCount / total) * 100) : 0;
-            const taxiPct = total > 0 ? Math.round((taxiCount / total) * 100) : 0;
-
-            document.getElementById('statViakaabPref').innerText = viakaabPct + '%';
-            document.getElementById('statTaxiPref').innerText = taxiPct + '%';
-            document.getElementById('statBetaCount').innerText = betaCount;
-
-            const tbody = document.getElementById('responsesTableBody');
-            tbody.innerHTML = '';
-
-            if (total === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-slate-500">Aún no hay respuestas registradas. Completa la encuesta o simula datos.</td></tr>`;
-                return;
-            }
-
-            responses.forEach(r => {
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-slate-900/40 transition border-b border-cardBorder/50";
-                tr.innerHTML = `
-                    <td class="p-4 text-xs text-slate-400 whitespace-nowrap">${r.date}</td>
-                    <td class="p-4 font-medium text-white">${escapeHtml(r.userName)}</td>
-                    <td class="p-4 text-slate-300 text-xs">${escapeHtml(r.userOccupation)}</td>
-                    <td class="p-4"><span class="px-2.5 py-1 rounded-full text-xs font-semibold ${r.primaryService === 'Viakaab' ? 'bg-cyan-500/10 text-brandCyan border border-cyan-500/20' : 'bg-amber-500/10 text-amber-400 border border-amber-500/20'}">${escapeHtml(r.primaryService)}</span></td>
-                    <td class="p-4 text-xs text-slate-300">${escapeHtml(r.farePerception)}</td>
-                    <td class="p-4 text-xs text-slate-300">${escapeHtml(r.paymentMethod)}</td>
-                    <td class="p-4">
-                        ${r.betaParticipation === 'Sí' ? `<span class="px-2 py-0.5 bg-blue-500/10 text-brandBlue border border-blue-500/20 rounded-md text-xs font-medium" title="Contacto: ${escapeHtml(r.betaContactInfo)}">Sí (Beta)</span>` : '<span class="text-xs text-slate-500">No</span>'}
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        // Update Charts with current stored data
-        function updateCharts() {
-            renderDashboard();
-            const responses = getStoredResponses();
-
-            let sViakaab = 0, sTaxi = 0, sOther = 0;
-            responses.forEach(r => {
-                if (r.primaryService === 'Viakaab') sViakaab++;
-                else if (r.primaryService && r.primaryService.includes('Francisco May')) sTaxi++;
-                else sOther++;
-            });
-            serviceChartInstance.data.datasets[0].data = [sViakaab, sTaxi, sOther];
-            serviceChartInstance.update();
-
-            let f1 = 0, f2 = 0, f3 = 0, f4 = 0;
-            responses.forEach(r => {
-                if (r.farePerception?.includes('accesibles')) f1++;
-                else if (r.farePerception?.includes('Razonables')) f2++;
-                else if (r.farePerception?.includes('Ligeramente')) f3++;
-                else f4++;
-            });
-            fareChartInstance.data.datasets[0].data = [f1, f2, f3, f4];
-            fareChartInstance.update();
-
-            let p1 = 0, p2 = 0, p3 = 0, p4 = 0;
-            responses.forEach(r => {
-                if (r.paymentMethod?.includes('Efectivo')) p1++;
-                else if (r.paymentMethod?.includes('Tarjeta')) p2++;
-                else if (r.paymentMethod?.includes('SPEI')) p3++;
-                else p4++;
-            });
-            paymentChartInstance.data.datasets[0].data = [p1, p2, p3, p4];
-            paymentChartInstance.update();
-
-            let bYes = 0, bNo = 0;
-            responses.forEach(r => {
-                if (r.betaParticipation === 'Sí') bYes++;
-                else bNo++;
-            });
-            betaChartInstance.data.datasets[0].data = [bYes, bNo];
-            betaChartInstance.update();
-        }
-
-        // Simulate multiple realistic responses
-        function simulateResponses(count) {
-            const names = ['Mariana Pech', 'José Luis May', 'Guadalupe Tun', 'Alejandro Chan', 'Sofía Catzín', 'Carlos Poot', 'Diana Yam', 'Miguel Ek'];
-            const occupations = ['Estudiante', 'Trabajador / Empleado', 'Comerciante / Empresario', 'Taxista / Transportista', 'Turista / Visitante'];
-            const services = ['Viakaab', 'Sindicato Francisco May', 'Ambos por igual', 'Transporte público / Colectivo'];
-            const frequencies = ['Diario (1-2 veces al día)', 'Frecuente (3-4 veces por semana)', 'Ocasional (1-2 veces por semana)'];
-            const fares = ['Muy accesibles y justas', 'Razonables', 'Ligeramente altas', 'Excesivas / Negociación compleja'];
-            const payments = ['Efectivo', 'Tarjeta / Pago Digital en App', 'Transferencia SPEI', 'Cualquiera / Indiferente'];
-            const betas = ['Sí', 'No'];
-
-            const responses = getStoredResponses();
-
-            for (let i = 0; i < count; i++) {
-                const betaChoice = betas[Math.floor(Math.random() * betas.length)];
-                const newResp = {
-                    id: Math.random().toString(36).substring(2),
-                    date: new Date(Date.now() - Math.floor(Math.random() * 86400000)).toLocaleString('es-MX', { dateStyle: 'short', timeStyle: 'short' }),
-                    userName: names[Math.floor(Math.random() * names.length)],
-                    userOccupation: occupations[Math.floor(Math.random() * occupations.length)],
-                    primaryService: services[Math.floor(Math.random() * services.length)],
-                    frequency: frequencies[Math.floor(Math.random() * frequencies.length)],
-                    farePerception: fares[Math.floor(Math.random() * fares.length)],
-                    paymentMethod: payments[Math.floor(Math.random() * payments.length)],
-                    betaParticipation: betaChoice,
-                    betaContactInfo: betaChoice === 'Sí' ? 'contacto_simulado@gmail.com' : 'No proporcionado'
-                };
-                responses.unshift(newResp);
-            }
-
-            saveResponses(responses);
-            updateCharts();
-            showModal('¡Simulación Exitosa!', `Se han añadido ${count} respuestas simuladas al sistema.`);
-        }
-
-        // Reset all data
-        function resetAllData() {
-            localStorage.removeItem(STORAGE_KEY);
-            updateCharts();
-            showModal('Datos Reiniciados', 'Se han borrado todos los registros de la base de datos local.');
-        }
-
-        // Modal Helpers
-        function showModal(title, message) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalMessage').innerText = message;
-            document.getElementById('customModal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('customModal').classList.add('hidden');
-        }
-
-        function escapeHtml(str) {
-            if (!str) return '';
-            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
         }
     </script>
 </body>

@@ -250,13 +250,13 @@
                 <div class="flex flex-wrap items-center gap-2.5">
                     <button onclick="exportToExcel()" class="px-4 py-2.5 bg-emerald-500 text-stone-950 rounded-xl text-xs font-bold hover:bg-emerald-400 transition-all flex items-center space-x-2 shadow-lg shadow-emerald-500/20">
                         <i class="fa-solid fa-file-excel"></i>
-                        <span>Exportar a Excel</span>
+                        <span>Excel</span>
                     </button>
-                    <button onclick="resetData()" class="px-4 py-2.5 bg-red-950/80 text-red-200 border border-red-500/30 rounded-xl text-xs font-bold hover:bg-red-900 transition-all flex items-center space-x-2">
-                        <i class="fa-solid fa-trash-can"></i>
-                        <span>Reiniciar Datos</span>
+                    <button onclick="fetchSurveysFromSupabase()" class="px-4 py-2.5 bg-stone-900 text-cyan-400 border border-cyan-500/30 rounded-xl text-xs font-bold hover:bg-stone-800 transition-all flex items-center space-x-2">
+                        <i class="fa-solid fa-rotate"></i>
+                        <span>Actualizar</span>
                     </button>
-                    <button onclick="lockDashboard()" class="px-4 py-2.5 bg-stone-800 text-stone-300 rounded-xl text-xs font-bold hover:bg-stone-700 transition-all flex items-center space-x-2 border border-stone-700">
+                    <button onclick="lockDashboard()" class="px-4 py-2.5 bg-stone-900 text-stone-300 border border-stone-800 rounded-xl text-xs font-bold hover:bg-stone-800 transition-all flex items-center space-x-2">
                         <i class="fa-solid fa-lock"></i>
                         <span>Bloquear</span>
                     </button>
@@ -527,18 +527,6 @@
                 document.getElementById('surveyForm').reset();
                 toggleDriverFields('Solo soy pasajero');
                 fetchSurveysFromSupabase();
-            }
-        }
-
-        async function resetData() {
-            if (confirm('¿Estás seguro de borrar todos los registros de la base de datos de Supabase?')) {
-                const { error } = await supabaseClient.from('viakaab_surveys').delete().neq('id', 0);
-                if (error) {
-                    alert('Error al reiniciar datos: ' + error.message);
-                } else {
-                    surveyData = [];
-                    updateDashboardStats();
-                }
             }
         }
 

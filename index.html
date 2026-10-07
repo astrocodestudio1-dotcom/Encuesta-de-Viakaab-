@@ -99,7 +99,7 @@
                     </span>
                     <h2 class="text-xl sm:text-2xl font-black text-white mb-3">¿Qué es Viakaab?</h2>
                     <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                        <strong class="text-brand-400">Viakaab</strong> es el ecosistema tecnológico de movilidad inteligente para <span class="text-white font-semibold">Felipe Carrillo Puerto</span>. Diseñado para ofrecer tarifas justas, monitoreo GPS en vivo y una experiencia de transporte moderna, rápida y segura.
+                        <strong class="text-brand-400">Viakaab</strong> (inspirado en la colmena y la unión comunitaria) es el ecosistema de movilidad inteligente para <span class="text-white font-semibold">Felipe Carrillo Puerto</span>. Diseñado para ofrecer tarifas justas y transporte seguro.
                     </p>
                 </div>
                 <div class="mt-6 pt-4 border-t border-cardBorder flex items-center justify-between text-xs text-slate-400 font-medium">
@@ -117,41 +117,41 @@
                     <div class="space-y-3 text-sm text-slate-300">
                         <div class="flex items-start space-x-3">
                             <div class="w-6 h-6 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</div>
-                            <p><strong class="text-white">Responde la encuesta:</strong> Comparte tus hábitos de transporte actuales.</p>
+                            <p><strong class="text-white">Responde la encuesta:</strong> Comparte tus hábitos de transporte.</p>
                         </div>
                         <div class="flex items-start space-x-3">
                             <div class="w-6 h-6 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</div>
-                            <p><strong class="text-white">Únete a la Beta:</strong> Obtén beneficios exclusivos y acceso anticipado.</p>
+                            <p><strong class="text-white">Únete a la Beta:</strong> Obtén beneficios exclusivos y acceso prioritario.</p>
                         </div>
                         <div class="flex items-start space-x-3">
                             <div class="w-6 h-6 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</div>
-                            <p><strong class="text-white">Explora el Radar Tech:</strong> Visualiza la telemetría y red de nodos en tiempo real.</p>
+                            <p><strong class="text-white">Explora el Panal Tech:</strong> Interactúa con las celdas de abejas interconectadas de la red.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ================= NUEVO: CANVAS TECNOLÓGICO Y MODERNO ================= -->
+        <!-- ================= NUEVO: CANVAS DE CELDAS DE ABEJAS (PANAL TECNOLÓGICO) ================= -->
         <section class="bg-cardBg border border-cardBorder p-6 sm:p-8 rounded-3xl shadow-2xl relative overflow-hidden space-y-4">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-cardBorder pb-4">
                 <div>
                     <span class="inline-block px-3 py-1 rounded-full bg-brand-500/10 text-brand-400 text-xs font-bold uppercase tracking-wider border border-brand-500/20 mb-1">
-                        <i class="fa-solid fa-satellite-dish mr-1"></i> Telemetría en Vivo
+                        <i class="fa-solid fa-hexagon-nodes mr-1"></i> Red de Colmena Viakaab
                     </span>
-                    <h2 class="text-xl font-bold text-white">Radar de Conectividad Viakaab</h2>
+                    <h2 class="text-xl font-bold text-white">Panal Tecnológico Inteligente</h2>
                 </div>
                 <div class="flex items-center space-x-2 text-xs text-brand-400 font-mono bg-slate-950 px-3 py-1.5 rounded-xl border border-cardBorder">
-                    <span class="w-2 h-2 rounded-full bg-brand-500 animate-ping"></span>
-                    <span>SISTEMA ACTIVO: F.C.P. Q.ROO</span>
+                    <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                    <span>COLMENA ACTIVA: F.C.P.</span>
                 </div>
             </div>
             
-            <!-- Contenedor del Canvas Tecnológico -->
-            <div class="relative w-full h-72 sm:h-96 bg-slate-950 rounded-2xl border border-cardBorder overflow-hidden shadow-inner">
-                <canvas id="techCanvas" class="w-full h-full block cursor-crosshair"></canvas>
+            <!-- Contenedor del Canvas Panal -->
+            <div class="relative w-full h-80 sm:h-96 bg-slate-950 rounded-2xl border border-cardBorder overflow-hidden shadow-inner">
+                <canvas id="honeycombCanvas" class="w-full h-full block cursor-pointer"></canvas>
                 <div class="absolute bottom-3 left-3 pointer-events-none bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-cardBorder text-[10px] text-slate-400 font-mono">
-                    <i class="fa-solid fa-circle-info text-brand-400 mr-1"></i> Haz clic en el radar para desplegar nodos tácticos
+                    <i class="fa-solid fa-wand-magic-sparkles text-brand-400 mr-1"></i> Haz clic en cualquier parte del panal para activar nuevas celdas energéticas
                 </div>
             </div>
         </section>
@@ -444,167 +444,150 @@
         <p>Viakaab Smart Mobility Hub © 2026. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Lógica de la Aplicación y Script del Canvas -->
+    <!-- Lógica y Script del Panal de Abejas (Honeycomb Canvas) -->
     <script>
         let surveyData = JSON.parse(localStorage.getItem('viakaab_surveys')) || [];
         let isAdminLoggedIn = false;
         let chartServiceInstance = null;
         let chartProblemInstance = null;
 
-        // --- SCRIPT DEL CANVAS TECNOLÓGICO Y MODERNO ---
-        const canvas = document.getElementById('techCanvas');
+        // --- SCRIPT DEL CANVAS DE CELDAS DE ABEJAS ---
+        const canvas = document.getElementById('honeycombCanvas');
         const ctx = canvas.getContext('2d');
         let width, height;
-        let particles = [];
-        let interactiveNodes = [];
+        let hexCells = [];
+        let pulses = [];
 
         function resizeCanvas() {
             width = canvas.parentElement.clientWidth;
             height = canvas.parentElement.clientHeight;
             canvas.width = width;
             canvas.height = height;
+            initHexGrid();
         }
 
         window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
 
-        // Inicializar partículas de fondo tipo red inteligente
-        for (let i = 0; i < 35; i++) {
-            particles.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                vx: (Math.random() - 0.5) * 0.8,
-                vy: (Math.random() - 0.5) * 0.8,
-                radius: Math.random() * 2 + 1
-            });
+        function drawHexagon(x, y, radius, fillColor, strokeColor) {
+            ctx.beginPath();
+            for (let i = 0; i < 6; i++) {
+                const angle = (Math.PI / 3) * i;
+                const hx = x + radius * Math.cos(angle);
+                const hy = y + radius * Math.sin(angle);
+                if (i === 0) ctx.moveTo(hx, hy);
+                else ctx.lineTo(hx, hy);
+            }
+            ctx.closePath();
+            ctx.fillStyle = fillColor;
+            ctx.fill();
+            ctx.strokeStyle = strokeColor;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
         }
 
-        // Nodo interactivo inicial
-        interactiveNodes.push({ x: width / 2, y: height / 2, label: "Hub Central F.C.P.", life: 1000 });
+        const hexRadius = 32;
+        const hexHeight = hexRadius * Math.sqrt(3);
+        const hexWidth = hexRadius * 2;
+
+        function initHexGrid() {
+            hexCells = [];
+            const horizDist = hexWidth * 0.75;
+            const vertDist = hexHeight;
+
+            const cols = Math.ceil(width / horizDist) + 2;
+            const rows = Math.ceil(height / vertDist) + 2;
+
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    const x = c * horizDist + 30;
+                    const y = r * vertDist + (c % 2 === 0 ? 0 : vertDist / 2) + 30;
+                    hexCells.push({
+                        x: x,
+                        y: y,
+                        active: Math.random() < 0.25,
+                        pulseTimer: Math.random() * 100,
+                        brightness: Math.random()
+                    });
+                }
+            }
+        }
+
+        resizeCanvas();
 
         canvas.addEventListener('click', (e) => {
             const rect = canvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            interactiveNodes.push({
-                x: x,
-                y: y,
-                label: `Nodo Activo #${interactiveNodes.length}`,
-                life: 300
+            const clickX = e.clientX - rect.left;
+            const clickY = e.clientY - rect.top;
+
+            // Activar celda más cercana y crear un pulso eléctrico
+            hexCells.forEach(cell => {
+                const dist = Math.hypot(cell.x - clickX, cell.y - clickY);
+                if (dist < hexRadius * 1.5) {
+                    cell.active = true;
+                    cell.brightness = 1.5;
+                    pulses.push({ x: cell.x, y: cell.y, radius: 10, maxRadius: 100, alpha: 1 });
+                }
             });
-            if (interactiveNodes.length > 8) interactiveNodes.shift();
         });
 
-        let radarAngle = 0;
-
-        function animateTechCanvas() {
+        function animateHoneycomb() {
             ctx.clearRect(0, 0, width, height);
 
-            // 1. Dibujar rejilla de fondo estilo HUD militar / ciberespacio
-            ctx.strokeStyle = 'rgba(30, 41, 59, 0.4)';
-            ctx.lineWidth = 1;
-            const gridSize = 40;
-            for (let x = 0; x < width; x += gridSize) {
-                ctx.beginPath();
-                ctx.moveTo(x, 0);
-                ctx.lineTo(x, height);
-                ctx.stroke();
-            }
-            for (let y = 0; y < height; y += gridSize) {
-                ctx.beginPath();
-                ctx.moveTo(0, y);
-                ctx.lineTo(width, y);
-                ctx.stroke();
-            }
-
-            // 2. Dibujar radar giratorio en el centro
-            const centerX = width / 2;
-            const centerY = height / 2;
-            const radarRadius = Math.min(width, height) * 0.38;
-
-            ctx.save();
-            ctx.translate(centerX, centerY);
-            
-            // Anillos de radar
-            ctx.strokeStyle = 'rgba(0, 210, 180, 0.15)';
-            ctx.lineWidth = 1.5;
-            [0.3, 0.6, 1].forEach(ratio => {
-                ctx.beginPath();
-                ctx.arc(0, 0, radarRadius * ratio, 0, Math.PI * 2);
-                ctx.stroke();
-            });
-
-            // Línea de escaneo giratoria
-            radarAngle += 0.025;
-            ctx.strokeStyle = 'rgba(0, 210, 180, 0.6)';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(0, 0);
-            ctx.lineTo(Math.cos(radarAngle) * radarRadius, Math.sin(radarAngle) * radarRadius);
-            ctx.stroke();
-
-            // Gradiente de escaneo
-            const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, radarRadius);
-            gradient.addColorStop(0, 'rgba(0, 210, 180, 0.25)');
-            gradient.addColorStop(1, 'transparent');
-            ctx.fillStyle = gradient;
-            ctx.beginPath();
-            ctx.arc(0, 0, radarRadius, 0, Math.PI * 2);
-            ctx.fill();
-
-            ctx.restore();
-
-            // 3. Actualizar y conectar partículas
-            ctx.fillStyle = '#00d2b4';
-            particles.forEach((p, index) => {
-                p.x += p.vx;
-                p.y += p.vy;
-
-                if (p.x < 0 || p.x > width) p.vx *= -1;
-                if (p.y < 0 || p.y > height) p.vy *= -1;
-
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fill();
-
-                // Conectar partículas cercanas con líneas
-                for (let j = index + 1; j < particles.length; j++) {
-                    const p2 = particles[j];
-                    const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-                    if (dist < 90) {
-                        ctx.strokeStyle = `rgba(0, 210, 180, ${1 - dist / 90})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.beginPath();
-                        ctx.moveTo(p.x, p.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.stroke();
-                    }
+            // Dibujar celdas de abejas
+            hexCells.forEach(cell => {
+                cell.pulseTimer += 0.03;
+                if (!cell.active) {
+                    drawHexagon(cell.x, cell.y, hexRadius - 2, 'rgba(15, 23, 42, 0.6)', 'rgba(30, 41, 59, 0.6)');
+                } else {
+                    const glow = (Math.sin(cell.pulseTimer) + 1) * 0.5;
+                    const fillAlpha = 0.15 + glow * 0.25;
+                    drawHexagon(cell.x, cell.y, hexRadius - 2, `rgba(0, 210, 180, ${fillAlpha})`, 'rgba(0, 210, 180, 0.7)');
+                    
+                    // Pequeño núcleo brillante en celdas activas
+                    ctx.fillStyle = '#38bdf8';
+                    ctx.beginPath();
+                    ctx.arc(cell.x, cell.y, 3, 0, Math.PI * 2);
+                    ctx.fill();
                 }
             });
 
-            // 4. Dibujar nodos tácticos interactivos
-            interactiveNodes.forEach(node => {
-                ctx.fillStyle = '#38bdf8';
-                ctx.beginPath();
-                ctx.arc(node.x, node.y, 5, 0, Math.PI * 2);
-                ctx.fill();
+            // Dibujar líneas conectoras entre celdas activas vecinas (efecto red de colmena)
+            for (let i = 0; i < hexCells.length; i++) {
+                if (!hexCells[i].active) continue;
+                for (let j = i + 1; j < hexCells.length; j++) {
+                    if (!hexCells[j].active) continue;
+                    const dist = Math.hypot(hexCells[i].x - hexCells[j].x, hexCells[i].y - hexCells[j].y);
+                    if (dist < hexRadius * 2.2) {
+                        ctx.strokeStyle = 'rgba(0, 210, 180, 0.25)';
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(hexCells[i].x, hexCells[i].y);
+                        ctx.lineTo(hexCells[j].x, hexCells[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
 
-                ctx.strokeStyle = 'rgba(56, 189, 248, 0.5)';
+            // Anidar ondas expansivas al hacer clic
+            pulses.forEach((p, index) => {
+                p.radius += 2.5;
+                p.alpha -= 0.02;
+                if (p.alpha <= 0) {
+                    pulses.splice(index, 1);
+                    return;
+                }
+                ctx.strokeStyle = `rgba(56, 189, 248, ${p.alpha})`;
                 ctx.lineWidth = 2;
                 ctx.beginPath();
-                ctx.arc(node.x, node.y, 12, 0, Math.PI * 2);
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
                 ctx.stroke();
-
-                ctx.fillStyle = '#f8fafc';
-                ctx.font = '10px monospace';
-                ctx.fillText(node.label, node.x + 15, node.y + 4);
             });
 
-            requestAnimationFrame(animateTechCanvas);
+            requestAnimationFrame(animateHoneycomb);
         }
 
-        animateTechCanvas();
-        // --- FIN DEL SCRIPT DEL CANVAS ---
+        animateHoneycomb();
+        // --- FIN DEL SCRIPT DEL PANAL ---
 
         function switchTab(tab) {
             const viewSurvey = document.getElementById('view-survey');

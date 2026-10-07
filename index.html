@@ -6,7 +6,6 @@
     <title>Viakaab | Smart Mobility Hub - Felipe Carrillo Puerto</title>
     <meta name="description" content="Revoluciona tu movilidad en Felipe Carrillo Puerto. La alternativa moderna, justa y segura frente al sindicato.">
     <meta name="theme-color" content="#0c0a09">
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -32,10 +31,8 @@
 </head>
 <body class="min-h-screen flex flex-col selection:bg-honey-500 selection:text-black relative">
 
-    <!-- CANVAS DE FONDO ANIMADO -->
     <canvas id="honeycombBg"></canvas>
 
-    <!-- Navegación Superior -->
     <header class="sticky top-0 z-50 glass-effect border-b border-honey-500/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('survey')">
@@ -61,10 +58,9 @@
         </div>
     </header>
 
-    <!-- Contenido Principal -->
     <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 z-10">
 
-        <!-- PRESENTACIÓN / MANIFIESTO (¡Restaurado!) -->
+        <!-- PRESENTACIÓN / MANIFIESTO DE VIAKAAB -->
         <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/40 p-6 sm:p-8 rounded-3xl shadow-xl flex flex-col justify-between backdrop-blur-md">
                 <div>
@@ -139,7 +135,7 @@
             </div>
         </section>
 
-        <!-- FORMULARIO 22 PREGUNTAS (CONSECUTIVAS) -->
+        <!-- FORMULARIO 22 PREGUNTAS (NUMERACIÓN ESTRICTAMENTE CONSECUTIVA 1 AL 22) -->
         <section id="view-survey" class="space-y-6">
             <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/30 p-6 sm:p-8 rounded-3xl shadow-2xl backdrop-blur-md">
                 <span class="inline-block px-3 py-1 rounded-full bg-honey-500/20 text-honey-300 text-xs font-bold uppercase tracking-wider mb-3">Estudio Ciudadano Oficial</span>
@@ -280,7 +276,7 @@
                     </div>
                 </div>
 
-                <!-- BLOQUE 4: Preguntas 16 a 21 (Conductores y Repartidores - Consecutivas) -->
+                <!-- BLOQUE 4: Preguntas 16 a 21 (Conductores y Repartidores - CONSECUTIVAS) -->
                 <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/40 p-6 sm:p-8 rounded-3xl shadow-xl space-y-5 backdrop-blur-md">
                     <div class="border-b border-honey-500/20 pb-4">
                         <h3 class="text-lg font-bold text-white">4. Registro para Conductores y Repartidores</h3>
@@ -301,7 +297,7 @@
 
                         <div id="driverVehicleDiv" class="hidden">
                             <label class="block text-xs font-bold uppercase text-stone-400 mb-2">17. ¿Qué vehículo tienes disponible? *</label>
-                            <select id="tipoVehiculo" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
+                            <select id="p17" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                                 <option value="" disabled selected>Selecciona vehículo...</option>
                                 <option value="Mototaxi">Mototaxi</option>
                                 <option value="Motocicleta">Motocicleta</option>
@@ -336,7 +332,7 @@
 
                         <div id="driverContactDiv" class="hidden sm:col-span-2">
                             <label class="block text-xs font-bold uppercase text-stone-400 mb-2">21. Teléfono o WhatsApp directo para contacto de flota *</label>
-                            <input type="text" id="contactoConductor" placeholder="Ej. 983 123 4567" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
+                            <input type="text" id="p21" placeholder="Ej. 983 123 4567" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                         </div>
                     </div>
                 </div>
@@ -344,7 +340,8 @@
                 <!-- BLOQUE 5: Pregunta 22 (Beta) -->
                 <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 sm:p-8 rounded-3xl shadow-xl space-y-4 backdrop-blur-md">
                     <label class="block text-sm font-bold text-white mb-2">22. ¿Deseas ser de los primeros en probar la versión Beta oficial? *</label>
-                    <select id="betaOpt" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
+                    <select id="p22" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
+                        <option value="" disabled selected>Selecciona opción...</option>
                         <option value="Sí, quiero acceso anticipado beta">¡Sí, quiero participar en la beta!</option>
                         <option value="No por ahora">No por ahora</option>
                     </select>
@@ -398,7 +395,6 @@
         </section>
     </main>
 
-    <!-- Modal de PIN para Administrador -->
     <div id="pinModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
         <div class="bg-[rgba(24,20,17,0.95)] border border-honey-500/30 p-8 rounded-3xl max-w-sm w-full shadow-2xl space-y-6 text-center">
             <h3 class="text-xl font-bold text-white mb-2">PIN de Acceso (2026)</h3>
@@ -410,12 +406,10 @@
         </div>
     </div>
 
-    <!-- Script General y Animación de Panal -->
     <script>
-        let surveyData = JSON.parse(localStorage.getItem('viakaab_surveys_v4')) || [];
+        let surveyData = JSON.parse(localStorage.getItem('viakaab_surveys_v5')) || [];
         let isAdminLoggedIn = false;
 
-        // Fondo animado de panal
         const canvas = document.getElementById('honeycombBg');
         const ctx = canvas.getContext('2d');
         let width, height, hexCells = [];
@@ -509,7 +503,7 @@
 
         function toggleDriverFields(val) {
             const divs = ['driverVehicleDiv', 'driverModelDiv', 'driverHoursDiv', 'driverExpDiv', 'driverContactDiv'];
-            const reqs = ['tipoVehiculo', 'p18', 'p19', 'p20', 'contactoConductor'];
+            const reqs = ['p17', 'p18', 'p19', 'p20', 'p21'];
             if (val.includes('Sí') || val.includes('Ambos')) {
                 divs.forEach(d => document.getElementById(d).classList.remove('hidden'));
                 reqs.forEach(r => document.getElementById(r).setAttribute('required', 'true'));
@@ -526,10 +520,10 @@
                 edad: document.getElementById('p2').value,
                 colonia: document.getElementById('p4').value,
                 interesConductor: document.getElementById('interesConductor').value,
-                tipoVehiculo: document.getElementById('tipoVehiculo').value || 'Pasajero',
-                contacto: document.getElementById('contactoConductor').value || 'N/A'
+                tipoVehiculo: document.getElementById('p17').value || 'Pasajero',
+                contacto: document.getElementById('p21').value || 'N/A'
             });
-            localStorage.setItem('viakaab_surveys_v4', JSON.stringify(surveyData));
+            localStorage.setItem('viakaab_surveys_v5', JSON.stringify(surveyData));
             alert('¡Cuestionario enviado con éxito! Gracias por apoyar a Viakaab.');
             document.getElementById('surveyForm').reset();
             toggleDriverFields('Solo soy pasajero');

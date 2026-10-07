@@ -6,6 +6,7 @@
     <title>Viakaab | Smart Mobility Hub - Felipe Carrillo Puerto</title>
     <meta name="description" content="Revoluciona tu movilidad en Felipe Carrillo Puerto. La alternativa moderna, justa y segura frente al sindicato.">
     <meta name="theme-color" content="#0c0a09">
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -31,8 +32,10 @@
 </head>
 <body class="min-h-screen flex flex-col selection:bg-honey-500 selection:text-black relative">
 
+    <!-- CANVAS DE FONDO ANIMADO -->
     <canvas id="honeycombBg"></canvas>
 
+    <!-- Navegación Superior -->
     <header class="sticky top-0 z-50 glass-effect border-b border-honey-500/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('survey')">
@@ -58,7 +61,46 @@
         </div>
     </header>
 
+    <!-- Contenido Principal -->
     <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 z-10">
+
+        <!-- PRESENTACIÓN / MANIFIESTO (¡Restaurado!) -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/40 p-6 sm:p-8 rounded-3xl shadow-xl flex flex-col justify-between backdrop-blur-md">
+                <div>
+                    <span class="inline-block px-3 py-1 rounded-full bg-honey-500/10 text-honey-400 text-xs font-bold uppercase tracking-wider mb-3 border border-honey-500/20">
+                        <i class="fa-solid fa-scale-balanced mr-1"></i> La Verdadera Alternativa
+                    </span>
+                    <h2 class="text-xl sm:text-2xl font-black text-white mb-3">Más que transporte, libertad para Carrillo Puerto</h2>
+                    <p class="text-stone-300 text-sm sm:text-base leading-relaxed">
+                        Cansados de los abusos y la falta de opciones del sindicato tradicional, nace <strong class="text-honey-400">Viakaab</strong>. Un sistema 100% tecnológico, sin cuotas injustas, con tarifas transparentes y ganancias reales que se quedan en nuestra comunidad.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-honey-500/10 flex items-center justify-between text-xs text-stone-300 font-medium">
+                    <span><i class="fa-solid fa-ban text-red-400 mr-1"></i> Sin cobros abusivos</span>
+                    <span><i class="fa-solid fa-check text-honey-400 mr-1"></i> Ganas lo justo</span>
+                </div>
+            </div>
+
+            <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 sm:p-8 rounded-3xl shadow-xl flex flex-col justify-between backdrop-blur-md">
+                <div>
+                    <span class="inline-block px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-bold uppercase tracking-wider mb-3 border border-amber-500/20">
+                        <i class="fa-solid fa-rocket mr-1"></i> Beneficios Clave
+                    </span>
+                    <h2 class="text-xl sm:text-2xl font-black text-white mb-4">¿Por qué funcionará?</h2>
+                    <div class="space-y-3 text-sm text-stone-300">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-lg bg-honey-500/20 text-honey-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">✓</div>
+                            <p><strong class="text-white">Tarifas justas:</strong> Negociación clara antes de subirte, muy por debajo del monopolio sindical.</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-6 h-6 rounded-lg bg-honey-500/20 text-honey-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">✓</div>
+                            <p><strong class="text-white">Conductores y repartidores:</strong> Comisiones mínimas para que tu esfuerzo rinda más en tu bolsillo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- GUÍA PASO A PASO -->
         <section class="bg-gradient-to-br from-honey-950/40 via-[rgba(24,20,17,0.85)] to-[rgba(24,20,17,0.85)] border border-honey-500/30 p-6 sm:p-8 rounded-3xl shadow-2xl backdrop-blur-md space-y-6">
@@ -97,7 +139,7 @@
             </div>
         </section>
 
-        <!-- FORMULARIO 22 PREGUNTAS -->
+        <!-- FORMULARIO 22 PREGUNTAS (CONSECUTIVAS) -->
         <section id="view-survey" class="space-y-6">
             <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/30 p-6 sm:p-8 rounded-3xl shadow-2xl backdrop-blur-md">
                 <span class="inline-block px-3 py-1 rounded-full bg-honey-500/20 text-honey-300 text-xs font-bold uppercase tracking-wider mb-3">Estudio Ciudadano Oficial</span>
@@ -279,7 +321,7 @@
                                 <option value="" disabled selected>Selecciona horas...</option>
                                 <option value="Tiempo completo (más de 8 hrs)">Tiempo completo (más de 8 hrs)</option>
                                 <option value="Medio tiempo (4 a 6 hrs)">Medio tiempo (4 a 6 hrs)</option>
-                                <option value="Fines de semana o pocas horas">Fines de semana</option>
+                                <option value="Fines de semana">Fines de semana</option>
                             </select>
                         </div>
 
@@ -356,6 +398,7 @@
         </section>
     </main>
 
+    <!-- Modal de PIN para Administrador -->
     <div id="pinModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
         <div class="bg-[rgba(24,20,17,0.95)] border border-honey-500/30 p-8 rounded-3xl max-w-sm w-full shadow-2xl space-y-6 text-center">
             <h3 class="text-xl font-bold text-white mb-2">PIN de Acceso (2026)</h3>
@@ -367,9 +410,76 @@
         </div>
     </div>
 
+    <!-- Script General y Animación de Panal -->
     <script>
-        let surveyData = JSON.parse(localStorage.getItem('viakaab_surveys_v3')) || [];
+        let surveyData = JSON.parse(localStorage.getItem('viakaab_surveys_v4')) || [];
         let isAdminLoggedIn = false;
+
+        // Fondo animado de panal
+        const canvas = document.getElementById('honeycombBg');
+        const ctx = canvas.getContext('2d');
+        let width, height, hexCells = [];
+
+        function resizeCanvas() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            initHexGrid();
+        }
+        window.addEventListener('resize', resizeCanvas);
+
+        function drawHexagon(x, y, radius, fillColor, strokeColor) {
+            ctx.beginPath();
+            for (let i = 0; i < 6; i++) {
+                const angle = (Math.PI / 3) * i;
+                const hx = x + radius * Math.cos(angle);
+                const hy = y + radius * Math.sin(angle);
+                if (i === 0) ctx.moveTo(hx, hy);
+                else ctx.lineTo(hx, hy);
+            }
+            ctx.closePath();
+            ctx.fillStyle = fillColor;
+            ctx.fill();
+            ctx.strokeStyle = strokeColor;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+        }
+
+        const hexRadius = 45;
+        const hexHeight = hexRadius * Math.sqrt(3);
+        const hexWidth = hexRadius * 2;
+
+        function initHexGrid() {
+            hexCells = [];
+            const horizDist = hexWidth * 0.75;
+            const vertDist = hexHeight;
+            const cols = Math.ceil(width / horizDist) + 2;
+            const rows = Math.ceil(height / vertDist) + 2;
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    hexCells.push({
+                        x: c * horizDist + 30,
+                        y: r * vertDist + (c % 2 === 0 ? 0 : vertDist / 2) + 30,
+                        speed: 0.01 + Math.random() * 0.02,
+                        offset: Math.random() * Math.PI * 2
+                    });
+                }
+            }
+        }
+        resizeCanvas();
+
+        function animateHoneycombBg() {
+            ctx.clearRect(0, 0, width, height);
+            const time = Date.now() * 0.001;
+            hexCells.forEach(cell => {
+                const wave = Math.sin(time * cell.speed * 2 + cell.offset);
+                const alpha = 0.03 + (wave + 1) * 0.04; 
+                drawHexagon(cell.x, cell.y, hexRadius - 3, `rgba(234, 179, 8, ${alpha})`, `rgba(250, 204, 21, 0.08)`);
+            });
+            requestAnimationFrame(animateHoneycombBg);
+        }
+        animateHoneycombBg();
 
         function switchTab(tab) {
             if (tab === 'dashboard' && !isAdminLoggedIn) {
@@ -383,6 +493,7 @@
             } else {
                 document.getElementById('view-survey').classList.add('hidden');
                 document.getElementById('view-dashboard').classList.remove('hidden');
+                updateDashboardStats();
             }
         }
 
@@ -418,14 +529,21 @@
                 tipoVehiculo: document.getElementById('tipoVehiculo').value || 'Pasajero',
                 contacto: document.getElementById('contactoConductor').value || 'N/A'
             });
-            localStorage.setItem('viakaab_surveys_v3', JSON.stringify(surveyData));
-            alert('¡Cuestionario enviado con éxito!');
+            localStorage.setItem('viakaab_surveys_v4', JSON.stringify(surveyData));
+            alert('¡Cuestionario enviado con éxito! Gracias por apoyar a Viakaab.');
             document.getElementById('surveyForm').reset();
             toggleDriverFields('Solo soy pasajero');
         }
 
+        function updateDashboardStats() {
+            document.getElementById('statTotal').innerText = surveyData.length;
+            const drivers = surveyData.filter(i => i.interesConductor.includes('Sí') || i.interesConductor.includes('Ambos')).length;
+            document.getElementById('statDrivers').innerText = drivers;
+            document.getElementById('statTopVehicle').innerText = surveyData.length > 0 ? 'Mototaxi / Auto' : 'N/A';
+        }
+
         function exportToExcel() {
-            if (!surveyData.length) return alert('Sin datos');
+            if (!surveyData.length) return alert('Sin datos para exportar');
             const ws = XLSX.utils.json_to_sheet(surveyData);
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, "Viakaab_22p");

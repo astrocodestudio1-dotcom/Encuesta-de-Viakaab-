@@ -22,6 +22,7 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body { background-color: #0c0a09; color: #f5f5f4; font-family: system-ui, -apple-system, sans-serif; }
@@ -189,7 +190,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
                             <label class="block text-xs font-bold uppercase text-stone-400 mb-2">13. ¿Te interesa unirte como socio operador o repartidor? *</label>
-                            <select id="interesConductor" onchange="toggleDriverFields(this.value)" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
+                            <select id="p13" onchange="toggleDriverFields(this.value)" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                                 <option value="" disabled selected>Selecciona opción...</option>
                                 <option value="Sí, como Conductor de pasajeros">Sí, como Conductor de pasajeros</option>
                                 <option value="Sí, como Repartidor (comida/mandaditos)">Sí, como Repartidor</option>
@@ -238,14 +239,13 @@
             </form>
         </section>
 
-        <!-- DASHBOARD PRIVADO IDÉNTICO A LA IMAGEN -->
+        <!-- DASHBOARD PRIVADO -->
         <section id="view-dashboard" class="hidden space-y-8">
-            <!-- CABECERA DEL PANEL -->
             <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 rounded-3xl backdrop-blur-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
-                    <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-[10px] font-bold uppercase tracking-wider border border-amber-500/30">Panel Privado</span>
+                    <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-[10px] font-bold uppercase tracking-wider border border-amber-500/30">Panel Privado (Supabase)</span>
                     <h2 class="text-2xl font-black text-white mt-1">Dashboard de Analíticas Viakaab</h2>
-                    <p class="text-xs text-stone-400 mt-0.5">Monitoreo en tiempo real de las respuestas ciudadanas.</p>
+                    <p class="text-xs text-stone-400 mt-0.5">Monitoreo en tiempo real de las 17 preguntas ciudadanas.</p>
                 </div>
                 <div class="flex flex-wrap items-center gap-2.5">
                     <button onclick="exportToExcel()" class="px-4 py-2.5 bg-emerald-500 text-stone-950 rounded-xl text-xs font-bold hover:bg-emerald-400 transition-all flex items-center space-x-2 shadow-lg shadow-emerald-500/20">
@@ -329,7 +329,7 @@
                         </thead>
                         <tbody id="participantsTableBody" class="text-xs text-stone-300 divide-y divide-stone-900">
                             <tr>
-                                <td colspan="6" class="text-center py-6 text-stone-500">No hay registros guardados todavía.</td>
+                                <td colspan="6" class="text-center py-6 text-stone-500">Cargando registros desde Supabase...</td>
                             </tr>
                         </tbody>
                     </table>
@@ -338,7 +338,6 @@
         </section>
     </main>
 
-    <!-- FOOTER -->
     <footer class="mt-auto py-6 text-center text-xs text-stone-500 border-t border-honey-500/10">
         Viakaab Smart Mobility Hub &copy; 2026. Todos los derechos reservados.
     </footer>
@@ -362,11 +361,17 @@
     </div>
 
     <script>
-        let surveyData = JSON.parse(localStorage.getItem('viakaab_surveys_v8')) || [];
+        // CONFIGURACIÓN DE SUPABASE (Reemplaza con tus datos reales)
+        const SUPABASE_URL = 'https://TU_PROYECTO.supabase.co';
+        const SUPABASE_ANON_KEY = 'TU_ANON_KEY_AQUI';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        let surveyData = [];
         let isAdminLoggedIn = false;
         let chartTransportInstance = null;
         let chartProblemInstance = null;
 
+        // Fondo animado
         const canvas = document.getElementById('honeycombBg');
         const ctx = canvas.getContext('2d');
         let width, height, hexCells = [];
@@ -432,6 +437,18 @@
         }
         animateHoneycombBg();
 
+        async function fetchSurveysFromSupabase() {
+            const { data, error } = await supabaseClient.from('viakaab_surveys').select('*').order('created_at', { ascending: false });
+            if (error) {
+                console.error('Error al cargar datos:', error);
+            } else {
+                surveyData = data || [];
+                if (isAdminLoggedIn) updateDashboardStats();
+            }
+        }
+
+        fetchSurveysFromSupabase();
+
         function switchTab(tab) {
             if (tab === 'dashboard' && !isAdminLoggedIn) {
                 document.getElementById('pinModal').classList.remove('hidden');
@@ -449,7 +466,7 @@
                 document.getElementById('view-dashboard').classList.remove('hidden');
                 document.getElementById('btn-dashboard').className = "flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all bg-honey-500 text-stone-950 shadow-md";
                 document.getElementById('btn-survey').className = "flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all text-stone-400 hover:text-white";
-                updateDashboardStats();
+                fetchSurveysFromSupabase().then(() => updateDashboardStats());
             }
         }
 
@@ -479,39 +496,59 @@
             }
         }
 
-        function submitSurvey(e) {
+        async function submitSurvey(e) {
             e.preventDefault();
-            surveyData.push({
-                nombre: document.getElementById('p1').value,
-                edad: document.getElementById('p2').value,
-                ocupacion: document.getElementById('p3').value,
-                colonia: document.getElementById('p4').value,
-                transporte: document.getElementById('p6').value,
-                problema: document.getElementById('p9').value,
-                beta: document.getElementById('p17').value,
-                fecha: new Date().toLocaleDateString()
-            });
-            localStorage.setItem('viakaab_surveys_v8', JSON.stringify(surveyData));
-            alert('¡Cuestionario enviado con éxito! Gracias por apoyar a Viakaab.');
-            document.getElementById('surveyForm').reset();
-            toggleDriverFields('Solo soy pasajero');
+            const nuevoRegistro = {
+                p1_nombre: document.getElementById('p1').value,
+                p2_edad: parseInt(document.getElementById('p2').value),
+                p3_ocupacion: document.getElementById('p3').value,
+                p4_colonia: document.getElementById('p4').value,
+                p5_frecuencia: document.getElementById('p5').value,
+                p6_transporte: document.getElementById('p6').value,
+                p7_gasto: document.getElementById('p7').value,
+                p8_tarifas: document.getElementById('p8').value,
+                p9_problema: document.getElementById('p9').value,
+                p10_frustracionapp: document.getElementById('p10').value,
+                p11_disposicion: document.getElementById('p11').value,
+                p12_funcion: document.getElementById('p12').value,
+                p13_interesconductor: document.getElementById('p13').value,
+                p14_vehiculo: document.getElementById('p14').value || null,
+                p15_modelo: document.getElementById('p15').value || null,
+                p16_contacto: document.getElementById('p16').value || null,
+                p17_beta: document.getElementById('p17').value
+            };
+
+            const { error } = await supabaseClient.from('viakaab_surveys').insert([nuevoRegistro]);
+
+            if (error) {
+                alert('Hubo un error al enviar el cuestionario: ' + error.message);
+            } else {
+                alert('¡Cuestionario enviado con éxito a Supabase! Gracias por apoyar a Viakaab.');
+                document.getElementById('surveyForm').reset();
+                toggleDriverFields('Solo soy pasajero');
+                fetchSurveysFromSupabase();
+            }
         }
 
-        function resetData() {
-            if (confirm('¿Estás seguro de borrar todos los registros de encuestas?')) {
-                surveyData = [];
-                localStorage.removeItem('viakaab_surveys_v8');
-                updateDashboardStats();
+        async function resetData() {
+            if (confirm('¿Estás seguro de borrar todos los registros de la base de datos de Supabase?')) {
+                const { error } = await supabaseClient.from('viakaab_surveys').delete().neq('id', 0);
+                if (error) {
+                    alert('Error al reiniciar datos: ' + error.message);
+                } else {
+                    surveyData = [];
+                    updateDashboardStats();
+                }
             }
         }
 
         function updateDashboardStats() {
             document.getElementById('statTotal').innerText = surveyData.length;
-            const betaCount = surveyData.filter(i => i.beta && i.beta.includes('Sí')).length;
+            const betaCount = surveyData.filter(i => i.p17_beta && i.p17_beta.includes('Sí')).length;
             document.getElementById('statBeta').innerText = betaCount;
 
             if (surveyData.length > 0) {
-                const transports = surveyData.map(i => i.transporte);
+                const transports = surveyData.map(i => i.p6_transporte);
                 const topTransport = transports.sort((a,b) =>
                     transports.filter(v => v === a).length - transports.filter(v => v === b).length
                 ).pop();
@@ -528,10 +565,10 @@
             const ctxTransport = document.getElementById('chartTransport').getContext('2d');
             if (chartTransportInstance) chartTransportInstance.destroy();
 
-            const taxis = surveyData.filter(i => i.transporte === 'Taxis del Sindicato').length;
-            const mototaxis = surveyData.filter(i => i.transporte === 'Mototaxis locales').length;
-            const propios = surveyData.filter(i => i.transporte === 'Vehículo propio').length;
-            const caminando = surveyData.filter(i => i.transporte === 'Caminando / Bicicleta').length;
+            const taxis = surveyData.filter(i => i.p6_transporte === 'Taxis del Sindicato').length;
+            const mototaxis = surveyData.filter(i => i.p6_transporte === 'Mototaxis locales').length;
+            const propios = surveyData.filter(i => i.p6_transporte === 'Vehículo propio').length;
+            const caminando = surveyData.filter(i => i.p6_transporte === 'Caminando / Bicicleta').length;
 
             chartTransportInstance = new Chart(ctxTransport, {
                 type: 'bar',
@@ -558,10 +595,9 @@
             const ctxProblem = document.getElementById('chartProblem').getContext('2d');
             if (chartProblemInstance) chartProblemInstance.destroy();
 
-            const noContestan = surveyData.filter(i => i.problema && i.problema.includes('No contestan')).length;
-            const cobros = surveyData.filter(i => i.problema && i.problema.includes('Cobros arbitrarios')).length;
-            const inseguridad = surveyData.filter(i => i.problema && i.problema.includes('Inseguridad')).length;
-
+            const noContestan = surveyData.filter(i => i.p9_problema && i.p9_problema.includes('No contestan')).length;
+            const cobros = surveyData.filter(i => i.p9_problema && i.p9_problema.includes('Cobros arbitrarios')).length;
+            const inseguridad = surveyData.filter(i => i.p9_problema && i.p9_problema.includes('Inseguridad')).length;
             const hasData = surveyData.length > 0;
 
             chartProblemInstance = new Chart(ctxProblem, {
@@ -596,12 +632,12 @@
                 const tr = document.createElement('tr');
                 tr.className = "border-b border-stone-900 hover:bg-stone-900/40 transition-colors";
                 tr.innerHTML = `
-                    <td class="py-3 px-3 font-medium text-white">${item.nombre}</td>
-                    <td class="py-3 px-3 text-stone-400">${item.ocupacion}</td>
-                    <td class="py-3 px-3 text-stone-400">${item.colonia}</td>
-                    <td class="py-3 px-3 text-stone-400">${item.transporte}</td>
-                    <td class="py-3 px-3 text-stone-400">${item.problema}</td>
-                    <td class="py-3 px-3 text-honey-400 font-semibold">${item.beta.includes('Sí') ? 'Sí' : 'No'}</td>
+                    <td class="py-3 px-3 font-medium text-white">${item.p1_nombre}</td>
+                    <td class="py-3 px-3 text-stone-400">${item.p3_ocupacion}</td>
+                    <td class="py-3 px-3 text-stone-400">${item.p4_colonia}</td>
+                    <td class="py-3 px-3 text-stone-400">${item.p6_transporte}</td>
+                    <td class="py-3 px-3 text-stone-400">${item.p9_problema}</td>
+                    <td class="py-3 px-3 text-honey-400 font-semibold">${item.p17_beta && item.p17_beta.includes('Sí') ? 'Sí' : 'No'}</td>
                 `;
                 tbody.appendChild(tr);
             });
@@ -612,7 +648,7 @@
             const ws = XLSX.utils.json_to_sheet(surveyData);
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, "Viakaab_Participantes");
-            XLSX.writeFile(wb, "Viakaab_FCP_Dashboard.xlsx");
+            XLSX.writeFile(wb, "Viakaab_FCP_Supabase_17Preguntas.xlsx");
         }
     </script>
 </body>

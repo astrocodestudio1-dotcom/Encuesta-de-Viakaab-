@@ -3,19 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    
-    <!-- SEO y Metadatos de Optimización -->
     <title>Viakaab | Smart Mobility Hub - Felipe Carrillo Puerto</title>
     <meta name="description" content="Revoluciona tu movilidad en Felipe Carrillo Puerto. La alternativa moderna, justa y segura frente al sindicato.">
-    <meta name="keywords" content="Viakaab, movilidad inteligente, transporte Felipe Carrillo Puerto, mototaxis, taxis, Quintana Roo">
-    <meta name="author" content="Viakaab Team">
-
-    <!-- Optimización para Móviles -->
     <meta name="theme-color" content="#0c0a09">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -23,50 +13,30 @@
             theme: {
                 extend: {
                     colors: {
-                        honey: {
-                            50: '#fefce8',
-                            100: '#fef9c3',
-                            400: '#facc15',
-                            500: '#eab308',
-                            600: '#ca8a04',
-                            700: '#a16207',
-                        },
+                        honey: { 50: '#fefce8', 100: '#fef9c3', 400: '#facc15', 500: '#eab308', 600: '#ca8a04', 700: '#a16207' },
                         darkBg: '#0c0a09',
                     }
                 }
             }
         }
     </script>
-    <!-- Chart.js, SheetJS y FontAwesome -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { background-color: #0c0a09; color: #f5f5f4; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-        
-        #honeycombBg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            pointer-events: none;
-        }
-
+        body { background-color: #0c0a09; color: #f5f5f4; font-family: system-ui, -apple-system, sans-serif; }
+        #honeycombBg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; }
         .glass-effect { background: rgba(24, 20, 17, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
     </style>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-honey-500 selection:text-black relative">
 
-    <!-- CANVAS DE FONDO ANIMADO (PANAL DE ABEJAS) -->
     <canvas id="honeycombBg"></canvas>
 
-    <!-- Navegación Superior -->
     <header class="sticky top-0 z-50 glass-effect border-b border-honey-500/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3 group cursor-pointer" onclick="switchTab('survey')">
-                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-honey-600 to-honey-400 flex items-center justify-center shadow-lg shadow-honey-500/30 transform group-hover:scale-105 transition-transform">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('survey')">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-honey-600 to-honey-400 flex items-center justify-center shadow-lg shadow-honey-500/30">
                     <i class="fa-solid fa-hive text-stone-950 text-2xl"></i>
                 </div>
                 <div>
@@ -88,53 +58,9 @@
         </div>
     </header>
 
-    <!-- Contenido Principal -->
     <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 z-10">
 
-        <!-- SECCIÓN DE VENTAS / MANIFIESTO (Mejor que el sindicato) -->
-        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/40 p-6 sm:p-8 rounded-3xl shadow-xl relative overflow-hidden flex flex-col justify-between group hover:border-honey-500/60 transition-all backdrop-blur-md">
-                <div class="absolute -right-12 -top-12 w-40 h-40 bg-honey-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-honey-500/20 transition-all"></div>
-                <div>
-                    <span class="inline-block px-3 py-1 rounded-full bg-honey-500/10 text-honey-400 text-xs font-bold uppercase tracking-wider mb-3 border border-honey-500/20">
-                        <i class="fa-solid fa-scale-balanced mr-1"></i> La Verdadera Alternativa
-                    </span>
-                    <h2 class="text-xl sm:text-2xl font-black text-white mb-3">Más que transporte, libertad para Carrillo Puerto</h2>
-                    <p class="text-stone-300 text-sm sm:text-base leading-relaxed">
-                        Cansados de los abusos, monopolios y la falta de opciones del sindicato tradicional, nace <strong class="text-honey-400">Viakaab</strong>. Un sistema 100% tecnológico, sin cuotas injustas, con tarifas transparentes y ganancias reales que se quedan en los bolsillos de nuestra comunidad.
-                    </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-honey-500/10 flex items-center justify-between text-xs text-stone-300 font-medium">
-                    <span><i class="fa-solid fa-ban text-red-400 mr-1"></i> Sin cobros abusivos</span>
-                    <span><i class="fa-solid fa-check text-honey-400 mr-1"></i> Ganas lo justo</span>
-                </div>
-            </div>
-
-            <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 sm:p-8 rounded-3xl shadow-xl flex flex-col justify-between hover:border-honey-500/40 transition-all backdrop-blur-md">
-                <div>
-                    <span class="inline-block px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-bold uppercase tracking-wider mb-3 border border-amber-500/20">
-                        <i class="fa-solid fa-rocket mr-1"></i> Beneficios Clave
-                    </span>
-                    <h2 class="text-xl sm:text-2xl font-black text-white mb-4">¿Por qué funcionará?</h2>
-                    <div class="space-y-3 text-sm text-stone-300">
-                        <div class="flex items-start space-x-3">
-                            <div class="w-6 h-6 rounded-lg bg-honey-500/20 text-honey-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">✓</div>
-                            <p><strong class="text-white">Tarifas justas:</strong> Negociación clara antes de subirte, muy por debajo de los cobros arbitrarios del sindicato.</p>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <div class="w-6 h-6 rounded-lg bg-honey-500/20 text-honey-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">✓</div>
-                            <p><strong class="text-white">Para conductores y repartidores:</strong> Comisiones mínimas. Tu esfuerzo es tuyo, sin cuotas excesivas de afiliación.</p>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <div class="w-6 h-6 rounded-lg bg-honey-500/20 text-honey-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">✓</div>
-                            <p><strong class="text-white">Seguridad local:</strong> Monitoreo GPS en tiempo real e identificación de operadores.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= GUÍA PASO A PASO PARA CONTESTAR ================= -->
+        <!-- GUÍA PASO A PASO -->
         <section class="bg-gradient-to-br from-honey-950/40 via-[rgba(24,20,17,0.85)] to-[rgba(24,20,17,0.85)] border border-honey-500/30 p-6 sm:p-8 rounded-3xl shadow-2xl backdrop-blur-md space-y-6">
             <div class="flex items-center space-x-4">
                 <div class="w-12 h-12 rounded-2xl bg-honey-500/20 text-honey-400 flex items-center justify-center text-2xl border border-honey-500/40 shrink-0">
@@ -152,99 +78,84 @@
                         <span>01.</span>
                         <span class="text-white">Datos Generales</span>
                     </div>
-                    <p class="text-stone-300 text-xs leading-relaxed">
-                        Cuéntanos quién eres, tu ocupación y en qué colonia o sector de Felipe Carrillo Puerto vives para ubicar zonas clave de alta demanda.
-                    </p>
+                    <p class="text-stone-300 text-xs leading-relaxed">Cuéntanos quién eres y tu zona de residencia en Felipe Carrillo Puerto.</p>
                 </div>
                 <div class="bg-stone-950/60 p-4 rounded-2xl border border-honey-500/10 space-y-2">
                     <div class="text-honey-400 font-black text-base flex items-center space-x-2">
                         <span>02.</span>
-                        <span class="text-white">Tu Experiencia de Viaje</span>
+                        <span class="text-white">Tu Experiencia</span>
                     </div>
-                    <p class="text-stone-300 text-xs leading-relaxed">
-                        Evalúa los servicios actuales (taxis del sindicato, mototaxis) y ayúdanos a señalar los abusos en tarifas o falta de unidades nocturnas.
-                    </p>
+                    <p class="text-stone-300 text-xs leading-relaxed">Evalúa el servicio actual, tarifas y problemas nocturnos con el transporte tradicional.</p>
                 </div>
                 <div class="bg-stone-950/60 p-4 rounded-2xl border border-honey-500/10 space-y-2">
                     <div class="text-honey-400 font-black text-base flex items-center space-x-2">
                         <span>03.</span>
                         <span class="text-white">Socio u Operador</span>
                     </div>
-                    <p class="text-stone-300 text-xs leading-relaxed">
-                        Si tienes carro, moto o mototaxi, indícalo en la sección de conductores para unirte a la primera red independiente de ganancias justas.
-                    </p>
+                    <p class="text-stone-300 text-xs leading-relaxed">Indica si cuentas con vehículo para unirte a la red de ganancias justas.</p>
                 </div>
             </div>
         </section>
 
-        <!-- ================= VISTA DE ENCUESTA (>20 PREGUNTAS) ================= -->
+        <!-- FORMULARIO 22 PREGUNTAS -->
         <section id="view-survey" class="space-y-6">
-            <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/30 p-6 sm:p-8 rounded-3xl shadow-2xl relative overflow-hidden backdrop-blur-md">
-                <span class="inline-block px-3 py-1 rounded-full bg-honey-500/20 text-honey-300 text-xs font-bold uppercase tracking-wider mb-3">Estudio y Registro Ciudadano Integral</span>
-                <h2 class="text-2xl sm:text-3xl font-black text-white mb-2">Cuestionario Maestro Viakaab (+20 Preguntas)</h2>
-                <p class="text-stone-300 text-sm">Responde con total sinceridad. Tus respuestas nos permitirán estructurar la plataforma perfecta para Carrillo Puerto.</p>
+            <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/30 p-6 sm:p-8 rounded-3xl shadow-2xl backdrop-blur-md">
+                <span class="inline-block px-3 py-1 rounded-full bg-honey-500/20 text-honey-300 text-xs font-bold uppercase tracking-wider mb-3">Estudio Ciudadano Oficial</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-white mb-2">Cuestionario Maestro Viakaab (22 Preguntas)</h2>
+                <p class="text-stone-300 text-sm">Responde con total sinceridad para estructurar la plataforma ideal de movilidad en FCP.</p>
             </div>
 
-            <!-- Formulario Ampliado (Más de 20 preguntas) -->
             <form id="surveyForm" onsubmit="submitSurvey(event)" class="space-y-6">
 
-                <!-- BLOQUE 1: Datos Personales y Demográficos (Preguntas 1 a 4) -->
+                <!-- BLOQUE 1: Preguntas 1 a 4 -->
                 <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 sm:p-8 rounded-3xl shadow-xl space-y-5 backdrop-blur-md">
-                    <div class="flex items-center space-x-3 border-b border-honey-500/20 pb-4">
-                        <div class="w-9 h-9 rounded-xl bg-honey-500/10 flex items-center justify-center text-honey-400 font-bold border border-honey-500/30">1</div>
-                        <h3 class="text-lg font-bold text-white">Información Personal y Demográfica</h3>
-                    </div>
-
+                    <h3 class="text-lg font-bold text-white border-b border-honey-500/20 pb-4">1. Información Personal y Demográfica</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">1. Nombre Completo *</label>
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">1. Nombre Completo *</label>
                             <input type="text" id="p1" required placeholder="Ej. María Chan" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">2. Edad *</label>
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">2. Edad *</label>
                             <input type="number" id="p2" required min="15" max="99" placeholder="Ej. 24" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">3. Ocupación Principal *</label>
-                            <input type="text" id="p3" required placeholder="Ej. Estudiante, Comerciante, Empleado..." class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">3. Ocupación Principal *</label>
+                            <input type="text" id="p3" required placeholder="Ej. Estudiante, Comerciante..." class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">4. Colonia o Localidad en FCP *</label>
-                            <input type="text" id="p4" required placeholder="Ej. Centro, Plan de Ayala, Cecilio Chi..." class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">4. Colonia o Localidad en FCP *</label>
+                            <input type="text" id="p4" required placeholder="Ej. Centro, Plan de Ayala..." class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                         </div>
                     </div>
                 </div>
 
-                <!-- BLOQUE 2: Hábitos de Movilidad Actuales (Preguntas 5 a 10) -->
+                <!-- BLOQUE 2: Preguntas 5 a 10 -->
                 <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 sm:p-8 rounded-3xl shadow-xl space-y-5 backdrop-blur-md">
-                    <div class="flex items-center space-x-3 border-b border-honey-500/20 pb-4">
-                        <div class="w-9 h-9 rounded-xl bg-honey-500/10 flex items-center justify-center text-honey-400 font-bold border border-honey-500/30">2</div>
-                        <h3 class="text-lg font-bold text-white">Hábitos de Transporte y Relación con el Sindicato</h3>
-                    </div>
-
+                    <h3 class="text-lg font-bold text-white border-b border-honey-500/20 pb-4">2. Hábitos de Movilidad y Relación con el Sindicato</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">5. ¿Con qué frecuencia te transportas en la ciudad? *</label>
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">5. ¿Con qué frecuencia te transportas en la ciudad? *</label>
                             <select id="p5" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                                 <option value="" disabled selected>Selecciona...</option>
                                 <option value="Diario (varias veces)">Diario (varias veces)</option>
                                 <option value="De 3 a 5 veces por semana">De 3 a 5 veces por semana</option>
-                                <option value="Ocasionalmente (fines de semana)">Ocasionalmente (fines de semana)</option>
+                                <option value="Ocasionalmente">Ocasionalmente (fines de semana)</option>
                                 <option value="Casi nunca">Casi nunca</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">6. ¿Qué medio de transporte utilizas más actualmente? *</label>
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">6. ¿Qué medio de transporte utilizas más actualmente? *</label>
                             <select id="p6" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                                 <option value="" disabled selected>Selecciona...</option>
                                 <option value="Taxis del sindicato">Taxis del Sindicato</option>
                                 <option value="Mototaxis locales">Mototaxis locales</option>
-                                <option value="Vehículo propio (auto/moto)">Vehículo propio (auto/moto)</option>
+                                <option value="Vehículo propio">Vehículo propio (auto/moto)</option>
                                 <option value="Caminando / Bicicleta">Caminando / Bicicleta</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">7. ¿Cuánto gastas en promedio al mes en transporte? *</label>
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">7. ¿Cuánto gastas en promedio al mes en transporte? *</label>
                             <select id="p7" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                                 <option value="" disabled selected>Selecciona rango...</option>
                                 <option value="Menos de $500 MXN">Menos de $500 MXN</option>
@@ -254,75 +165,66 @@
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">8. ¿Consideras justas las tarifas del sindicato actual? *</label>
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">8. ¿Consideras justas las tarifas del sindicato actual? *</label>
                             <select id="p8" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                                 <option value="" disabled selected>Selecciona...</option>
                                 <option value="Muy abusivas y caras">No, son muy abusivas y caras</option>
                                 <option value="A veces aceptables">A veces aceptables</option>
                                 <option value="Sí, justas">Sí, son justas</option>
-                                <option value="No tengo opinión">No tengo opinión</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">9. ¿Cuál es el mayor problema al pedir un taxi o servicio nocturno? *</label>
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">9. ¿Cuál es el mayor problema al pedir un servicio tarde? *</label>
                             <select id="p9" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                                 <option value="" disabled selected>Selecciona problema...</option>
-                                <option value="No contestan o no hay unidades tarde">No contestan llamadas o no hay unidades tarde</option>
-                                <option value="Cobros arbitrarios sin taxímetro o app">Cobros arbitrarios sin taxímetro o app</option>
-                                <option value="Trato inflexible o grosero">Trato inflexible o grosero</option>
+                                <option value="No contestan o no hay unidades tarde">No contestan llamadas o no hay unidades</option>
+                                <option value="Cobros arbitrarios sin taxímetro">Cobros arbitrarios sin base fija</option>
                                 <option value="Inseguridad">Inseguridad</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">10. ¿Te frustra la falta de una app digital local? *</label>
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">10. ¿Te frustra la falta de una app digital local? *</label>
                             <select id="p10" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                                 <option value="" disabled selected>Selecciona...</option>
                                 <option value="Sí, totalmente necesaria">Sí, es totalmente necesaria</option>
                                 <option value="Me da igual">Me da igual</option>
-                                <option value="Prefiero llamar por teléfono">Prefiero llamar por teléfono</option>
                             </select>
                         </div>
                     </div>
                 </div>
 
-                <!-- BLOQUE 3: Expectativas de Viakaab como Pasajero (Preguntas 11 a 15) -->
+                <!-- BLOQUE 3: Preguntas 11 a 15 -->
                 <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 sm:p-8 rounded-3xl shadow-xl space-y-5 backdrop-blur-md">
-                    <div class="flex items-center space-x-3 border-b border-honey-500/20 pb-4">
-                        <div class="w-9 h-9 rounded-xl bg-honey-500/10 flex items-center justify-center text-honey-400 font-bold border border-honey-500/30">3</div>
-                        <h3 class="text-lg font-bold text-white">Expectativas y Características de Viakaab</h3>
-                    </div>
-
+                    <h3 class="text-lg font-bold text-white border-b border-honey-500/20 pb-4">3. Expectativas y Características de Viakaab</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">11. ¿Qué tan dispuesto estás a usar Viakaab en lugar del sindicato? *</label>
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">11. ¿Qué tan dispuesto estás a usar Viakaab? *</label>
                             <select id="p11" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                                 <option value="" disabled selected>Selecciona...</option>
                                 <option value="Definitivamente lo usaré siempre">Definitivamente lo usaré siempre</option>
                                 <option value="Lo probaré según la tarifa">Lo probaré según la tarifa</option>
-                                <option value="Tengo dudas">Tengo dudas</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">12. ¿Qué función te parece más atractiva en la app? *</label>
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">12. ¿Qué función te parece más atractiva? *</label>
                             <select id="p12" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                                 <option value="" disabled selected>Selecciona...</option>
-                                <option value="Negociación y visibilidad de tarifas justas">Negociación y visibilidad de tarifas justas</option>
-                                <option value="Botón de pánico y rastreo GPS">Botón de pánico y rastreo GPS en vivo</option>
+                                <option value="Tarifas justas y negociación">Tarifas justas y transparentes</option>
+                                <option value="Botón de pánico y GPS">Botón de pánico y rastreo GPS</option>
                                 <option value="Pagos digitales y efectivo">Pagos digitales y efectivo</option>
-                                <option value="Servicio de mandaditos y entrega">Servicio de mandaditos y entrega</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">13. ¿Prefieres pagar tus viajes en efectivo o tarjeta? *</label>
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">13. ¿Prefieres pagar en efectivo o tarjeta? *</label>
                             <select id="p13" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                                 <option value="" disabled selected>Selecciona...</option>
                                 <option value="Efectivo principalmente">Efectivo principalmente</option>
                                 <option value="Tarjeta / Transferencia digital">Tarjeta / Transferencia digital</option>
-                                <option value="Ambos métodos">Ambos métodos por igual</option>
+                                <option value="Ambos métodos">Ambos métodos</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">14. ¿Te interesa recibir recompensas por recomendar la app? *</label>
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">14. ¿Te interesa recibir recompensas por recomendar? *</label>
                             <select id="p14" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                                 <option value="" disabled selected>Selecciona...</option>
                                 <option value="Sí, viajes gratis o descuentos">Sí, viajes gratis o descuentos</option>
@@ -330,36 +232,33 @@
                             </select>
                         </div>
                         <div class="sm:col-span-2">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">15. ¿Qué otra función o servicio te gustaría que agreguemos a Viakaab? *</label>
-                            <input type="text" id="p15" required placeholder="Ej. Envío de comida nocturna, apartados de gas, etc." class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">15. ¿Qué otra función o servicio te gustaría que agreguemos? *</label>
+                            <input type="text" id="p15" required placeholder="Ej. Envío de mandaditos nocturnos, etc." class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                         </div>
                     </div>
                 </div>
 
-                <!-- BLOQUE 4: Registro para Conductores y Repartidores (Preguntas 16 a 22) -->
+                <!-- BLOQUE 4: Preguntas 16 a 21 (Conductores y Repartidores - Consecutivas) -->
                 <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/40 p-6 sm:p-8 rounded-3xl shadow-xl space-y-5 backdrop-blur-md">
-                    <div class="flex items-center space-x-3 border-b border-honey-500/20 pb-4">
-                        <div class="w-9 h-9 rounded-xl bg-honey-500/20 flex items-center justify-center text-honey-400 font-bold border border-honey-500/30">4</div>
-                        <div>
-                            <h3 class="text-lg font-bold text-white">Registro Especial para Conductores y Repartidores</h3>
-                            <p class="text-xs text-amber-400">Gana más con comisiones justas muy por debajo de las corporaciones tradicionales.</p>
-                        </div>
+                    <div class="border-b border-honey-500/20 pb-4">
+                        <h3 class="text-lg font-bold text-white">4. Registro para Conductores y Repartidores</h3>
+                        <p class="text-xs text-amber-400">Gana más con comisiones mínimas independientes.</p>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">16. ¿Te interesa unirte como socio operador o repartidor? *</label>
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">16. ¿Te interesa unirte como socio operador o repartidor? *</label>
                             <select id="interesConductor" onchange="toggleDriverFields(this.value)" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                                 <option value="" disabled selected>Selecciona opción...</option>
                                 <option value="Sí, como Conductor de pasajeros">Sí, como Conductor de pasajeros</option>
-                                <option value="Sí, como Repartidor (comida/mandaditos)">Sí, como Repartidor (comida/mandaditos)</option>
-                                <option value="Ambos (Conductor y Repartidor)">Ambos (Conductor y Repartidor)</option>
-                                <option value="Solo soy pasajero">Solo me interesa ser pasajero</option>
+                                <option value="Sí, como Repartidor (comida/mandaditos)">Sí, como Repartidor</option>
+                                <option value="Ambos (Conductor y Repartidor)">Ambos</option>
+                                <option value="Solo soy pasajero">Solo soy pasajero</option>
                             </select>
                         </div>
 
                         <div id="driverVehicleDiv" class="hidden">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">17. ¿Qué vehículo tienes disponible? *</label>
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">17. ¿Qué vehículo tienes disponible? *</label>
                             <select id="tipoVehiculo" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                                 <option value="" disabled selected>Selecciona vehículo...</option>
                                 <option value="Mototaxi">Mototaxi</option>
@@ -370,282 +269,120 @@
                         </div>
 
                         <div id="driverModelDiv" class="hidden">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">18. Modelo y año aproximado de tu vehículo *</label>
-                            <input type="text" id="p18" placeholder="Ej. Bajaj Torpedo 2022 o Chevy 2008" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">18. Modelo y año aproximado de tu vehículo *</label>
+                            <input type="text" id="p18" placeholder="Ej. Bajaj Torpedo 2022" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                         </div>
 
                         <div id="driverHoursDiv" class="hidden">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">19. ¿Cuántas horas al día podrías conectar la app? *</label>
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">19. ¿Cuántas horas al día podrías conectar la app? *</label>
                             <select id="p19" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                                 <option value="" disabled selected>Selecciona horas...</option>
                                 <option value="Tiempo completo (más de 8 hrs)">Tiempo completo (más de 8 hrs)</option>
                                 <option value="Medio tiempo (4 a 6 hrs)">Medio tiempo (4 a 6 hrs)</option>
-                                <option value="Fines de semana o pocas horas">Fines de semana o pocas horas</option>
+                                <option value="Fines de semana o pocas horas">Fines de semana</option>
                             </select>
                         </div>
 
                         <div id="driverExpDiv" class="hidden">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">20. ¿Tienes experiencia previa manejando transporte local? *</label>
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">20. ¿Tienes experiencia previa manejando transporte? *</label>
                             <select id="p20" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                                 <option value="" disabled selected>Selecciona...</option>
                                 <option value="Sí, tengo experiencia">Sí, tengo experiencia</option>
                                 <option value="No, pero tengo licencia vigente">No, pero tengo licencia vigente</option>
-                                <option value="Estoy aprendiendo">Estoy aprendiendo</option>
                             </select>
                         </div>
 
                         <div id="driverContactDiv" class="hidden sm:col-span-2">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">21. Teléfono o WhatsApp directo para contacto de flota *</label>
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">21. Teléfono o WhatsApp directo para contacto de flota *</label>
                             <input type="text" id="contactoConductor" placeholder="Ej. 983 123 4567" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                         </div>
                     </div>
                 </div>
 
-                <!-- BLOQUE 5: Cierre y Beta (Pregunta 22) -->
+                <!-- BLOQUE 5: Pregunta 22 (Beta) -->
                 <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 sm:p-8 rounded-3xl shadow-xl space-y-4 backdrop-blur-md">
-                    <div class="flex items-center space-x-3">
-                        <div class="w-9 h-9 rounded-xl bg-honey-500/10 flex items-center justify-center text-honey-400 border border-honey-500/30">
-                            <i class="fa-solid fa-flask"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-base font-bold text-white">22. ¿Deseas ser de los primeros en probar la versión Beta oficial?</h3>
-                            <p class="text-xs text-stone-400">Acceso anticipado con beneficios exclusivos en comisiones y viajes.</p>
-                        </div>
-                    </div>
-                    <select id="betaOpt" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
+                    <label class="block text-sm font-bold text-white mb-2">22. ¿Deseas ser de los primeros en probar la versión Beta oficial? *</label>
+                    <select id="betaOpt" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                         <option value="Sí, quiero acceso anticipado beta">¡Sí, quiero participar en la beta!</option>
                         <option value="No por ahora">No por ahora</option>
                     </select>
                 </div>
 
-                <button type="submit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-honey-500 to-amber-400 text-stone-950 font-black text-base shadow-xl shadow-honey-500/20 hover:opacity-95 transform hover:-translate-y-0.5 transition-all flex items-center justify-center space-x-2">
+                <button type="submit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-honey-500 to-amber-400 text-stone-950 font-black text-base shadow-xl hover:opacity-95 transition-all flex items-center justify-center space-x-2">
                     <i class="fa-solid fa-paper-plane text-lg"></i>
-                    <span>Enviar Cuestionario Completo y Apoyar Viakaab</span>
+                    <span>Enviar Cuestionario Completo (22 Preguntas)</span>
                 </button>
             </form>
         </section>
 
-        <!-- ================= MODAL PIN ADMIN ================= -->
-        <div id="pinModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-            <div class="bg-[rgba(24,20,17,0.95)] border border-honey-500/30 p-8 rounded-3xl max-w-sm w-full shadow-2xl space-y-6 text-center backdrop-blur-xl">
-                <div class="w-16 h-16 bg-honey-500/10 text-honey-400 rounded-2xl mx-auto flex items-center justify-center text-2xl border border-honey-500/30">
-                    <i class="fa-solid fa-lock"></i>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold text-white mb-2">Acceso Exclusivo</h3>
-                    <p class="text-xs text-stone-400">Ingresa tu PIN de seguridad (2026) para ver el Dashboard.</p>
-                </div>
-                <input type="password" id="adminPinInput" placeholder="PIN" maxlength="6" class="w-full bg-stone-950 border border-honey-500/20 text-center tracking-widest text-lg rounded-xl py-3 text-white focus:outline-none focus:border-honey-500">
-                <div id="pinError" class="text-xs text-red-400 hidden">PIN incorrecto.</div>
-                <div class="flex space-x-3">
-                    <button onclick="closePinModal()" class="flex-1 py-3 bg-stone-800 text-stone-300 font-semibold rounded-xl text-sm">Cancelar</button>
-                    <button onclick="verifyPin()" class="flex-1 py-3 bg-honey-500 text-stone-950 font-bold rounded-xl text-sm shadow-lg shadow-honey-500/20">Entrar</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- ================= VISTA DE DASHBOARD & GRÁFICAS ================= -->
+        <!-- DASHBOARD PRIVADO -->
         <section id="view-dashboard" class="hidden space-y-8">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 rounded-3xl backdrop-blur-md">
+            <div class="flex items-center justify-between bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 rounded-3xl backdrop-blur-md">
                 <div>
-                    <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-wider border border-amber-500/30">Panel Privado</span>
+                    <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-xs font-bold uppercase border border-amber-500/30">Panel Privado</span>
                     <h2 class="text-2xl font-black text-white mt-1">Dashboard de Analíticas Viakaab</h2>
                 </div>
-                <div class="flex flex-wrap items-center gap-2">
-                    <button onclick="exportToExcel()" class="px-4 py-2.5 bg-emerald-500 text-stone-950 rounded-xl text-xs font-bold hover:bg-emerald-400 transition-all shadow-lg shadow-emerald-500/25">
-                        <i class="fa-solid fa-file-excel mr-2"></i> Exportar a Excel
+                <div class="flex items-center gap-2">
+                    <button onclick="exportToExcel()" class="px-4 py-2.5 bg-emerald-500 text-stone-950 rounded-xl text-xs font-bold hover:bg-emerald-400 transition-all">
+                        <i class="fa-solid fa-file-excel mr-2"></i> Exportar
                     </button>
-                    <button onclick="resetData()" class="px-4 py-2.5 bg-red-500/10 text-red-400 border border-red-500/20 rounded-xl text-xs font-bold">
-                        <i class="fa-solid fa-trash-can mr-2"></i> Reiniciar
-                    </button>
-                    <button onclick="lockDashboard()" class="px-4 py-2.5 bg-stone-800 text-stone-300 rounded-xl text-xs font-bold">
-                        <i class="fa-solid fa-lock mr-2"></i> Bloquear
-                    </button>
+                    <button onclick="lockDashboard()" class="px-4 py-2.5 bg-stone-800 text-stone-300 rounded-xl text-xs font-bold">Bloquear</button>
                 </div>
             </div>
 
-            <!-- Estadísticas -->
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
-                <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 rounded-3xl shadow-xl flex items-center justify-between backdrop-blur-md">
+                <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 rounded-3xl shadow-xl flex items-center justify-between">
                     <div>
                         <p class="text-xs text-stone-400 uppercase font-bold">Total Cuestionarios</p>
                         <h3 id="statTotal" class="text-3xl font-black text-white mt-1">0</h3>
                     </div>
-                    <div class="w-12 h-12 bg-honey-500/10 text-honey-400 rounded-2xl flex items-center justify-center text-xl border border-honey-500/30">
-                        <i class="fa-solid fa-users"></i>
-                    </div>
+                    <div class="w-12 h-12 bg-honey-500/10 text-honey-400 rounded-2xl flex items-center justify-center text-xl border border-honey-500/30"><i class="fa-solid fa-users"></i></div>
                 </div>
-                <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 rounded-3xl shadow-xl flex items-center justify-between backdrop-blur-md">
+                <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 rounded-3xl shadow-xl flex items-center justify-between">
                     <div>
                         <p class="text-xs text-stone-400 uppercase font-bold">Aspirantes a Conductor</p>
                         <h3 id="statDrivers" class="text-3xl font-black text-honey-400 mt-1">0</h3>
                     </div>
-                    <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-2xl flex items-center justify-center text-xl border border-amber-500/30">
-                        <i class="fa-solid fa-id-card"></i>
-                    </div>
+                    <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-2xl flex items-center justify-center text-xl border border-amber-500/30"><i class="fa-solid fa-id-card"></i></div>
                 </div>
-                <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 rounded-3xl shadow-xl flex items-center justify-between backdrop-blur-md">
+                <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 rounded-3xl shadow-xl flex items-center justify-between">
                     <div>
                         <p class="text-xs text-stone-400 uppercase font-bold">Vehículo Predominante</p>
                         <h3 id="statTopVehicle" class="text-base font-bold text-white mt-1 truncate max-w-[180px]">N/A</h3>
                     </div>
-                    <div class="w-12 h-12 bg-yellow-500/10 text-yellow-400 rounded-2xl flex items-center justify-center text-xl border border-yellow-500/30">
-                        <i class="fa-solid fa-car"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Gráfica y Tabla -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 rounded-3xl shadow-xl backdrop-blur-md">
-                    <h3 class="text-base font-bold text-white mb-4"><i class="fa-solid fa-chart-bar text-honey-400 mr-2"></i> Tipos de Vehículos de Aspirantes</h3>
-                    <div class="relative h-64 flex items-center justify-center">
-                        <canvas id="chartVehicles"></canvas>
-                    </div>
-                </div>
-                <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 rounded-3xl shadow-xl backdrop-blur-md flex flex-col justify-center">
-                    <h3 class="text-base font-bold text-white mb-2"><i class="fa-solid fa-circle-info text-amber-400 mr-2"></i> Comunidad Viakaab Activa</h3>
-                    <p class="text-xs text-stone-300 leading-relaxed mb-4">
-                        Este panel recopila las respuestas de las 22 preguntas aplicadas a ciudadanos y operadores de Felipe Carrillo Puerto.
-                    </p>
-                </div>
-            </div>
-
-            <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 rounded-3xl shadow-xl space-y-4 backdrop-blur-md">
-                <h3 class="text-base font-bold text-white"><i class="fa-solid fa-table text-honey-400 mr-2"></i> Base de Datos General (Respuestas)</h3>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-sm text-stone-300">
-                        <thead class="bg-stone-950 text-xs uppercase text-stone-400 border-b border-honey-500/20">
-                            <tr>
-                                <th class="p-3">Nombre</th>
-                                <th class="p-3">Edad</th>
-                                <th class="p-3">Colonia</th>
-                                <th class="p-3">Transporte Frecuente</th>
-                                <th class="p-3">Interés Conductor</th>
-                                <th class="p-3">Vehículo</th>
-                                <th class="p-3">Contacto</th>
-                            </tr>
-                        </thead>
-                        <tbody id="submissionsTableBody" class="divide-y divide-honey-500/10">
-                        </tbody>
-                    </table>
+                    <div class="w-12 h-12 bg-yellow-500/10 text-yellow-400 rounded-2xl flex items-center justify-center text-xl border border-yellow-500/30"><i class="fa-solid fa-car"></i></div>
                 </div>
             </div>
         </section>
-
     </main>
 
-    <!-- Footer -->
-    <footer class="mt-auto border-t border-honey-500/20 py-6 text-center text-xs text-stone-500 z-10 glass-effect">
-        <p>Viakaab Smart Mobility Hub © 2026. La verdadera alternativa para Felipe Carrillo Puerto.</p>
-    </footer>
+    <div id="pinModal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-[rgba(24,20,17,0.95)] border border-honey-500/30 p-8 rounded-3xl max-w-sm w-full shadow-2xl space-y-6 text-center">
+            <h3 class="text-xl font-bold text-white mb-2">PIN de Acceso (2026)</h3>
+            <input type="password" id="adminPinInput" placeholder="PIN" maxlength="6" class="w-full bg-stone-950 border border-honey-500/20 text-center tracking-widest text-lg rounded-xl py-3 text-white focus:outline-none">
+            <div class="flex space-x-3">
+                <button onclick="closePinModal()" class="flex-1 py-3 bg-stone-800 text-stone-300 rounded-xl text-sm">Cancelar</button>
+                <button onclick="verifyPin()" class="flex-1 py-3 bg-honey-500 text-stone-950 font-bold rounded-xl text-sm">Entrar</button>
+            </div>
+        </div>
+    </div>
 
-    <!-- Script del Fondo Animado y Lógica -->
     <script>
-        let surveyData = JSON.parse(localStorage.getItem('viakaab_surveys_v2')) || [];
+        let surveyData = JSON.parse(localStorage.getItem('viakaab_surveys_v3')) || [];
         let isAdminLoggedIn = false;
-        let chartVehicleInstance = null;
-
-        const canvas = document.getElementById('honeycombBg');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let hexCells = [];
-
-        function resizeCanvas() {
-            width = window.innerWidth;
-            height = window.innerHeight;
-            canvas.width = width;
-            canvas.height = height;
-            initHexGrid();
-        }
-
-        window.addEventListener('resize', resizeCanvas);
-
-        function drawHexagon(x, y, radius, fillColor, strokeColor) {
-            ctx.beginPath();
-            for (let i = 0; i < 6; i++) {
-                const angle = (Math.PI / 3) * i;
-                const hx = x + radius * Math.cos(angle);
-                const hy = y + radius * Math.sin(angle);
-                if (i === 0) ctx.moveTo(hx, hy);
-                else ctx.lineTo(hx, hy);
-            }
-            ctx.closePath();
-            ctx.fillStyle = fillColor;
-            ctx.fill();
-            ctx.strokeStyle = strokeColor;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-        }
-
-        const hexRadius = 45;
-        const hexHeight = hexRadius * Math.sqrt(3);
-        const hexWidth = hexRadius * 2;
-
-        function initHexGrid() {
-            hexCells = [];
-            const horizDist = hexWidth * 0.75;
-            const vertDist = hexHeight;
-            const cols = Math.ceil(width / horizDist) + 2;
-            const rows = Math.ceil(height / vertDist) + 2;
-
-            for (let r = 0; r < rows; r++) {
-                for (let c = 0; c < cols; c++) {
-                    const x = c * horizDist + 30;
-                    const y = r * vertDist + (c % 2 === 0 ? 0 : vertDist / 2) + 30;
-                    hexCells.push({
-                        x: x, y: y,
-                        speed: 0.01 + Math.random() * 0.02,
-                        offset: Math.random() * Math.PI * 2
-                    });
-                }
-            }
-        }
-
-        resizeCanvas();
-
-        function animateHoneycombBg() {
-            ctx.clearRect(0, 0, width, height);
-            const time = Date.now() * 0.001;
-
-            hexCells.forEach(cell => {
-                const wave = Math.sin(time * cell.speed * 2 + cell.offset);
-                const alpha = 0.03 + (wave + 1) * 0.04; 
-                const strokeAlpha = 0.08 + (wave + 1) * 0.06;
-
-                drawHexagon(cell.x, cell.y, hexRadius - 3, `rgba(234, 179, 8, ${alpha})`, `rgba(250, 204, 21, ${strokeAlpha})`);
-            });
-
-            requestAnimationFrame(animateHoneycombBg);
-        }
-
-        animateHoneycombBg();
 
         function switchTab(tab) {
-            const viewSurvey = document.getElementById('view-survey');
-            const viewDashboard = document.getElementById('view-dashboard');
-            const btnSurvey = document.getElementById('btn-survey');
-            const btnDashboard = document.getElementById('btn-dashboard');
-
             if (tab === 'dashboard' && !isAdminLoggedIn) {
                 document.getElementById('pinModal').classList.remove('hidden');
-                document.getElementById('adminPinInput').value = '';
-                document.getElementById('pinError').classList.add('hidden');
                 document.getElementById('adminPinInput').focus();
                 return;
             }
-
             if (tab === 'survey') {
-                viewSurvey.classList.remove('hidden');
-                viewDashboard.classList.add('hidden');
-                btnSurvey.className = "flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all bg-honey-500 text-stone-950 shadow-md";
-                btnDashboard.className = "flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all text-stone-400 hover:text-white";
-            } else if (tab === 'dashboard' && isAdminLoggedIn) {
-                viewSurvey.classList.add('hidden');
-                viewDashboard.classList.remove('hidden');
-                btnDashboard.className = "flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all bg-honey-500 text-stone-950 shadow-md";
-                btnSurvey.className = "flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all text-stone-400 hover:text-white";
-                renderDashboard();
+                document.getElementById('view-survey').classList.remove('hidden');
+                document.getElementById('view-dashboard').classList.add('hidden');
+            } else {
+                document.getElementById('view-survey').classList.add('hidden');
+                document.getElementById('view-dashboard').classList.remove('hidden');
             }
         }
 
@@ -654,162 +391,45 @@
                 isAdminLoggedIn = true;
                 document.getElementById('pinModal').classList.add('hidden');
                 switchTab('dashboard');
-            } else {
-                document.getElementById('pinError').classList.remove('hidden');
             }
         }
-
         function closePinModal() { document.getElementById('pinModal').classList.add('hidden'); }
         function lockDashboard() { isAdminLoggedIn = false; switchTab('survey'); }
 
         function toggleDriverFields(val) {
-            const driverVehicleDiv = document.getElementById('driverVehicleDiv');
-            const driverModelDiv = document.getElementById('driverModelDiv');
-            const driverHoursDiv = document.getElementById('driverHoursDiv');
-            const driverExpDiv = document.getElementById('driverExpDiv');
-            const driverContactDiv = document.getElementById('driverContactDiv');
-
+            const divs = ['driverVehicleDiv', 'driverModelDiv', 'driverHoursDiv', 'driverExpDiv', 'driverContactDiv'];
+            const reqs = ['tipoVehiculo', 'p18', 'p19', 'p20', 'contactoConductor'];
             if (val.includes('Sí') || val.includes('Ambos')) {
-                driverVehicleDiv.classList.remove('hidden');
-                driverModelDiv.classList.remove('hidden');
-                driverHoursDiv.classList.remove('hidden');
-                driverExpDiv.classList.remove('hidden');
-                driverContactDiv.classList.remove('hidden');
-
-                document.getElementById('tipoVehiculo').setAttribute('required', 'true');
-                document.getElementById('p18').setAttribute('required', 'true');
-                document.getElementById('p19').setAttribute('required', 'true');
-                document.getElementById('p20').setAttribute('required', 'true');
-                document.getElementById('contactoConductor').setAttribute('required', 'true');
+                divs.forEach(d => document.getElementById(d).classList.remove('hidden'));
+                reqs.forEach(r => document.getElementById(r).setAttribute('required', 'true'));
             } else {
-                driverVehicleDiv.classList.add('hidden');
-                driverModelDiv.classList.add('hidden');
-                driverHoursDiv.classList.add('hidden');
-                driverExpDiv.classList.add('hidden');
-                driverContactDiv.classList.add('hidden');
-
-                document.getElementById('tipoVehiculo').removeAttribute('required');
-                document.getElementById('p18').removeAttribute('required');
-                document.getElementById('p19').removeAttribute('required');
-                document.getElementById('p20').removeAttribute('required');
-                document.getElementById('contactoConductor').removeAttribute('required');
+                divs.forEach(d => document.getElementById(d).classList.add('hidden'));
+                reqs.forEach(r => document.getElementById(r).removeAttribute('required'));
             }
         }
 
         function submitSurvey(e) {
             e.preventDefault();
-            const newEntry = {
+            surveyData.push({
                 nombre: document.getElementById('p1').value,
                 edad: document.getElementById('p2').value,
-                ocupacion: document.getElementById('p3').value,
                 colonia: document.getElementById('p4').value,
-                frecuenciaUso: document.getElementById('p5').value,
-                transporteActual: document.getElementById('p6').value,
-                gastoMensual: document.getElementById('p7').value,
-                opinionSindicato: document.getElementById('p8').value,
-                problemaNocturno: document.getElementById('p9').value,
-                necesidadApp: document.getElementById('p10').value,
-                disposicionViakaab: document.getElementById('p11').value,
-                funcionAtractiva: document.getElementById('p12').value,
-                metodoPago: document.getElementById('p13').value,
-                recompensas: document.getElementById('p14').value,
-                extraDeseado: document.getElementById('p15').value,
                 interesConductor: document.getElementById('interesConductor').value,
-                tipoVehiculo: document.getElementById('tipoVehiculo').value || 'N/A (Solo Pasajero)',
-                modeloVehiculo: document.getElementById('p18').value || 'N/A',
-                horasConexion: document.getElementById('p19').value || 'N/A',
-                experiencia: document.getElementById('p20').value || 'N/A',
-                contacto: document.getElementById('contactoConductor').value || 'N/A',
-                beta: document.getElementById('betaOpt').value,
-                fechaRegistro: new Date().toLocaleDateString()
-            };
-
-            surveyData.push(newEntry);
-            localStorage.setItem('viakaab_surveys_v2', JSON.stringify(surveyData));
-
-            alert('¡Cuestionario enviado con éxito! Gracias por ser parte del cambio en Felipe Carrillo Puerto.');
+                tipoVehiculo: document.getElementById('tipoVehiculo').value || 'Pasajero',
+                contacto: document.getElementById('contactoConductor').value || 'N/A'
+            });
+            localStorage.setItem('viakaab_surveys_v3', JSON.stringify(surveyData));
+            alert('¡Cuestionario enviado con éxito!');
             document.getElementById('surveyForm').reset();
             toggleDriverFields('Solo soy pasajero');
         }
 
-        function resetData() {
-            if (confirm('¿Borrar todos los registros del cuestionario?')) {
-                surveyData = [];
-                localStorage.removeItem('viakaab_surveys_v2');
-                renderDashboard();
-            }
-        }
-
         function exportToExcel() {
-            if (surveyData.length === 0) {
-                alert('No hay datos para exportar.');
-                return;
-            }
+            if (!surveyData.length) return alert('Sin datos');
             const ws = XLSX.utils.json_to_sheet(surveyData);
             const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "Cuestionario_Viakaab_22p");
-            XLSX.writeFile(wb, "Analisis_Completo_Viakaab_FCP.xlsx");
-        }
-
-        function renderDashboard() {
-            document.getElementById('statTotal').innerText = surveyData.length;
-            const driversCount = surveyData.filter(i => i.interesConductor.includes('Sí') || i.interesConductor.includes('Ambos')).length;
-            document.getElementById('statDrivers').innerText = driversCount;
-
-            const vehicleCounts = {};
-            surveyData.forEach(i => {
-                if(i.tipoVehiculo !== 'N/A (Solo Pasajero)') {
-                    vehicleCounts[i.tipoVehiculo] = (vehicleCounts[i.tipoVehiculo] || 0) + 1;
-                }
-            });
-
-            const topVehicle = Object.keys(vehicleCounts).length > 0 
-                ? Object.keys(vehicleCounts).reduce((a, b) => vehicleCounts[a] > vehicleCounts[b] ? a : b) 
-                : 'Ninguno';
-            document.getElementById('statTopVehicle').innerText = topVehicle;
-
-            const tbody = document.getElementById('submissionsTableBody');
-            tbody.innerHTML = '';
-            if (surveyData.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-stone-500">Sin registros guardados aún.</td></tr>`;
-            } else {
-                surveyData.slice().reverse().forEach(item => {
-                    tbody.innerHTML += `
-                        <tr class="hover:bg-stone-900/50 transition-colors">
-                            <td class="p-3 font-medium text-white">${item.nombre}</td>
-                            <td class="p-3">${item.edad}</td>
-                            <td class="p-3">${item.colonia}</td>
-                            <td class="p-3">${item.transporteActual}</td>
-                            <td class="p-3"><span class="px-2 py-0.5 rounded-full text-xs font-bold ${item.interesConductor.includes('Sí') ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' : 'bg-stone-800 text-stone-400'}">${item.interesConductor}</span></td>
-                            <td class="p-3 font-semibold text-honey-400">${item.tipoVehiculo}</td>
-                            <td class="p-3">${item.contacto}</td>
-                        </tr>
-                    `;
-                });
-            }
-
-            if (chartVehicleInstance) chartVehicleInstance.destroy();
-            const ctxVehicles = document.getElementById('chartVehicles').getContext('2d');
-            chartVehicleInstance = new Chart(ctxVehicles, {
-                type: 'bar',
-                data: {
-                    labels: Object.keys(vehicleCounts).length ? Object.keys(vehicleCounts) : ['Sin aspirantes'],
-                    datasets: [{
-                        data: Object.values(vehicleCounts).length ? Object.values(vehicleCounts) : [0],
-                        backgroundColor: '#eab308',
-                        borderRadius: 8
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        x: { ticks: { color: '#a8a29e', font: { size: 10 } }, grid: { display: false } },
-                        y: { ticks: { color: '#a8a29e', precision: 0 }, grid: { color: 'rgba(234, 179, 8, 0.1)' } }
-                    }
-                }
-            });
+            XLSX.utils.book_append_sheet(wb, ws, "Viakaab_22p");
+            XLSX.writeFile(wb, "Viakaab_FCP.xlsx");
         }
     </script>
 </body>

@@ -6,21 +6,14 @@
     
     <!-- SEO y Metadatos de Optimización -->
     <title>Viakaab | Smart Mobility Hub - Felipe Carrillo Puerto</title>
-    <meta name="description" content="Revoluciona tu movilidad en Felipe Carrillo Puerto. Participa en nuestra encuesta de transporte, descubre tarifas justas y sé parte de la nueva era de transporte inteligente.">
-    <meta name="keywords" content="Viakaab, movilidad inteligente, transporte Felipe Carrillo Puerto, mototaxis, taxis, Quintana Roo, app de transporte">
+    <meta name="description" content="Revoluciona tu movilidad en Felipe Carrillo Puerto. La alternativa moderna, justa y segura frente al sindicato.">
+    <meta name="keywords" content="Viakaab, movilidad inteligente, transporte Felipe Carrillo Puerto, mototaxis, taxis, Quintana Roo">
     <meta name="author" content="Viakaab Team">
 
-    <!-- Open Graph / Redes Sociales -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Viakaab | Smart Mobility Hub">
-    <meta property="og:description" content="La nueva alternativa de transporte moderno, justo y seguro en Felipe Carrillo Puerto.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1200&auto=format&fit=crop">
-
-    <!-- Optimización para Móviles (Android e iOS) -->
+    <!-- Optimización para Móviles -->
     <meta name="theme-color" content="#0c0a09">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Viakaab">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -39,23 +32,18 @@
                             700: '#a16207',
                         },
                         darkBg: '#0c0a09',
-                        cardBg: 'rgba(24, 20, 17, 0.85)',
-                        cardBorder: 'rgba(234, 179, 8, 0.2)'
                     }
                 }
             }
         }
     </script>
-    <!-- Chart.js para las gráficas interactivas -->
+    <!-- Chart.js, SheetJS y FontAwesome -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- SheetJS (xlsx) para exportar a Excel -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <!-- FontAwesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body { background-color: #0c0a09; color: #f5f5f4; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
         
-        /* Canvas de fondo fijo y animado */
         #honeycombBg {
             position: fixed;
             top: 0;
@@ -66,8 +54,7 @@
             pointer-events: none;
         }
 
-        .glass-effect { background: rgba(24, 20, 17, 0.8); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
-        .glow-honey { box-shadow: 0 0 30px -5px rgba(234, 179, 8, 0.2); }
+        .glass-effect { background: rgba(24, 20, 17, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
     </style>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-honey-500 selection:text-black relative">
@@ -75,7 +62,7 @@
     <!-- CANVAS DE FONDO ANIMADO (PANAL DE ABEJAS) -->
     <canvas id="honeycombBg"></canvas>
 
-    <!-- Navegación Superior Estilo Glassmorphism -->
+    <!-- Navegación Superior -->
     <header class="sticky top-0 z-50 glass-effect border-b border-honey-500/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3 group cursor-pointer" onclick="switchTab('survey')">
@@ -104,43 +91,43 @@
     <!-- Contenido Principal -->
     <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 z-10">
 
-        <!-- PRESENTACIÓN Y PASOS A SEGUIR -->
+        <!-- SECCIÓN DE VENTAS / MANIFIESTO (Mejor que el sindicato) -->
         <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/30 p-6 sm:p-8 rounded-3xl shadow-xl relative overflow-hidden flex flex-col justify-between group hover:border-honey-500/60 transition-all backdrop-blur-md">
+            <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/40 p-6 sm:p-8 rounded-3xl shadow-xl relative overflow-hidden flex flex-col justify-between group hover:border-honey-500/60 transition-all backdrop-blur-md">
                 <div class="absolute -right-12 -top-12 w-40 h-40 bg-honey-500/10 rounded-full blur-2xl pointer-events-none group-hover:bg-honey-500/20 transition-all"></div>
                 <div>
                     <span class="inline-block px-3 py-1 rounded-full bg-honey-500/10 text-honey-400 text-xs font-bold uppercase tracking-wider mb-3 border border-honey-500/20">
-                        <i class="fa-solid fa-bolt mr-1"></i> Innovación Local
+                        <i class="fa-solid fa-scale-balanced mr-1"></i> La Verdadera Alternativa
                     </span>
-                    <h2 class="text-xl sm:text-2xl font-black text-white mb-3">¿Qué es Viakaab?</h2>
+                    <h2 class="text-xl sm:text-2xl font-black text-white mb-3">Más que transporte, libertad para Carrillo Puerto</h2>
                     <p class="text-stone-300 text-sm sm:text-base leading-relaxed">
-                        <strong class="text-honey-400">Viakaab</strong> (inspirado en la colmena y la unión comunitaria) es el ecosistema de movilidad inteligente para <span class="text-white font-semibold">Felipe Carrillo Puerto</span>. Diseñado para ofrecer tarifas justas y transporte seguro.
+                        Cansados de los abusos y la falta de opciones del sindicato tradicional, nace <strong class="text-honey-400">Viakaab</strong>. Un sistema 100% tecnológico, sin cuotas injustas, con tarifas transparentes y ganancias reales que se quedan en los bolsillos de nuestra comunidad.
                     </p>
                 </div>
-                <div class="mt-6 pt-4 border-t border-honey-500/10 flex items-center justify-between text-xs text-stone-400 font-medium">
-                    <span><i class="fa-solid fa-shield-halved text-honey-400 mr-1.5"></i> Viajes seguros</span>
-                    <span><i class="fa-solid fa-wallet text-honey-400 mr-1.5"></i> Precios justos</span>
+                <div class="mt-6 pt-4 border-t border-honey-500/10 flex items-center justify-between text-xs text-stone-300 font-medium">
+                    <span><i class="fa-solid fa-ban text-red-400 mr-1"></i> Sin cobros abusivos</span>
+                    <span><i class="fa-solid fa-check text-honey-400 mr-1"></i> Ganas lo justo</span>
                 </div>
             </div>
 
             <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 sm:p-8 rounded-3xl shadow-xl flex flex-col justify-between hover:border-honey-500/40 transition-all backdrop-blur-md">
                 <div>
                     <span class="inline-block px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-bold uppercase tracking-wider mb-3 border border-amber-500/20">
-                        <i class="fa-solid fa-list-check mr-1"></i> Guía Rápida
+                        <i class="fa-solid fa-rocket mr-1"></i> Beneficios Clave
                     </span>
-                    <h2 class="text-xl sm:text-2xl font-black text-white mb-4">Pasos a Seguir</h2>
+                    <h2 class="text-xl sm:text-2xl font-black text-white mb-4">¿Por qué funcionará?</h2>
                     <div class="space-y-3 text-sm text-stone-300">
                         <div class="flex items-start space-x-3">
-                            <div class="w-6 h-6 rounded-lg bg-honey-500/20 text-honey-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">1</div>
-                            <p><strong class="text-white">Responde la encuesta:</strong> Comparte tus hábitos de transporte.</p>
+                            <div class="w-6 h-6 rounded-lg bg-honey-500/20 text-honey-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">✓</div>
+                            <p><strong class="text-white">Tarifas justas:</strong> Negociación clara antes de subirte, sin sorpresas.</p>
                         </div>
                         <div class="flex items-start space-x-3">
-                            <div class="w-6 h-6 rounded-lg bg-honey-500/20 text-honey-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">2</div>
-                            <p><strong class="text-white">Únete a la Beta:</strong> Obtén beneficios exclusivos y acceso prioritario.</p>
+                            <div class="w-6 h-6 rounded-lg bg-honey-500/20 text-honey-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">✓</div>
+                            <p><strong class="text-white">Para conductores y repartidores:</strong> Comisiones mínimas para que el esfuerzo sea realmente tuyo.</p>
                         </div>
                         <div class="flex items-start space-x-3">
-                            <div class="w-6 h-6 rounded-lg bg-honey-500/20 text-honey-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">3</div>
-                            <p><strong class="text-white">Colmena en Movimiento:</strong> Disfruta la red tecnológica de fondo inspirada en la miel.</p>
+                            <div class="w-6 h-6 rounded-lg bg-honey-500/20 text-honey-400 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">✓</div>
+                            <p><strong class="text-white">Seguridad local:</strong> Monitoreo GPS en tiempo real para pasajeros y operadores.</p>
                         </div>
                     </div>
                 </div>
@@ -152,15 +139,15 @@
             <div class="bg-gradient-to-r from-honey-900/30 via-[rgba(24,20,17,0.85)] to-[rgba(24,20,17,0.85)] border border-honey-500/30 p-6 sm:p-8 rounded-3xl shadow-2xl relative overflow-hidden backdrop-blur-md">
                 <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-honey-500/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="relative z-10 max-w-2xl">
-                    <span class="inline-block px-3 py-1 rounded-full bg-honey-500/20 text-honey-300 text-xs font-bold uppercase tracking-wider mb-3">Estudio de Mercado Local</span>
-                    <h2 class="text-2xl sm:text-3xl font-black text-white mb-3">Formulario Ciudadano Viakaab</h2>
+                    <span class="inline-block px-3 py-1 rounded-full bg-honey-500/20 text-honey-300 text-xs font-bold uppercase tracking-wider mb-3">Estudio y Registro Ciudadano</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-white mb-3">Formulario Comunitario Viakaab</h2>
                     <p class="text-stone-300 text-sm sm:text-base leading-relaxed">
-                        Tu opinión es la pieza fundamental para construir el futuro del transporte en Felipe Carrillo Puerto. ¡Haz escuchar tu voz!
+                        Ayúdanos a configurar la red de movilidad y transporte definitivo de Felipe Carrillo Puerto. Ya sea como usuario, conductor o repartidor.
                     </p>
                 </div>
             </div>
 
-            <!-- Formulario Ampliado (14 Preguntas) -->
+            <!-- Formulario Ampliado (Pasajeros + Conductores/Repartidores) -->
             <form id="surveyForm" onsubmit="submitSurvey(event)" class="space-y-6">
                 <!-- Sección 1 -->
                 <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 sm:p-8 rounded-3xl shadow-xl space-y-5 backdrop-blur-md">
@@ -172,149 +159,110 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">1. Nombre Completo *</label>
-                            <input type="text" id="nombre" required placeholder="Ej. Ana Sofía Tun" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
+                            <input type="text" id="nombre" required placeholder="Ej. Carlos Pech" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
                         </div>
                         <div>
                             <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">2. ¿A qué te dedicas? *</label>
-                            <input type="text" id="ocupacion" required placeholder="Ej. Estudiante, Empleado, Comerciante..." class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
+                            <input type="text" id="ocupacion" required placeholder="Ej. Estudiante, Conductor, Comerciante..." class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
                         </div>
                         <div class="sm:col-span-2">
                             <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">3. Colonia o Sector de Residencia *</label>
-                            <input type="text" id="colonia" required placeholder="Ej. Centro, Leona Vicario, Francisco May..." class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
+                            <input type="text" id="colonia" required placeholder="Ej. Centro, Plan de Ayala, Cecilio Chi..." class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
                         </div>
                     </div>
                 </div>
 
-                <!-- Sección 2 -->
+                <!-- Sección 2: Perfil de Transporte (Pasajero) -->
                 <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 sm:p-8 rounded-3xl shadow-xl space-y-5 backdrop-blur-md">
                     <div class="flex items-center space-x-3 border-b border-honey-500/20 pb-4">
                         <div class="w-9 h-9 rounded-xl bg-honey-500/10 flex items-center justify-center text-honey-400 font-bold border border-honey-500/30">2</div>
-                        <h3 class="text-lg font-bold text-white">Hábitos y Experiencia Actual</h3>
+                        <h3 class="text-lg font-bold text-white">Hábitos de Movilidad</h3>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">4. ¿Qué medio de transporte utilizas con mayor frecuencia? *</label>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">4. ¿Qué medio de transporte utilizas más actualmente? *</label>
                             <select id="servicioFrecuente" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
                                 <option value="" disabled selected>Selecciona opción...</option>
-                                <option value="Taxis tradicionales">Taxis tradicionales</option>
-                                <option value="Mototaxis">Mototaxis</option>
-                                <option value="Transporte público / Colectivo">Transporte público / Colectivo</option>
-                                <option value="Vehículo o moto propia">Vehículo o moto propia</option>
+                                <option value="Sindicato / Taxis tradicionales">Taxis del Sindicato</option>
+                                <option value="Mototaxis locales">Mototaxis</option>
+                                <option value="Colectivo / Urb">Colectivo / Urb</option>
+                                <option value="Moto o auto propio">Moto o auto propio</option>
                             </select>
                         </div>
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">5. Frecuencia semanal de traslados *</label>
-                            <select id="frecuenciaViaje" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
-                                <option value="" disabled selected>Selecciona frecuencia...</option>
-                                <option value="Todos los días">Todos los días</option>
-                                <option value="3 a 4 veces por semana">3 a 4 veces por semana</option>
-                                <option value="1 a 2 veces por semana">1 a 2 veces por semana</option>
-                                <option value="Rara vez">Rara vez</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">6. ¿Qué tan satisfecho estás con los tiempos de espera actuales? *</label>
-                            <select id="tiempoEspera" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
-                                <option value="" disabled selected>Selecciona nivel...</option>
-                                <option value="Muy satisfecho">Muy satisfecho</option>
-                                <option value="Neutral / Aceptable">Neutral / Aceptable</option>
-                                <option value="Insatisfecho (Demora mucho)">Insatisfecho (Demora mucho)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">7. Principal problema del transporte actual *</label>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">5. Principal problema con el servicio actual *</label>
                             <select id="problemaPrincipal" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
                                 <option value="" disabled selected>Selecciona problema...</option>
-                                <option value="Tarifas elevadas">Tarifas elevadas</option>
-                                <option value="Escasez de unidades en horas pico">Escasez de unidades en horas pico</option>
-                                <option value="Falta de seguridad o confianza">Falta de seguridad o confianza</option>
-                                <option value="Falta de métodos de pago digitales">Falta de métodos de pago digitales</option>
-                            </select>
-                        </div>
-                        <div class="sm:col-span-2">
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">8. ¿Cuánto gastas aproximadamente en transporte a la semana? *</label>
-                            <select id="gastoSemanal" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
-                                <option value="" disabled selected>Selecciona rango...</option>
-                                <option value="Menos de $150 MXN">Menos de $150 MXN</option>
-                                <option value="$150 - $300 MXN">$150 - $300 MXN</option>
-                                <option value="$300 - $500 MXN">$300 - $500 MXN</option>
-                                <option value="Más de $500 MXN">Más de $500 MXN</option>
+                                <option value="Tarifas altas y abusivas">Tarifas altas y abusivas del sindicato</option>
+                                <option value="Falta de unidades tarde o de madrugada">Falta de unidades tarde o de madrugada</option>
+                                <option value="Trato deficiente o inflexible">Trato deficiente o inflexible</option>
+                                <option value="Falta de app digital">Falta de app digital y pagos con tarjeta</option>
                             </select>
                         </div>
                     </div>
                 </div>
 
-                <!-- Sección 3 -->
-                <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 sm:p-8 rounded-3xl shadow-xl space-y-5 backdrop-blur-md">
+                <!-- Sección 3: ¡NUEVA! Registro para Conductores y Repartidores -->
+                <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/40 p-6 sm:p-8 rounded-3xl shadow-xl space-y-5 backdrop-blur-md">
                     <div class="flex items-center space-x-3 border-b border-honey-500/20 pb-4">
-                        <div class="w-9 h-9 rounded-xl bg-honey-500/10 flex items-center justify-center text-honey-400 font-bold border border-honey-500/30">3</div>
-                        <h3 class="text-lg font-bold text-white">Preferencias y Competencia Viakaab</h3>
+                        <div class="w-9 h-9 rounded-xl bg-honey-500/20 flex items-center justify-center text-honey-400 font-bold border border-honey-500/30">3</div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">¿Te interesa ser Conductor o Repartidor en Viakaab?</h3>
+                            <p class="text-xs text-amber-400">Gana más dinero con comisiones justas y sé tu propio jefe.</p>
+                        </div>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">9. ¿Qué opinas de un sistema de tarifas negociables y justas? *</label>
-                            <select id="opinionTarifas" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
-                                <option value="" disabled selected>Selecciona valoración...</option>
-                                <option value="Excelente idea (Me da control)">Excelente idea (Me da control)</option>
-                                <option value="Interesante, probaría el servicio">Interesante, probaría el servicio</option>
-                                <option value="Prefiero tarifas fijas tradicionales">Prefiero tarifas fijas tradicionales</option>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">6. ¿Te gustaría unirte como socio operador? *</label>
+                            <select id="interesConductor" onchange="toggleDriverFields(this.value)" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
+                                <option value="" disabled selected>Selecciona una opción...</option>
+                                <option value="Sí, como Conductor de pasajeros">Sí, como Conductor de pasajeros</option>
+                                <option value="Sí, como Repartidor (comida/mandaditos)">Sí, como Repartidor (comida/mandaditos)</option>
+                                <option value="Ambos (Conductor y Repartidor)">Ambos (Conductor y Repartidor)</option>
+                                <option value="Solo soy pasajero">Solo me interesa ser pasajero</option>
                             </select>
                         </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">10. Método de pago de preferencia en Viakaab *</label>
-                            <select id="metodoPago" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
-                                <option value="" disabled selected>Selecciona método...</option>
-                                <option value="Efectivo al abordar">Efectivo al abordar</option>
-                                <option value="Transferencia Bancaria (SPEI)">Transferencia Bancaria (SPEI)</option>
-                                <option value="Pago digital dentro de la app">Pago digital dentro de la app</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">11. ¿Qué tan importante es poder ver la ubicación del conductor en tiempo real? *</label>
-                            <select id="gpsImportancia" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
-                                <option value="" disabled selected>Selecciona importancia...</option>
-                                <option value="Extremadamente importante">Extremadamente importante</option>
-                                <option value="Importante">Importante</option>
-                                <option value="Poco importante">Poco importante</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">12. ¿Estarías dispuesto a cambiarte a Viakaab como tu app principal de transporte? *</label>
-                            <select id="disposicionCambio" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
-                                <option value="" disabled selected>Selecciona respuesta...</option>
-                                <option value="Sí, sin duda alguna">Sí, sin duda alguna</option>
-                                <option value="Tal vez, dependiendo de las tarifas">Tal vez, dependiendo de las tarifas</option>
-                                <option value="No lo creo">No lo creo</option>
+
+                        <div id="driverVehicleDiv" class="hidden">
+                            <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">7. ¿Qué vehículo tienes disponible? *</label>
+                            <select id="tipoVehiculo" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
+                                <option value="" disabled selected>Selecciona vehículo...</option>
+                                <option value="Mototaxi">Mototaxi</option>
+                                <option value="Motocicleta (Repartos/Viajes)">Motocicleta</option>
+                                <option value="Automóvil / Carro particular">Automóvil / Carro</option>
+                                <option value="Bicicleta">Bicicleta</option>
                             </select>
                         </div>
                     </div>
+
+                    <div id="driverContactDiv" class="hidden pt-2">
+                        <label class="block text-xs font-bold uppercase tracking-wider text-stone-400 mb-2">8. Teléfono / WhatsApp de contacto para la flota *</label>
+                        <input type="text" id="contactoConductor" placeholder="Ej. 983 123 4567" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
+                    </div>
                 </div>
 
-                <!-- Sección 4 -->
-                <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/40 p-6 sm:p-8 rounded-3xl shadow-xl space-y-4 backdrop-blur-md">
+                <!-- Sección 4: Participación Beta general -->
+                <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 sm:p-8 rounded-3xl shadow-xl space-y-4 backdrop-blur-md">
                     <div class="flex items-center space-x-3">
-                        <div class="w-9 h-9 rounded-xl bg-honey-500/20 flex items-center justify-center text-honey-400 border border-honey-500/30">
+                        <div class="w-9 h-9 rounded-xl bg-honey-500/10 flex items-center justify-center text-honey-400 border border-honey-500/30">
                             <i class="fa-solid fa-flask"></i>
                         </div>
                         <div>
-                            <h3 class="text-base font-bold text-white">13. ¿Te gustaría participar en pruebas beta con beneficios? (Opcional)</h3>
-                            <p class="text-xs text-stone-400">Obtén viajes gratis, descuentos exclusivos y acceso prioritario a Viakaab.</p>
+                            <h3 class="text-base font-bold text-white">9. ¿Participar en el lanzamiento beta y recibir beneficios?</h3>
+                            <p class="text-xs text-stone-400">Viajes gratis de prueba y prioridad en comisiones.</p>
                         </div>
                     </div>
-                    <select id="betaOpt" onchange="toggleBetaInput(this.value)" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
-                        <option value="No, gracias">No, gracias</option>
-                        <option value="Sí, quiero participar">¡Sí, quiero participar!</option>
+                    <select id="betaOpt" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
+                        <option value="Sí, quiero participar en la beta">¡Sí, quiero participar!</option>
+                        <option value="No por ahora">No por ahora</option>
                     </select>
-                    <div id="betaContactDiv" class="hidden pt-2">
-                        <input type="text" id="contactoBeta" placeholder="14. Número de WhatsApp o Correo Electrónico" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500 transition-colors">
-                    </div>
                 </div>
 
                 <button type="submit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-honey-500 to-amber-400 text-stone-950 font-black text-base shadow-xl shadow-honey-500/20 hover:opacity-95 transform hover:-translate-y-0.5 transition-all flex items-center justify-center space-x-2">
                     <i class="fa-solid fa-paper-plane text-lg"></i>
-                    <span>Enviar Respuestas y Participar</span>
+                    <span>Enviar Registro y Apoyar Viakaab</span>
                 </button>
             </form>
         </section>
@@ -327,13 +275,13 @@
                 </div>
                 <div>
                     <h3 class="text-xl font-bold text-white mb-2">Acceso Exclusivo</h3>
-                    <p class="text-xs text-stone-400">Ingresa tu PIN de seguridad para ver el Dashboard y las analíticas de Viakaab.</p>
+                    <p class="text-xs text-stone-400">Ingresa tu PIN de seguridad (2026) para ver el Dashboard.</p>
                 </div>
-                <input type="password" id="adminPinInput" placeholder="PIN (ej. 2026)" maxlength="6" class="w-full bg-stone-950 border border-honey-500/20 text-center tracking-widest text-lg rounded-xl py-3 text-white focus:outline-none focus:border-honey-500">
-                <div id="pinError" class="text-xs text-red-400 hidden">PIN incorrecto. Acceso denegado.</div>
+                <input type="password" id="adminPinInput" placeholder="PIN" maxlength="6" class="w-full bg-stone-950 border border-honey-500/20 text-center tracking-widest text-lg rounded-xl py-3 text-white focus:outline-none focus:border-honey-500">
+                <div id="pinError" class="text-xs text-red-400 hidden">PIN incorrecto.</div>
                 <div class="flex space-x-3">
-                    <button onclick="closePinModal()" class="flex-1 py-3 bg-stone-800 text-stone-300 font-semibold rounded-xl text-sm hover:bg-stone-700 transition-colors">Cancelar</button>
-                    <button onclick="verifyPin()" class="flex-1 py-3 bg-honey-500 text-stone-950 font-bold rounded-xl text-sm shadow-lg shadow-honey-500/20 hover:opacity-90 transition-opacity">Entrar</button>
+                    <button onclick="closePinModal()" class="flex-1 py-3 bg-stone-800 text-stone-300 font-semibold rounded-xl text-sm">Cancelar</button>
+                    <button onclick="verifyPin()" class="flex-1 py-3 bg-honey-500 text-stone-950 font-bold rounded-xl text-sm shadow-lg shadow-honey-500/20">Entrar</button>
                 </div>
             </div>
         </div>
@@ -344,16 +292,15 @@
                 <div>
                     <span class="px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-xs font-bold uppercase tracking-wider border border-amber-500/30">Panel Privado</span>
                     <h2 class="text-2xl font-black text-white mt-1">Dashboard de Analíticas Viakaab</h2>
-                    <p class="text-xs text-stone-400">Monitoreo en tiempo real de las respuestas ciudadanas.</p>
                 </div>
                 <div class="flex flex-wrap items-center gap-2">
                     <button onclick="exportToExcel()" class="px-4 py-2.5 bg-emerald-500 text-stone-950 rounded-xl text-xs font-bold hover:bg-emerald-400 transition-all shadow-lg shadow-emerald-500/25">
                         <i class="fa-solid fa-file-excel mr-2"></i> Exportar a Excel
                     </button>
-                    <button onclick="resetData()" class="px-4 py-2.5 bg-red-500/10 text-red-400 border border-red-500/20 rounded-xl text-xs font-bold hover:bg-red-500/20 transition-all">
+                    <button onclick="resetData()" class="px-4 py-2.5 bg-red-500/10 text-red-400 border border-red-500/20 rounded-xl text-xs font-bold">
                         <i class="fa-solid fa-trash-can mr-2"></i> Reiniciar
                     </button>
-                    <button onclick="lockDashboard()" class="px-4 py-2.5 bg-stone-800 text-stone-300 rounded-xl text-xs font-bold hover:bg-stone-700 transition-all">
+                    <button onclick="lockDashboard()" class="px-4 py-2.5 bg-stone-800 text-stone-300 rounded-xl text-xs font-bold">
                         <i class="fa-solid fa-lock mr-2"></i> Bloquear
                     </button>
                 </div>
@@ -363,7 +310,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
                 <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 rounded-3xl shadow-xl flex items-center justify-between backdrop-blur-md">
                     <div>
-                        <p class="text-xs text-stone-400 uppercase font-bold">Total Encuestados</p>
+                        <p class="text-xs text-stone-400 uppercase font-bold">Total Registros</p>
                         <h3 id="statTotal" class="text-3xl font-black text-white mt-1">0</h3>
                     </div>
                     <div class="w-12 h-12 bg-honey-500/10 text-honey-400 rounded-2xl flex items-center justify-center text-xl border border-honey-500/30">
@@ -372,43 +319,42 @@
                 </div>
                 <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 rounded-3xl shadow-xl flex items-center justify-between backdrop-blur-md">
                     <div>
-                        <p class="text-xs text-stone-400 uppercase font-bold">Inscritos Beta</p>
-                        <h3 id="statBeta" class="text-3xl font-black text-honey-400 mt-1">0</h3>
+                        <p class="text-xs text-stone-400 uppercase font-bold">Aspirantes a Conductor</p>
+                        <h3 id="statDrivers" class="text-3xl font-black text-honey-400 mt-1">0</h3>
                     </div>
                     <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-2xl flex items-center justify-center text-xl border border-amber-500/30">
-                        <i class="fa-solid fa-flask"></i>
+                        <i class="fa-solid fa-id-card"></i>
                     </div>
                 </div>
                 <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 rounded-3xl shadow-xl flex items-center justify-between backdrop-blur-md">
                     <div>
-                        <p class="text-xs text-stone-400 uppercase font-bold">Principal Servicio</p>
-                        <h3 id="statTopService" class="text-base font-bold text-white mt-1 truncate max-w-[180px]">N/A</h3>
+                        <p class="text-xs text-stone-400 uppercase font-bold">Vehículo Predominante</p>
+                        <h3 id="statTopVehicle" class="text-base font-bold text-white mt-1 truncate max-w-[180px]">N/A</h3>
                     </div>
                     <div class="w-12 h-12 bg-yellow-500/10 text-yellow-400 rounded-2xl flex items-center justify-center text-xl border border-yellow-500/30">
-                        <i class="fa-solid fa-taxi"></i>
+                        <i class="fa-solid fa-car"></i>
                     </div>
                 </div>
             </div>
 
-            <!-- Gráficas -->
+            <!-- Gráfica y Tabla -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 rounded-3xl shadow-xl backdrop-blur-md">
-                    <h3 class="text-base font-bold text-white mb-4"><i class="fa-solid fa-chart-bar text-honey-400 mr-2"></i> Transporte Más Utilizado</h3>
+                    <h3 class="text-base font-bold text-white mb-4"><i class="fa-solid fa-chart-bar text-honey-400 mr-2"></i> Tipos de Vehículos de Aspirantes</h3>
                     <div class="relative h-64 flex items-center justify-center">
-                        <canvas id="chartServices"></canvas>
+                        <canvas id="chartVehicles"></canvas>
                     </div>
                 </div>
-                <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 rounded-3xl shadow-xl backdrop-blur-md">
-                    <h3 class="text-base font-bold text-white mb-4"><i class="fa-solid fa-chart-pie text-amber-400 mr-2"></i> Principal Problema Percibido</h3>
-                    <div class="relative h-64 flex items-center justify-center">
-                        <canvas id="chartProblems"></canvas>
-                    </div>
+                <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 rounded-3xl shadow-xl backdrop-blur-md flex flex-col justify-center">
+                    <h3 class="text-base font-bold text-white mb-2"><i class="fa-solid fa-circle-info text-amber-400 mr-2"></i> Comunidad Viakaab Activa</h3>
+                    <p class="text-xs text-stone-300 leading-relaxed mb-4">
+                        Este panel recopila tanto a usuarios que exigen un alto a las tarifas abusivas como a los conductores listos para unirse a la nueva flota independiente.
+                    </p>
                 </div>
             </div>
 
-            <!-- Tabla -->
             <div class="bg-[rgba(24,20,17,0.85)] border border-honey-500/20 p-6 rounded-3xl shadow-xl space-y-4 backdrop-blur-md">
-                <h3 class="text-base font-bold text-white"><i class="fa-solid fa-table text-honey-400 mr-2"></i> Base de Datos de Participantes</h3>
+                <h3 class="text-base font-bold text-white"><i class="fa-solid fa-table text-honey-400 mr-2"></i> Base de Datos General</h3>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm text-stone-300">
                         <thead class="bg-stone-950 text-xs uppercase text-stone-400 border-b border-honey-500/20">
@@ -416,9 +362,9 @@
                                 <th class="p-3">Nombre</th>
                                 <th class="p-3">Ocupación</th>
                                 <th class="p-3">Colonia</th>
-                                <th class="p-3">Transporte</th>
-                                <th class="p-3">Problema</th>
-                                <th class="p-3">Beta</th>
+                                <th class="p-3">Interés Conductor</th>
+                                <th class="p-3">Vehículo</th>
+                                <th class="p-3">Contacto</th>
                             </tr>
                         </thead>
                         <tbody id="submissionsTableBody" class="divide-y divide-honey-500/10">
@@ -432,17 +378,15 @@
 
     <!-- Footer -->
     <footer class="mt-auto border-t border-honey-500/20 py-6 text-center text-xs text-stone-500 z-10 glass-effect">
-        <p>Viakaab Smart Mobility Hub © 2026. Todos los derechos reservados.</p>
+        <p>Viakaab Smart Mobility Hub © 2026. La verdadera alternativa para Felipe Carrillo Puerto.</p>
     </footer>
 
-    <!-- Script del Fondo Animado Automático (Panal de Abejas Dorado/Miel) -->
+    <!-- Script del Fondo Animado y Lógica -->
     <script>
         let surveyData = JSON.parse(localStorage.getItem('viakaab_surveys')) || [];
         let isAdminLoggedIn = false;
-        let chartServiceInstance = null;
-        let chartProblemInstance = null;
+        let chartVehicleInstance = null;
 
-        // --- FONDO ANIMADO DE PANAL DE ABEJAS ---
         const canvas = document.getElementById('honeycombBg');
         const ctx = canvas.getContext('2d');
         let width, height;
@@ -483,7 +427,6 @@
             hexCells = [];
             const horizDist = hexWidth * 0.75;
             const vertDist = hexHeight;
-
             const cols = Math.ceil(width / horizDist) + 2;
             const rows = Math.ceil(height / vertDist) + 2;
 
@@ -492,8 +435,7 @@
                     const x = c * horizDist + 30;
                     const y = r * vertDist + (c % 2 === 0 ? 0 : vertDist / 2) + 30;
                     hexCells.push({
-                        x: x,
-                        y: y,
+                        x: x, y: y,
                         speed: 0.01 + Math.random() * 0.02,
                         offset: Math.random() * Math.PI * 2
                     });
@@ -505,29 +447,20 @@
 
         function animateHoneycombBg() {
             ctx.clearRect(0, 0, width, height);
-
             const time = Date.now() * 0.001;
 
             hexCells.forEach(cell => {
                 const wave = Math.sin(time * cell.speed * 2 + cell.offset);
-                // Mapear onda a valores de brillo ámbar/miel sutiles
                 const alpha = 0.03 + (wave + 1) * 0.04; 
                 const strokeAlpha = 0.08 + (wave + 1) * 0.06;
 
-                drawHexagon(
-                    cell.x, 
-                    cell.y, 
-                    hexRadius - 3, 
-                    `rgba(234, 179, 8, ${alpha})`, 
-                    `rgba(250, 204, 21, ${strokeAlpha})`
-                );
+                drawHexagon(cell.x, cell.y, hexRadius - 3, `rgba(234, 179, 8, ${alpha})`, `rgba(250, 204, 21, ${strokeAlpha})`);
             });
 
             requestAnimationFrame(animateHoneycombBg);
         }
 
         animateHoneycombBg();
-        // --- FIN DEL FONDO ANIMADO ---
 
         function switchTab(tab) {
             const viewSurvey = document.getElementById('view-survey');
@@ -535,14 +468,12 @@
             const btnSurvey = document.getElementById('btn-survey');
             const btnDashboard = document.getElementById('btn-dashboard');
 
-            if (tab === 'dashboard') {
-                if (!isAdminLoggedIn) {
-                    document.getElementById('pinModal').classList.remove('hidden');
-                    document.getElementById('adminPinInput').value = '';
-                    document.getElementById('pinError').classList.add('hidden');
-                    document.getElementById('adminPinInput').focus();
-                    return;
-                }
+            if (tab === 'dashboard' && !isAdminLoggedIn) {
+                document.getElementById('pinModal').classList.remove('hidden');
+                document.getElementById('adminPinInput').value = '';
+                document.getElementById('pinError').classList.add('hidden');
+                document.getElementById('adminPinInput').focus();
+                return;
             }
 
             if (tab === 'survey') {
@@ -560,8 +491,7 @@
         }
 
         function verifyPin() {
-            const pin = document.getElementById('adminPinInput').value;
-            if (pin === '2026') {
+            if (document.getElementById('adminPinInput').value === '2026') {
                 isAdminLoggedIn = true;
                 document.getElementById('pinModal').classList.add('hidden');
                 switchTab('dashboard');
@@ -570,21 +500,22 @@
             }
         }
 
-        function closePinModal() {
-            document.getElementById('pinModal').classList.add('hidden');
-        }
+        function closePinModal() { document.getElementById('pinModal').classList.add('hidden'); }
+        function lockDashboard() { isAdminLoggedIn = false; switchTab('survey'); }
 
-        function lockDashboard() {
-            isAdminLoggedIn = false;
-            switchTab('survey');
-        }
-
-        function toggleBetaInput(val) {
-            const contactDiv = document.getElementById('betaContactDiv');
-            if (val.includes('Sí')) {
-                contactDiv.classList.remove('hidden');
+        function toggleDriverFields(val) {
+            const driverVehicleDiv = document.getElementById('driverVehicleDiv');
+            const driverContactDiv = document.getElementById('driverContactDiv');
+            if (val.includes('Sí') || val.includes('Ambos')) {
+                driverVehicleDiv.classList.remove('hidden');
+                driverContactDiv.classList.remove('hidden');
+                document.getElementById('tipoVehiculo').setAttribute('required', 'true');
+                document.getElementById('contactoConductor').setAttribute('required', 'true');
             } else {
-                contactDiv.classList.add('hidden');
+                driverVehicleDiv.classList.add('hidden');
+                driverContactDiv.classList.add('hidden');
+                document.getElementById('tipoVehiculo').removeAttribute('required');
+                document.getElementById('contactoConductor').removeAttribute('required');
             }
         }
 
@@ -595,29 +526,25 @@
                 ocupacion: document.getElementById('ocupacion').value,
                 colonia: document.getElementById('colonia').value,
                 servicioFrecuente: document.getElementById('servicioFrecuente').value,
-                frecuenciaViaje: document.getElementById('frecuenciaViaje').value,
-                tiempoEspera: document.getElementById('tiempoEspera').value,
                 problemaPrincipal: document.getElementById('problemaPrincipal').value,
-                gastoSemanal: document.getElementById('gastoSemanal').value,
-                opinionTarifas: document.getElementById('opinionTarifas').value,
-                metodoPago: document.getElementById('metodoPago').value,
-                gpsImportancia: document.getElementById('gpsImportancia').value,
-                disposicionCambio: document.getElementById('disposicionCambio').value,
+                interesConductor: document.getElementById('interesConductor').value,
+                tipoVehiculo: document.getElementById('tipoVehiculo').value || 'N/A (Solo Pasajero)',
+                contacto: document.getElementById('contactoConductor').value || 'N/A',
                 beta: document.getElementById('betaOpt').value,
-                contacto: document.getElementById('contactoBeta').value || 'N/A',
                 fecha: new Date().toLocaleDateString()
             };
 
             surveyData.push(newEntry);
             localStorage.setItem('viakaab_surveys', JSON.stringify(surveyData));
 
-            alert('¡Muchas gracias! Tus respuestas se han enviado correctamente.');
+            alert('¡Registro enviado con éxito! Gracias por formar parte de la alternativa Viakaab.');
             document.getElementById('surveyForm').reset();
-            document.getElementById('betaContactDiv').classList.add('hidden');
+            document.getElementById('driverVehicleDiv').classList.add('hidden');
+            document.getElementById('driverContactDiv').classList.add('hidden');
         }
 
         function resetData() {
-            if (confirm('¿Estás seguro de borrar todos los registros de la encuesta?')) {
+            if (confirm('¿Borrar todos los registros?')) {
                 surveyData = [];
                 localStorage.removeItem('viakaab_surveys');
                 renderDashboard();
@@ -626,66 +553,36 @@
 
         function exportToExcel() {
             if (surveyData.length === 0) {
-                alert('No hay datos registrados en la encuesta para exportar.');
+                alert('No hay datos para exportar.');
                 return;
             }
-
-            const detailedRows = surveyData.map((item, index) => ({
-                "ID": index + 1,
-                "Fecha": item.fecha,
-                "Nombre Completo": item.nombre,
-                "Ocupación": item.ocupacion,
-                "Colonia / Sector": item.colonia,
-                "Transporte Frecuente": item.servicioFrecuente,
-                "Frecuencia de Traslados": item.frecuenciaViaje,
-                "Satisfacción Tiempos Espera": item.tiempoEspera,
-                "Problema Principal": item.problemaPrincipal,
-                "Gasto Semanal": item.gastoSemanal,
-                "Opinión Tarifas Justas": item.opinionTarifas,
-                "Método de Pago Preferido": item.metodoPago,
-                "Importancia GPS Tiempo Real": item.gpsImportancia,
-                "Disposición Cambio a Viakaab": item.disposicionCambio,
-                "Participa en Beta": item.beta,
-                "Contacto Beta": item.contacto
-            }));
-
-            const totalEncuestados = surveyData.length;
-            const totalBeta = surveyData.filter(i => i.beta.includes('Sí')).length;
-            
-            const summaryRows = [
-                { "Métrica Global": "Total de Encuestados", "Valor": totalEncuestados },
-                { "Métrica Global": "Inscritos a Pruebas Beta", "Valor": totalBeta },
-                { "Métrica Global": "Fecha de Generación del Reporte", "Valor": new Date().toLocaleString() }
-            ];
-
+            const ws = XLSX.utils.json_to_sheet(surveyData);
             const wb = XLSX.utils.book_new();
-            const wsDetailed = XLSX.utils.json_to_sheet(detailedRows);
-            const wsSummary = XLSX.utils.json_to_sheet(summaryRows);
-
-            XLSX.utils.book_append_sheet(wb, wsDetailed, "Resultados Detallados");
-            XLSX.utils.book_append_sheet(wb, wsSummary, "Resumen y Estadísticas");
-
-            XLSX.writeFile(wb, "Reporte_Analiticas_Viakaab.xlsx");
+            XLSX.utils.book_append_sheet(wb, ws, "Registros Viakaab");
+            XLSX.writeFile(wb, "Registros_Viakaab_Conductores_Pasajeros.xlsx");
         }
 
         function renderDashboard() {
             document.getElementById('statTotal').innerText = surveyData.length;
-            const betaCount = surveyData.filter(i => i.beta.includes('Sí')).length;
-            document.getElementById('statBeta').innerText = betaCount;
+            const driversCount = surveyData.filter(i => i.interesConductor.includes('Sí') || i.interesConductor.includes('Ambos')).length;
+            document.getElementById('statDrivers').innerText = driversCount;
 
-            if (surveyData.length > 0) {
-                const serviceCounts = {};
-                surveyData.forEach(i => serviceCounts[i.servicioFrecuente] = (serviceCounts[i.servicioFrecuente] || 0) + 1);
-                const topService = Object.keys(serviceCounts).reduce((a, b) => serviceCounts[a] > serviceCounts[b] ? a : b);
-                document.getElementById('statTopService').innerText = topService;
-            } else {
-                document.getElementById('statTopService').innerText = 'N/A';
-            }
+            const vehicleCounts = {};
+            surveyData.forEach(i => {
+                if(i.tipoVehiculo !== 'N/A (Solo Pasajero)') {
+                    vehicleCounts[i.tipoVehiculo] = (vehicleCounts[i.tipoVehiculo] || 0) + 1;
+                }
+            });
+
+            const topVehicle = Object.keys(vehicleCounts).length > 0 
+                ? Object.keys(vehicleCounts).reduce((a, b) => vehicleCounts[a] > vehicleCounts[b] ? a : b) 
+                : 'Ninguno';
+            document.getElementById('statTopVehicle').innerText = topVehicle;
 
             const tbody = document.getElementById('submissionsTableBody');
             tbody.innerHTML = '';
             if (surveyData.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-stone-500">No hay registros guardados todavía.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-stone-500">Sin registros guardados.</td></tr>`;
             } else {
                 surveyData.slice().reverse().forEach(item => {
                     tbody.innerHTML += `
@@ -693,34 +590,22 @@
                             <td class="p-3 font-medium text-white">${item.nombre}</td>
                             <td class="p-3">${item.ocupacion}</td>
                             <td class="p-3">${item.colonia}</td>
-                            <td class="p-3">${item.servicioFrecuente}</td>
-                            <td class="p-3">${item.problemaPrincipal}</td>
-                            <td class="p-3"><span class="px-2.5 py-1 rounded-full text-xs font-bold ${item.beta.includes('Sí') ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' : 'bg-stone-800 text-stone-400'}">${item.beta}</span></td>
+                            <td class="p-3"><span class="px-2 py-0.5 rounded-full text-xs font-bold ${item.interesConductor.includes('Sí') ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' : 'bg-stone-800 text-stone-400'}">${item.interesConductor}</span></td>
+                            <td class="p-3 font-semibold text-honey-400">${item.tipoVehiculo}</td>
+                            <td class="p-3">${item.contacto}</td>
                         </tr>
                     `;
                 });
             }
 
-            renderCharts();
-        }
-
-        function renderCharts() {
-            const serviceCounts = {};
-            surveyData.forEach(i => { serviceCounts[i.servicioFrecuente] = (serviceCounts[i.servicioFrecuente] || 0) + 1; });
-
-            const problemCounts = {};
-            surveyData.forEach(i => { problemCounts[i.problemaPrincipal] = (problemCounts[i.problemaPrincipal] || 0) + 1; });
-
-            if (chartServiceInstance) chartServiceInstance.destroy();
-            if (chartProblemInstance) chartProblemInstance.destroy();
-
-            const ctxServices = document.getElementById('chartServices').getContext('2d');
-            chartServiceInstance = new Chart(ctxServices, {
+            if (chartVehicleInstance) chartVehicleInstance.destroy();
+            const ctxVehicles = document.getElementById('chartVehicles').getContext('2d');
+            chartVehicleInstance = new Chart(ctxVehicles, {
                 type: 'bar',
                 data: {
-                    labels: Object.keys(serviceCounts).length ? Object.keys(serviceCounts) : ['Sin datos'],
+                    labels: Object.keys(vehicleCounts).length ? Object.keys(vehicleCounts) : ['Sin aspirantes'],
                     datasets: [{
-                        data: Object.values(serviceCounts).length ? Object.values(serviceCounts) : [0],
+                        data: Object.values(vehicleCounts).length ? Object.values(vehicleCounts) : [0],
                         backgroundColor: '#eab308',
                         borderRadius: 8
                     }]
@@ -732,25 +617,6 @@
                     scales: {
                         x: { ticks: { color: '#a8a29e', font: { size: 10 } }, grid: { display: false } },
                         y: { ticks: { color: '#a8a29e', precision: 0 }, grid: { color: 'rgba(234, 179, 8, 0.1)' } }
-                    }
-                }
-            });
-
-            const ctxProblems = document.getElementById('chartProblems').getContext('2d');
-            chartProblemInstance = new Chart(ctxProblems, {
-                type: 'doughnut',
-                data: {
-                    labels: Object.keys(problemCounts).length ? Object.keys(problemCounts) : ['Sin datos'],
-                    datasets: [{
-                        data: Object.values(problemCounts).length ? Object.values(problemCounts) : [1],
-                        backgroundColor: ['#eab308', '#f59e0b', '#d97706', '#b45309']
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { position: 'bottom', labels: { color: '#a8a29e', font: { size: 10 } } }
                     }
                 }
             });

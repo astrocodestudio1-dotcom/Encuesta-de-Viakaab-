@@ -140,8 +140,8 @@
                             <label class="block text-xs font-bold uppercase text-stone-400 mb-2">9. ¿Cuál es el mayor problema al pedir un servicio tarde? *</label>
                             <select id="p9" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                                 <option value="" disabled selected>Selecciona problema...</option>
-                                <option value="No contestan o no hay unidades tarde">No contestan llamadas o no hay unidades</option>
-                                <option value="Cobros arbitrarios sin taxímetro">Cobros arbitrarios sin base fija</option>
+                                <option value="No contestan llamadas o no hay unidades">No contestan llamadas o no hay unidades</option>
+                                <option value="Cobros arbitrarios sin base fija">Cobros arbitrarios sin base fija</option>
                                 <option value="Inseguridad">Inseguridad</option>
                             </select>
                         </div>
@@ -172,8 +172,8 @@
                             <label class="block text-xs font-bold uppercase text-stone-400 mb-2">12. ¿Qué función te parece más atractiva? *</label>
                             <select id="p12" required class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                                 <option value="" disabled selected>Selecciona...</option>
-                                <option value="Tarifas justas y negociación">Tarifas justas y transparentes</option>
-                                <option value="Botón de pánico y GPS">Botón de pánico y rastreo GPS</option>
+                                <option value="Tarifas justas y transparentes">Tarifas justas y transparentes</option>
+                                <option value="Botón de pánico y rastreo GPS">Botón de pánico y rastreo GPS</option>
                                 <option value="Pagos digitales y efectivo">Pagos digitales y efectivo</option>
                             </select>
                         </div>
@@ -200,7 +200,7 @@
                         </div>
 
                         <div id="driverVehicleDiv" class="hidden">
-                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">14. ¿Qué vehículo tienes disponible? *</label>
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">14. ¿Qué vehículo tienes disponible?</label>
                             <select id="p14" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                                 <option value="" disabled selected>Selecciona vehículo...</option>
                                 <option value="Mototaxi">Mototaxi</option>
@@ -211,12 +211,12 @@
                         </div>
 
                         <div id="driverModelDiv" class="hidden">
-                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">15. Modelo y año aproximado de tu vehículo *</label>
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">15. Modelo y año aproximado de tu vehículo</label>
                             <input type="text" id="p15" placeholder="Ej. Bajaj Torpedo 2022" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                         </div>
 
                         <div id="driverContactDiv" class="hidden sm:col-span-2">
-                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">16. Teléfono o WhatsApp directo para contacto de flota *</label>
+                            <label class="block text-xs font-bold uppercase text-stone-400 mb-2">16. Teléfono o WhatsApp directo para contacto de flota</label>
                             <input type="text" id="p16" placeholder="Ej. 983 123 4567" class="w-full bg-stone-950 border border-honey-500/20 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-honey-500">
                         </div>
                     </div>
@@ -361,9 +361,9 @@
     </div>
 
     <script>
-        // CONFIGURACIÓN DE SUPABASE (Reemplaza con tus datos reales)
-        const SUPABASE_URL = 'https://TU_PROYECTO.supabase.co';
-        const SUPABASE_ANON_KEY = 'TU_ANON_KEY_AQUI';
+        // CONFIGURACIÓN DE SUPABASE CON TUS CREDENCIALES OFICIALES
+        const SUPABASE_URL = 'https://xlduflbyxepfhrfopzux.supabase.co';
+        const SUPABASE_ANON_KEY = 'sb_publishable_DQ2jS3YEX0-Nv_i3Fp9WQw_sJbh0yNb';
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         let surveyData = [];
@@ -371,7 +371,7 @@
         let chartTransportInstance = null;
         let chartProblemInstance = null;
 
-        // Fondo animado
+        // Fondo animado de celdas
         const canvas = document.getElementById('honeycombBg');
         const ctx = canvas.getContext('2d');
         let width, height, hexCells = [];
@@ -440,7 +440,7 @@
         async function fetchSurveysFromSupabase() {
             const { data, error } = await supabaseClient.from('viakaab_surveys').select('*').order('created_at', { ascending: false });
             if (error) {
-                console.error('Error al cargar datos:', error);
+                console.error('Error al cargar datos de Supabase:', error.message);
             } else {
                 surveyData = data || [];
                 if (isAdminLoggedIn) updateDashboardStats();
@@ -486,13 +486,13 @@
 
         function toggleDriverFields(val) {
             const divs = ['driverVehicleDiv', 'driverModelDiv', 'driverContactDiv'];
-            const reqs = ['p14', 'p15', 'p16'];
             if (val.includes('Sí') || val.includes('Ambos')) {
                 divs.forEach(d => document.getElementById(d).classList.remove('hidden'));
-                reqs.forEach(r => document.getElementById(r).setAttribute('required', 'true'));
             } else {
                 divs.forEach(d => document.getElementById(d).classList.add('hidden'));
-                reqs.forEach(r => document.getElementById(r).removeAttribute('required'));
+                document.getElementById('p14').value = '';
+                document.getElementById('p15').value = '';
+                document.getElementById('p16').value = '';
             }
         }
 
@@ -521,9 +521,9 @@
             const { error } = await supabaseClient.from('viakaab_surveys').insert([nuevoRegistro]);
 
             if (error) {
-                alert('Hubo un error al enviar el cuestionario: ' + error.message);
+                alert('Hubo un error al guardar en Supabase: ' + error.message);
             } else {
-                alert('¡Cuestionario enviado con éxito a Supabase! Gracias por apoyar a Viakaab.');
+                alert('¡Cuestionario enviado con éxito! Gracias por apoyar a Viakaab.');
                 document.getElementById('surveyForm').reset();
                 toggleDriverFields('Solo soy pasajero');
                 fetchSurveysFromSupabase();
